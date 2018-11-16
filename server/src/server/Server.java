@@ -24,7 +24,7 @@ public class Server extends UnicastRemoteObject{
         	java.rmi.registry.LocateRegistry.createRegistry(1099);
         	
             Naming.rebind("//localhost/BetaTest", new Questionnaire());
-            System.err.println("Server ready");
+            System.err.println("Server is Running......");
         } catch (Exception e) {
             System.err.println("Server exception: " + e.getMessage());
         }

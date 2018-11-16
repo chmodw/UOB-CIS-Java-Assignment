@@ -1,4 +1,4 @@
-package com.obj;
+package com.remoteObj;
 
 import java.io.Serializable;
 

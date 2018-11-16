@@ -1,9 +1,11 @@
 package com.models;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * this class will deal with storage
@@ -12,31 +14,34 @@ import java.io.IOException;
  */
 
 public class MQuestion {
+	
+	private static String[] qList;
 
-	private final static String path = "storage/questionlist.txt";
-	
+	/**
+	 * Reads the questions file and get them into a ArrayList and return it
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public static ArrayList<String> fetchQuestions() throws FileNotFoundException, IOException {
 		
-	public MQuestion() {
-		/**
-		 * Reads the questions
-		 */
+		String path = "storage\\questionlist.txt";
 		
-	}
-	
-	public static String fread() throws FileNotFoundException, IOException {
-		System.out.println("FRead called");
-		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-		    String line;
-		    while ((line = br.readLine()) != null) {
-		    	return line;
-		    }
+		BufferedReader file = new BufferedReader(new FileReader(path));
+		
+		ArrayList<String> qList = new ArrayList<String>();
+
+		String line;
+		
+		while((line = file.readLine()) != null) {
+			
+		    qList.add(line);
+		    
 		}
 		
-		return null;
+		file.close();
+		
+		return qList;
 	}
-	
-//	public MQuestions(String question) {
-//		
-//	}
 	
 }

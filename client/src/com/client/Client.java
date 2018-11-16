@@ -7,8 +7,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import com.interfaces.*;
-import com.obj.*;
+import com.remoteInterfaces.*;
+import com.remoteObj.*;
 
 public class Client {
 	
@@ -19,11 +19,11 @@ public class Client {
 
     	look_up = (IQuestionnaire) Naming.lookup("//localhost/BetaTest");
     	
-    	ArrayList<Question> qList = look_up.getQuestionnaire();
+//    	ArrayList<Question> qList = look_up.getQuestionnaire();
     	
-    	Question nq = qList.get(0);
+//    	Question nq = qList.get(0);
     	
-    	System.out.println(nq.getQuestion());
+//    	System.out.println(nq.getQuestion());
     }
 
 }

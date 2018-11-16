@@ -1,4 +1,4 @@
-package com.interfaces;
+package com.remoteInterfaces;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,15 +7,13 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.obj.*;
+import com.remoteObj.*;
 
 public interface IQuestionnaire extends Remote{
 
 	/**
 	 * Get all the questions from the storage
 	 * @throws RemoteException
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
 	 */
 	void fetchQuestion() throws RemoteException, FileNotFoundException, IOException;
 	/**
@@ -30,3 +28,4 @@ public interface IQuestionnaire extends Remote{
 	int getQuestionCount()throws RemoteException;
 	
 }
+
