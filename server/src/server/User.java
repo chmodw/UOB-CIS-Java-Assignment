@@ -36,6 +36,8 @@ public class User extends UnicastRemoteObject implements IUser{
 		
 		this.added_date = dateFormat.format(date);
 		
+		System.out.println("user object craeted");
+		
 	}
 
 
