@@ -13,7 +13,7 @@ public class Question implements Serializable{
 	
 	public Question(String question) {
 		this.question = question;
-		System.out.println("Question instantiated");
+//		System.out.println("Question instantiated");
 	}
 
 
