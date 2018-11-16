@@ -18,6 +18,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		super();
 		// TODO Auto-generated constructor stub
 		System.out.println("Questionnaire instantiated");
+		fetchQuestion();
 	}
 
 	@Override

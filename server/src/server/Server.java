@@ -23,7 +23,7 @@ public class Server extends UnicastRemoteObject{
         	//start the rmi registry
         	java.rmi.registry.LocateRegistry.createRegistry(1099);
         	
-            Naming.rebind("//localhost/MyBookstore", new Questionnaire());
+            Naming.rebind("//localhost/BetaTest", new Questionnaire());
             System.err.println("Server ready");
         } catch (Exception e) {
             System.err.println("Server exception: " + e.getMessage());
