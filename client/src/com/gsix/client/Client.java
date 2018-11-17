@@ -10,11 +10,14 @@ public class Client {
 
 	public static void main(String[] args) throws NotBoundException, ClassNotFoundException, IOException {
 				
-		AppClient app = new AppClient();
+//		AppClient app = new AppClient();
+//		
+//		app.newUser("wimansha", "password", "tester");
+//		
+//		System.out.println(app.login("wimansha", "passwod"));
 		
-		app.newUser("wimansha", "password", "tester");
-		
-		System.out.println(app.login("wimansha", "password"));
+		Questionnaire q = new Questionnaire();
+		q.startQuestionnaire();
 
 	}
 	
