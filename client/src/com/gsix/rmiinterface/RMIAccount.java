@@ -38,7 +38,7 @@ public interface RMIAccount {
 	
 	/**
 	 * Only a developer can add a App
-	 * @param App
+	 * @param AppClient
 	 * @param User
 	 * @return
 	 * @throws RemoteException
