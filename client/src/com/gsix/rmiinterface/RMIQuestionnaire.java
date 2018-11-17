@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface RMIQuestionnaire {
+public interface RMIQuestionnaire extends Remote{
 	
 	/**
 	 * Add new question. if all went well will return a true, else false

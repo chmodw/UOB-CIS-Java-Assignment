@@ -94,7 +94,7 @@ public class Model {
 	public static ArrayList<Question> loadQuestions(){
 		
 		try {
-			BufferedReader qRead = new BufferedReader(new FileReader("//storage//questionlist.txt"));
+			BufferedReader qRead = new BufferedReader(new FileReader("storage\\questionlist.txt"));
 			
 			String line = qRead.readLine();
 			int qnumber = 1;

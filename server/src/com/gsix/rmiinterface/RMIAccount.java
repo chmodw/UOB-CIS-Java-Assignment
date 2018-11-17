@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  */
 
-public interface RMIAccount {
+public interface RMIAccount extends Remote{
 
 	/*
 	 * Create a new user
