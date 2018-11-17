@@ -12,7 +12,7 @@ public interface RMIQuestionnaire {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public boolean newQuestion(Question Question) throws RemoteException;
+	public boolean newQuestion(Question question) throws RemoteException;
 	
 	/**
 	 * Get available questions from the database

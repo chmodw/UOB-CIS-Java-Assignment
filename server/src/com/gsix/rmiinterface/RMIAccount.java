@@ -17,14 +17,14 @@ public interface RMIAccount {
 	 * @return boolean
 	 * return true if a user registered successfully
 	 */ 
-	public boolean newUser(User User) throws RemoteException;
+	public boolean newUser(User user) throws RemoteException;
 	
 	/**
 	 * find a user from the database. can use for login. return true if found
 	 * @param User
 	 * @return
 	 */
-	public User selectUser(User User) throws RemoteException;
+	public User selectUser(User user) throws RemoteException;
 	
 	/**
 	 * A logging status method will add here after base components finish.
@@ -40,7 +40,7 @@ public interface RMIAccount {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public boolean newApp(App App, User User) throws RemoteException;
+	public boolean newApp(App app, User user) throws RemoteException;
 	
 	/**
 	 * Select only a one app.
