@@ -21,14 +21,14 @@ public class IMPLAccount extends UnicastRemoteObject implements RMIAccount{
 	@Override
 	public boolean newUser(User user) throws RemoteException {
 		
-		return AccountModel.newUser(user);
+		return Model.write(user);		
 	
 	}
 
 	@Override
 	public User selectUser(User user) throws ClassNotFoundException, IOException {
 		
-		return AccountModel.selectUser(user);
+		return (User) Model.select(user);
 		
 	}
 
