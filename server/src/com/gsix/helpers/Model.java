@@ -47,7 +47,7 @@ public class Model {
 		
 		try {
 
-			FileOutputStream fileOut = new FileOutputStream(filePath);
+			FileOutputStream fileOut = new FileOutputStream(filePath.toLowerCase());
 			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 			
 			objectOut.writeObject(theApp);
@@ -63,22 +63,21 @@ public class Model {
 		return false;
 	}
 	
-	public static Object select(User aUser) throws IOException, ClassNotFoundException{
-		
+	public static User select(String username) throws IOException, ClassNotFoundException{
 		// get all the file names in the users folder
 		File fh = new File(userStorage);
 		File[] listOfFiles = fh.listFiles();
 		
+		String fileName = username + ".obj";
 		// loop through all the file names one by one
 		for (int i = 0; i < listOfFiles.length; i++) {
-          
-            if (listOfFiles[i].getName() == aUser.getUsername()+".obj") {
-            	//	return the user object if a match found
-            	
-    			FileInputStream fileIn = new FileInputStream(new File(aUser.getUsername()+".obj"));
+			
+            if (listOfFiles[i].getName().toLowerCase().equals(fileName.toLowerCase())) {
+            	//	return the user object if a match found         	
+     			FileInputStream fileIn = new FileInputStream(new File(userStorage+username.toLowerCase()+".obj"));
     			ObjectInputStream objIn = new ObjectInputStream(fileIn);
     			
-    			aUser = (User) objIn.readObject();  			          	
+    			User aUser = (User) objIn.readObject();  			          	
     			
     			fileIn.close();
     			objIn.close();
@@ -87,6 +86,7 @@ public class Model {
     			return aUser;
             }
 		}
+		
 		//return null if nothing found
 		return null;
 	}

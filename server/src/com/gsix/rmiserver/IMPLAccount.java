@@ -26,9 +26,9 @@ public class IMPLAccount extends UnicastRemoteObject implements RMIAccount{
 	}
 
 	@Override
-	public User selectUser(User user) throws ClassNotFoundException, IOException {
+	public User selectUser(String username) throws ClassNotFoundException, IOException {
 		
-		return (User) Model.select(user);
+		return Model.select(username);
 		
 	}
 

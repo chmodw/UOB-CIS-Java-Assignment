@@ -27,7 +27,7 @@ public interface RMIAccount {
 	 * @throws IOException 
 	 * @throws ClassNotFoundException 
 	 */
-	public User selectUser(User user) throws RemoteException, ClassNotFoundException, IOException;
+	public User selectUser(String username) throws RemoteException, ClassNotFoundException, IOException;
 	
 	/**
 	 * A logging status method will add here after base components finish.
