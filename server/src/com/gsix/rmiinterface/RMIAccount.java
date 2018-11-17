@@ -1,5 +1,6 @@
 package com.gsix.rmiinterface;
 
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -23,8 +24,10 @@ public interface RMIAccount {
 	 * find a user from the database. can use for login. return true if found
 	 * @param User
 	 * @return
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public User selectUser(User user) throws RemoteException;
+	public User selectUser(User user) throws RemoteException, ClassNotFoundException, IOException;
 	
 	/**
 	 * A logging status method will add here after base components finish.

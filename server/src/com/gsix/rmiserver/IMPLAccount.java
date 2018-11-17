@@ -1,5 +1,6 @@
 package com.gsix.rmiserver;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -25,9 +26,10 @@ public class IMPLAccount extends UnicastRemoteObject implements RMIAccount{
 	}
 
 	@Override
-	public User selectUser(User user) throws RemoteException {
+	public User selectUser(User user) throws ClassNotFoundException, IOException {
 		
-		return null;
+		return AccountModel.selectUser(user);
+		
 	}
 
 	@Override
