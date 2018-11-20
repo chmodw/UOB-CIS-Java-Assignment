@@ -32,12 +32,12 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="250.0" layoutY="101.0">
+      <TextField fx:id="username" layoutX="250.0" layoutY="101.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <PasswordField layoutX="250.0" layoutY="160.0">
+      <PasswordField fx:id="password" layoutX="250.0" layoutY="150.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -63,7 +63,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <PasswordField layoutX="260.0" layoutY="208.0">
+      <PasswordField fx:id="repassword" layoutX="250.0" layoutY="208.0">
          <font>
             <Font size="15.0" />
          </font>
