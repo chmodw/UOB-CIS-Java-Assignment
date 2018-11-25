@@ -91,6 +91,33 @@ public class Model {
 		return null;
 	}
 	
+	public static ArrayList<App> getAppList() throws IOException, ClassNotFoundException{
+		
+		// get all the file names in the users folder
+				File fh = new File(appStorage);
+				File[] listOfFiles = fh.listFiles();
+		
+				if(listOfFiles.length != 0) {
+					ArrayList<App> appList = new ArrayList<>();
+					// loop through all the file names one by one
+					for (int i = 0; i < listOfFiles.length; i++) {
+		     			FileInputStream fileIn = new FileInputStream(new File(appStorage+listOfFiles[i].getName()));
+		    			ObjectInputStream objIn = new ObjectInputStream(fileIn);
+		    			
+		    			App aApp = (App) objIn.readObject();  			          	
+		    			
+		    			fileIn.close();
+		    			objIn.close();
+		    			
+		    			// return the found user object
+		    			appList.add(aApp);
+					}
+					return appList;
+				}
+				
+		return null;
+	}
+	
 	public static ArrayList<Question> loadQuestions(){
 		
 		try {
@@ -101,6 +128,7 @@ public class Model {
 			
 			ArrayList<Question> qList = new ArrayList<>();
 			
+			//	answers for questions are add here
 			String[] answers = {"Strongly Disagree", "Disagree", "Agree", "Strongly agree"};
 			
 			while (line != null) {

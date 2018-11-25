@@ -50,4 +50,11 @@ public class IMPLAccount extends UnicastRemoteObject implements RMIAccount{
 		return null;
 	}
 
+	@Override
+	public String testServer() throws RemoteException{
+		// TODO Auto-generated method stub
+		System.out.println("A client Connected");
+		return "greetings from the server";
+	}
+
 }

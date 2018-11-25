@@ -10,6 +10,11 @@ import com.gsix.helpers.*;
 
 public class IMPLQuestionnaire extends UnicastRemoteObject implements RMIQuestionnaire{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected IMPLQuestionnaire() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  */
 
-public interface RMIAccount extends Remote{
+public interface RMIAccount {
 
 	/*
 	 * Create a new user
@@ -38,7 +38,7 @@ public interface RMIAccount extends Remote{
 	
 	/**
 	 * Only a developer can add a App
-	 * @param App
+	 * @param AppClient
 	 * @param User
 	 * @return
 	 * @throws RemoteException

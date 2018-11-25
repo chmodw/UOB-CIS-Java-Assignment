@@ -9,15 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="799.0" style="-fx-background-color: #242a33;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="799.0" style="-fx-background-color: #242a33;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="468.0" fitWidth="799.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="507.0" fitWidth="831.0" layoutX="-31.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="468.0" fitWidth="835.0" layoutX="-17.0" layoutY="1.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../img/foip-binary.jpg" />
+            <Image url="@foip-binary.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="32.0" layoutY="155.0" style="-fx-font-family: #ffffff;" text="Welcome to AppDev" textFill="WHITE">
+      <Label layoutX="66.0" layoutY="157.0" style="-fx-font-family: #ffffff;" text="Welcome to AppDev" textFill="WHITE">
          <font>
             <Font size="31.0" />
          </font>
@@ -32,15 +31,15 @@
                   <Font name="Arial" size="25.0" />
                </font>
             </Label>
-            <Label layoutX="125.0" layoutY="339.0" style="-fx-font: #ffffff;" text="Forgot Password ?" textFill="WHITE" />
+            <Label layoutX="136.0" layoutY="341.0" style="-fx-font: #ffffff;" text="Forgot Password ?" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <Label layoutX="79.0" layoutY="235.0" style="-fx-font: #ffffff;" text="Software related testing group" textFill="WHITE">
+      <Label layoutX="113.0" layoutY="237.0" style="-fx-font: #ffffff;" text="Software related testing group" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXButton alignment="CENTER" layoutX="28.0" layoutY="297.0" prefHeight="32.0" prefWidth="290.0" style="-fx-background-color: #68a0f9;" text="Register" />
+      <JFXButton alignment="CENTER" layoutX="62.0" layoutY="299.0" prefHeight="32.0" prefWidth="290.0" style="-fx-background-color: #68a0f9;" text="Register" />
       <Label layoutX="775.0" layoutY="1.0" onMouseClicked="#closeApp" style="-fx-font: #ffffff;" text="X" textFill="WHITE">
          <font>
             <Font size="32.0" />
