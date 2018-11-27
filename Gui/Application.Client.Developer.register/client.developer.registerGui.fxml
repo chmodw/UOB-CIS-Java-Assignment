@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="467.0" prefWidth="900.0" style="-fx-background-color: #242a33;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="507.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="540.0" fitWidth="917.0" layoutX="-17.0" layoutY="-9.0" opacity="0.07" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../img/foip-binary.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="388.0" layoutY="12.0" prefHeight="484.0" prefWidth="493.0" style="-fx-background-color: #25457a;">
+         <children>
+            <JFXTextField fx:id="fullName" focusColor="#1b9223" layoutX="43.0" layoutY="49.0" prefHeight="26.0" prefWidth="406.0" promptText="Username" text="Full name" unFocusColor="WHITE" />
+            <JFXButton layoutX="43.0" layoutY="388.0" onAction="#startDeveloperSurvey" prefHeight="39.0" prefWidth="406.0" style="-fx-background-color: #68a0f9;" text="Start Now " textFill="WHITE" />
+            <JFXTextField fx:id="email" focusColor="#1b9223" layoutX="43.0" layoutY="89.0" prefHeight="26.0" prefWidth="406.0" promptText="Username" text="Email" unFocusColor="WHITE" />
+            <JFXTextField fx:id="age" focusColor="#1b9223" layoutX="43.0" layoutY="127.0" prefHeight="26.0" prefWidth="406.0" promptText="Username" text="Age" unFocusColor="WHITE" />
+            <JFXTextField fx:id="country" focusColor="#1b9223" layoutX="42.0" layoutY="168.0" prefHeight="26.0" prefWidth="406.0" promptText="Username" text="Country" unFocusColor="WHITE" />
+            <JFXTextField fx:id="manufacture" focusColor="#1b9223" layoutX="42.0" layoutY="205.0" prefHeight="26.0" prefWidth="406.0" promptText="Username" text="Manufacturer of the App" unFocusColor="WHITE" />
+            <JFXTextField fx:id="operationSystem" focusColor="#1b9223" layoutX="42.0" layoutY="245.0" prefHeight="26.0" prefWidth="406.0" promptText="Username" text="Operating System" unFocusColor="WHITE" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="14.0" layoutY="364.0" style="-fx-font-family: #ffffff;" text="Fill out and start the survey NOW !" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="408.0" style="-fx-font: #ffffff;" text="Software related testing group" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="48.0" text="Are you a developer ?" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="240.0" fitWidth="245.0" layoutX="78.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../img/kisspng-v-next-software-software-developer-computer-icons-sql-developer-icon-5b4b22cfef08d6.8282537015316507679791.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
