@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.97" prefHeight="643.0" prefWidth="1141.0" style="-fx-background-color: #242a33;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="711.0" fitWidth="1142.0" opacity="0.07" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/foip-binary.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="43.0" prefWidth="1141.0">
+         <children>
+            <Label layoutX="953.0" layoutY="7.0" text="X" />
+            <Label layoutX="14.0" layoutY="16.0" prefHeight="18.0" prefWidth="62.0" text="AppDev" textFill="WHITE" />
+            <Label fx:id="loggeduser" layoutX="983.0" layoutY="16.0" text="Logged user name" textFill="WHITE" />
+            <Label layoutX="1124.0" layoutY="5.0" text="X" textFill="WHITE" />
+            <Separator layoutY="40.0" prefHeight="7.0" prefWidth="1141.0" />
+            <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="947.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/login_user_117687.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="44.0" prefHeight="598.0" prefWidth="1141.0">
+         <children>
+            <JFXListView fx:id="appList" layoutX="10.0" layoutY="6.0" opacity="0.3" prefHeight="586.0" prefWidth="208.0" style="-fx-background-color: #25457a;" />
+            <Label fx:id="recentUpload" layoutX="246.0" layoutY="14.0" prefHeight="18.0" prefWidth="299.0" text="Recently uploaded apps/recently tested app Name" textFill="WHITE" />
+            <ImageView fx:id="img1" fitHeight="150.0" fitWidth="200.0" layoutX="246.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/forgot-password-icon-9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img2" fitHeight="150.0" fitWidth="200.0" layoutX="451.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/forgot-password-icon-9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img3" fitHeight="150.0" fitWidth="200.0" layoutX="653.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/forgot-password-icon-9.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="246.0" layoutY="557.0" onAction="#startSurvey" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #3788a8;" text="Start Survey" />
+            <JFXButton layoutX="984.0" layoutY="557.0" onAction="#exitApp" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #e0332a;" text="Exit" />
+            <Separator layoutX="223.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="7.0" />
+            <ImageView fx:id="img4" fitHeight="150.0" fitWidth="200.0" layoutX="841.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/forgot-password-icon-9.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
