@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="467.0" prefWidth="900.0" style="-fx-background-color: #242a33;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -28,8 +26,6 @@
             <JFXTextField fx:id="username" focusColor="#1b9223" layoutX="43.0" layoutY="149.0" prefHeight="26.0" prefWidth="406.0" promptText="Username" unFocusColor="WHITE" />
             <JFXTextField fx:id="password" focusColor="#1b9223" layoutX="43.0" layoutY="202.0" prefHeight="26.0" prefWidth="406.0" promptText="Password" unFocusColor="WHITE" />
             <JFXTextField fx:id="passwordcheck" layoutX="43.0" layoutY="252.0" prefHeight="26.0" prefWidth="406.0" promptText="Retype Password" unFocusColor="WHITE" />
-            <JFXRadioButton fx:id="bTester" layoutX="240.0" layoutY="309.0" text="Beta Tester" textFill="WHITE" />
-            <JFXRadioButton fx:id="developer" layoutX="354.0" layoutY="309.0" text="Developer" textFill="WHITE" />
             <JFXButton layoutX="43.0" layoutY="388.0" prefHeight="39.0" prefWidth="406.0" style="-fx-background-color: #68a0f9;" text="Register" textFill="WHITE" />
          </children>
       </AnchorPane>
