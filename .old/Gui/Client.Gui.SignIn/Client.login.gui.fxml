@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="799.0" style="-fx-background-color: #242a33;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="468.0" fitWidth="835.0" layoutX="-17.0" layoutY="1.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@foip-binary.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="66.0" layoutY="157.0" style="-fx-font-family: #ffffff;" text="Welcome to AppDev" textFill="WHITE">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="388.0" layoutY="48.0" prefHeight="372.0" prefWidth="346.0" style="-fx-background-color: #25457a;">
+         <children>
+            <JFXTextField fx:id="username" alignment="CENTER" focusColor="#1b9223" layoutX="36.0" layoutY="82.0" prefHeight="26.0" prefWidth="290.0" promptText="Username" unFocusColor="#ede7e7" />
+            <JFXPasswordField fx:id="password" alignment="CENTER" focusColor="#1b9223" layoutX="42.0" layoutY="177.0" prefHeight="26.0" prefWidth="290.0" promptText="Password" unFocusColor="#ede7e7" />
+            <JFXButton alignment="CENTER" layoutX="40.0" layoutY="286.0" prefHeight="32.0" prefWidth="290.0" style="-fx-background-color: #68a0f9;" />
+            <Label layoutX="143.0" layoutY="24.0" style="-fx-font: #ffffff;" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="136.0" layoutY="341.0" style="-fx-font: #ffffff;" text="Forgot Password ?" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="113.0" layoutY="237.0" style="-fx-font: #ffffff;" text="Software related testing group" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXButton alignment="CENTER" layoutX="62.0" layoutY="299.0" prefHeight="32.0" prefWidth="290.0" style="-fx-background-color: #68a0f9;" text="Register" />
+      <Label layoutX="775.0" layoutY="1.0" onMouseClicked="#closeApp" style="-fx-font: #ffffff;" text="X" textFill="WHITE">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
