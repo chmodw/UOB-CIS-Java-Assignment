@@ -1,38 +1,93 @@
 package controllers;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import java.rmi.RemoteException;
+
+import classes.UserClient;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class StartController extends Application  {
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-//			 BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getResource("../guis/Survey.fxml"));
-			primaryStage.setTitle("Beta Test Survey 1.0");
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			
-			// Link the stylesheet
-			scene.getStylesheets().add(getClass().getResource("../guis/application.css").toExternalForm());
-			
-			primaryStage.setResizable(false);
-			
-			primaryStage.show();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
+public class StartController{
+	
+	private UserClient userClient = new UserClient();
+		
+	@FXML
+	private TextField fullNameTxt;
+	@FXML
+	private TextField emailTxt;
+	@FXML
+	private TextField ageTxt;
+	@FXML
+	private TextField countryTxt;
+	@FXML
+	private TextField testDeviceManufacturerTxt;
+	@FXML
+	private TextField osTxt;
+	@FXML
+	private Label showError;
+	
+	@FXML
+	public Button startSurveyBtn;
+	
+	private boolean bool;
+	
+	public StartController() {
+
+	}
+	
+	public void startSurvey(ActionEvent event) {
+		
+		String fullName = fullNameTxt.getText();
+		String email = emailTxt.getText();
+		String age = ageTxt.getText();
+		String country = countryTxt.getText();
+		String testDeviceManufacturer = testDeviceManufacturerTxt.getText();
+		String os = osTxt.getText();
+		
+		if(!userClient.checkServer()) {
+			showError.setText("Server is Offline. Try again later");
+		}else {
+			if(!fullName.isEmpty() && !email.isEmpty() && !age.isEmpty() && !country.isEmpty() && !testDeviceManufacturer.isEmpty() && !os.isEmpty()) {
+				showError.setText("   ");
+				try {
+					bool = userClient.saveParticipant(fullName,email,age,country,testDeviceManufacturer,os);
+					
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}else {
+				showError.setText("Please Fill all the fields");
+			}
 		}
+		
 	}
-	
-	public void load() {
-		launch();
-	}
-	
-	public void startSurvey() {
-		new SurveyController();
-	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

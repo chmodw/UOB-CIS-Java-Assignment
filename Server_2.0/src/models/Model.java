@@ -1,55 +1,61 @@
 package models;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-import  utils.Connection;
 import utils.Logger;
 
-public class Model extends Connection{
-	
-	private Statement stmt;
+public class Model{
 
+	private Connection conn = null;
+	private Statement stmt = null;
+	
 	public Model(String dbName) {
-		super(dbName);
-		// TODO Auto-generated constructor stub
+		try {
+			
+			Class.forName("org.sqlite.JDBC");
+			conn = DriverManager.getConnection("jdbc:sqlite:"+dbName+"_data.db");
+			conn.setAutoCommit(false);
+			Logger.log("Database Connected");
+			
+		}catch(Exception e) {
+			Logger.log(e.toString());
+		}
 	}
 	
-	public boolean INSERT(String sql,) {
-		
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+	public boolean INSERT(String sql) {
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
 			
+			stmt.close();
+			conn.commit();
+			return true;
 			
-			
-		}catch (SQLException e) {
-			Logger.log(e.getMessage());
+		} catch (SQLException e) {
+//			Logger.log(e);
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		}
 		
 		return false;
 	}
 	
-	public ResultSet SELECTALL(String sql){
+	public ResultSet SELECT(String sql) {
 		
-		try{
+		try {
 			stmt = conn.createStatement();
-
-			ResultSet rs = stmt.executeQuery(sql);
-		
-			return rs;
-		}catch (SQLException e) {
-			Logger.log(e.getMessage());
+			return stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Logger.log(e);
 		}
-		
+
 		return null;
 	}
 	
-	public ResultSet FIND(String sql) throws SQLException {
-		
-//		PreparedStatement pstmt  = conn.prepareStatement(sql);
-		
-		return null;
+
+	
+	public void close() throws SQLException {
+        conn.close();
 	}
 	
 }

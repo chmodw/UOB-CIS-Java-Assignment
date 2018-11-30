@@ -1,4 +1,4 @@
-package classes;
+package rmi.classes;
 
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;

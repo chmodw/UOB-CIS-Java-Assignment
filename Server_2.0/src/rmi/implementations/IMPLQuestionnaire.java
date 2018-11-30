@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import classes.Question;
+import rmi.classes.Question;
 import rmi.interfaces.IQuestionnaire;
 
 /**
@@ -15,7 +15,7 @@ import rmi.interfaces.IQuestionnaire;
 
 public class IMPLQuestionnaire extends UnicastRemoteObject implements IQuestionnaire{
 	
-	protected IMPLQuestionnaire() throws RemoteException {
+	public IMPLQuestionnaire() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

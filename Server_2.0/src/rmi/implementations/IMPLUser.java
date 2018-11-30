@@ -3,7 +3,7 @@ package rmi.implementations;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import classes.User;
+import rmi.classes.User;
 import rmi.interfaces.IUser;
 import models.Model;
 
@@ -11,7 +11,7 @@ public class IMPLUser extends UnicastRemoteObject implements IUser{
 
 	private static final long serialVersionUID = 1L;
 
-	protected IMPLUser() throws RemoteException {
+	public IMPLUser() throws RemoteException {
 		super();
 		
 	}
@@ -19,7 +19,22 @@ public class IMPLUser extends UnicastRemoteObject implements IUser{
 	@Override
 	public boolean newParticipant(User user) throws RemoteException {
 		
-		return false;
+		String sql = "INSERT INTO testers (full_name,email,age,country,device_manufacturer,device_os)"+
+					 "VALUES ('"
+					 + user.getFullName()+"','"
+					 + user.getEmail()+"', '"
+					 + user.getAge() + "','"
+					 + user.getCountry() + "','"
+					 + user.getDeviceManufacturer() + "','"
+					 + user.getDeviceOS() + "');";
+
+//		String sql = "INSERT INTO testers (full_name,email,age,country,device_manufacturer,device_os) VALUES ('chamodya wimansha','Chamodyawimansha@gmail.com', '23','Sri lanka','Samsung','Android'";
+		
+		
+		
+		// save the new user in the database
+		return new Model("user").INSERT(sql);
+
 	}
 
 	@Override
@@ -33,5 +48,14 @@ public class IMPLUser extends UnicastRemoteObject implements IUser{
 		
 		return false;
 	}
+
+	@Override
+	public void test(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		System.out.println("Hello " + name);
+		
+	}
+	
+	
 
 }

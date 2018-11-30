@@ -1,4 +1,4 @@
-package classes;
+package rmi.classes;
 
 import java.io.Serializable;
 
@@ -12,14 +12,14 @@ public class User implements Serializable{
 
 	private String fullName;
 	private String email;
-	private int age;
+	private String age;
 	private String country;
 	private String deviceManufacturer;
 	private String deviceOS;
 	private String password;
 	
 	//Participant
-	public User(String fullName, String email, int age, String country, String deviceManufacturer,
+	public User(String fullName, String email, String age, String country, String deviceManufacturer,
 			String deviceOS) {
 		super();
 		this.fullName = fullName;
@@ -32,6 +32,7 @@ public class User implements Serializable{
 	
 	//Developer
 	public User(String name,String email,String password) {
+		super();
 		this.fullName = name;
 		this.email = email;
 		this.password = password;
@@ -53,7 +54,7 @@ public class User implements Serializable{
 		return email;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
