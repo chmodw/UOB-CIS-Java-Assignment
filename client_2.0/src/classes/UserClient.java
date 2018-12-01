@@ -15,7 +15,7 @@ public class UserClient {
 			
 		try {
 			
-			remoteUserClass = (IUser) Naming.lookup("//127.8.8.1:8080/betaservay/User");
+			remoteUserClass = (IUser) Naming.lookup("//localhost:8080/betaservay/User");
 			
 			isServerReady = true;
 		

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox style="-fx-background-color: #5b39c6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
+<VBox style="-fx-background-color: #5b39c6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SurveyController">
    <padding>
       <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
    </padding>
@@ -58,11 +58,11 @@
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Label fx:id="question1" minWidth="320.0" prefHeight="17.0" prefWidth="320.0" text="Question 1">
+                  <Label fx:id="question1" maxWidth="320.0" minWidth="320.0" prefHeight="17.0" prefWidth="320.0" text="Question 1" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <RadioButton fx:id="question1A1" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false">
+                  <RadioButton fx:id="question1A1" alignment="CENTER_RIGHT" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" text="1">
                      <HBox.margin>
                         <Insets left="16.5" right="16.5" />
                      </HBox.margin>
@@ -70,17 +70,17 @@
                         <ToggleGroup fx:id="question1A" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="question1A2" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$question1A">
+                  <RadioButton fx:id="question1A2" alignment="CENTER_RIGHT" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" text="2" toggleGroup="$question1A">
                      <HBox.margin>
                         <Insets left="16.5" right="16.5" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="question1A3" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" toggleGroup="$question1A">
+                  <RadioButton fx:id="question1A3" alignment="CENTER_RIGHT" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" text="3" toggleGroup="$question1A">
                      <HBox.margin>
                         <Insets left="16.5" right="16.5" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="question1A4" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" textAlignment="CENTER" toggleGroup="$question1A">
+                  <RadioButton fx:id="question1A4" alignment="CENTER_RIGHT" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" mnemonicParsing="false" text="4" textAlignment="CENTER" toggleGroup="$question1A">
                      <HBox.margin>
                         <Insets left="16.5" right="16.5" />
                      </HBox.margin>
@@ -94,11 +94,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="522.0">
                      <children>
-                        <Label fx:id="question2" minWidth="320.0" prefWidth="320.0" text="Question 2">
+                        <Label fx:id="question2" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" text="Question 2" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <RadioButton fx:id="question2A1" mnemonicParsing="false">
+                        <RadioButton fx:id="question2A1" ellipsisString="" mnemonicParsing="false" text="1">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -106,17 +106,17 @@
                               <ToggleGroup fx:id="question2A" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="question2A2" mnemonicParsing="false" toggleGroup="$question2A">
+                        <RadioButton fx:id="question2A2" ellipsisString="" mnemonicParsing="false" text="2" toggleGroup="$question2A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton fx:id="question2A3" mnemonicParsing="false" toggleGroup="$question2A">
+                        <RadioButton fx:id="question2A3" ellipsisString="" mnemonicParsing="false" text="3" toggleGroup="$question2A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton fx:id="question2A4" mnemonicParsing="false" toggleGroup="$question2A">
+                        <RadioButton fx:id="question2A4" ellipsisString="" mnemonicParsing="false" text="4" toggleGroup="$question2A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -129,11 +129,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="524.0">
                      <children>
-                        <Label fx:id="question3" minWidth="320.0" prefWidth="320.0" text="Question 3">
+                        <Label fx:id="question3" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" text="Question 3" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <RadioButton mnemonicParsing="false">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="1">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -141,17 +141,17 @@
                               <ToggleGroup fx:id="question3A" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question3A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="2" toggleGroup="$question3A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question3A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="3" toggleGroup="$question3A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question3A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="4" toggleGroup="$question3A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -167,11 +167,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="541.0">
                      <children>
-                        <Label fx:id="question4" minWidth="320.0" prefWidth="320.0" text="Question 4">
+                        <Label fx:id="question4" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" text="Question 4" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <RadioButton mnemonicParsing="false">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="1">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -179,17 +179,17 @@
                               <ToggleGroup fx:id="question4A" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question4A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="2" toggleGroup="$question4A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question4A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="3" toggleGroup="$question4A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question4A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="4" toggleGroup="$question4A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -208,11 +208,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="545.0">
                      <children>
-                        <Label fx:id="question5" minWidth="320.0" prefWidth="320.0" text="Question 5">
+                        <Label fx:id="question5" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" text="Question 5" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <RadioButton mnemonicParsing="false">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="1">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -220,17 +220,17 @@
                               <ToggleGroup fx:id="question5A" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question5A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="2" toggleGroup="$question5A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question5A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="3" toggleGroup="$question5A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question5A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="4" toggleGroup="$question5A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -243,11 +243,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="639.0">
                      <children>
-                        <Label fx:id="question6" minWidth="320.0" prefWidth="320.0" text="Question 6">
+                        <Label fx:id="question6" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" text="Question 6" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <RadioButton mnemonicParsing="false">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="1">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -255,17 +255,17 @@
                               <ToggleGroup fx:id="question6A" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question6A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="2" toggleGroup="$question6A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question6A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="3" toggleGroup="$question6A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question6A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="4" toggleGroup="$question6A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -281,11 +281,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="612.0">
                      <children>
-                        <Label fx:id="question7" minWidth="320.0" prefWidth="320.0" text="Question 7">
+                        <Label fx:id="question7" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" text="Question 7" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <RadioButton mnemonicParsing="false">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="1">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -293,17 +293,17 @@
                               <ToggleGroup fx:id="question7A" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question7A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="2" toggleGroup="$question7A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question7A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="3" toggleGroup="$question7A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question7A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="4" toggleGroup="$question7A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -319,11 +319,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="584.0">
                      <children>
-                        <Label fx:id="question8" minWidth="320.0" prefWidth="320.0" text="Question 8">
+                        <Label fx:id="question8" maxWidth="320.0" minWidth="320.0" prefWidth="320.0" text="Question 8" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <RadioButton mnemonicParsing="false">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="1">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -331,17 +331,17 @@
                               <ToggleGroup fx:id="question8A" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question8A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="2" toggleGroup="$question8A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question8A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="3" toggleGroup="$question8A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" toggleGroup="$question8A">
+                        <RadioButton ellipsisString="" mnemonicParsing="false" text="4" toggleGroup="$question8A">
                            <HBox.margin>
                               <Insets left="16.5" right="16.5" />
                            </HBox.margin>
@@ -359,7 +359,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <TextArea maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="435.0" style="-fx-background-color: #fff; -fx-border-color: #eee;" styleClass="comment_field">
+                  <TextArea fx:id="userCommentTextArea" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="435.0" style="-fx-background-color: #fff; -fx-border-color: #eee;" styleClass="comment_field">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

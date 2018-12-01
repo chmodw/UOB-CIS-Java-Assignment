@@ -12,12 +12,14 @@ public class Question implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	private int ID;
 	private String question;
 	private String answer;
 	private String userEmail;
 	private String answerdOn;
 	
-	public Question(String question) {
+	public Question(int id, String question) {
+		this.ID = id;
 		this.question = question;
 	}
 	
@@ -32,6 +34,10 @@ public class Question implements Serializable{
 		this.answer = answer;
 		this.userEmail = userEmail;
 		this.answerdOn = answerdOn;
+	}
+	
+	public int getId() {
+		return ID;
 	}
 	
 	public static long getSerialversionuid() {

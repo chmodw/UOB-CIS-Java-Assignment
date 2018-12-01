@@ -3,6 +3,7 @@ package rmi.implementations;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+
 import rmi.classes.User;
 import rmi.interfaces.IUser;
 import models.Model;
@@ -28,10 +29,6 @@ public class IMPLUser extends UnicastRemoteObject implements IUser{
 					 + user.getDeviceManufacturer() + "','"
 					 + user.getDeviceOS() + "');";
 
-//		String sql = "INSERT INTO testers (full_name,email,age,country,device_manufacturer,device_os) VALUES ('chamodya wimansha','Chamodyawimansha@gmail.com', '23','Sri lanka','Samsung','Android'";
-		
-		
-		
 		// save the new user in the database
 		return new Model("user").INSERT(sql);
 
