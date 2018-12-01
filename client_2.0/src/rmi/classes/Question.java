@@ -37,7 +37,7 @@ public class Question implements Serializable{
 	}
 	
 	public int getId() {
-		return ID;
+		return this.ID;
 	}
 	
 	public static long getSerialversionuid() {
@@ -66,10 +66,8 @@ public class Question implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Question [question=" + question + ", answer=" + answer + ", userEmail=" + userEmail + ", answerdOn="
-				+ answerdOn + "]";
+		return "Question [ID=" + ID + ", question=" + question + ", answer=" + answer + ", userEmail=" + userEmail
+				+ ", answerdOn=" + answerdOn + "]";
 	}
-	
-	
-	
+		
 }

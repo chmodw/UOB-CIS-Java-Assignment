@@ -57,9 +57,24 @@ public class IMPLQuestionnaire extends UnicastRemoteObject implements IQuestionn
 	}
 
 	@Override
-	public void submitAnswer(Question question) throws RemoteException {
-		// TODO Auto-generated method stub
+	public boolean submitAnswer(ArrayList<Question> submitedQList) throws RemoteException {
 		
+			for(int i=0; i < submitedQList.size(); i++) {
+				
+				String sql = "INSERT INTO answers (userEmail,question,answer,answerdOn) values ('" 
+								+ submitedQList.get(i).getUserEmail() + "','"
+								+ submitedQList.get(i).getQuestion() + "','"
+								+  submitedQList.get(i).getAnswer() + "','"
+								+ submitedQList.get(i).getAnswerdOn() + "')";
+				
+				//This will pause the loop while data saved in the database. otherwise it will occur an error
+				if(!new Model("new_survey").INSERT(sql)) {
+					System.out.println("Database Error!");
+					return false;
+				}
+			}
+		
+		return true;
 	}
 	
 

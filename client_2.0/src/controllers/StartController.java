@@ -98,6 +98,19 @@ public class StartController implements Initializable{
 		}
 		
 	}
+	
+	public void openDevLog() {
+		try {
+			Stage primaryStage = new Stage();
+			Pane root = FXMLLoader.load(getClass().getResource("../guis/DevLogin.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../guis/application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

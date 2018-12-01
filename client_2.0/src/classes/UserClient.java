@@ -49,6 +49,11 @@ public class UserClient {
 		return isServerReady;
 	}
 	
+	public boolean developerLogin(User user) throws RemoteException {
+		
+		return remoteUserClass.login(user.getEmail(), user.getPassword());
+	}
+	
 	public void test() {
 		System.out.println("this is a test");
 	}

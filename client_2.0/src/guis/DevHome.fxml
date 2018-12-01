@@ -1,106 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DevHomeController">
-   <content>
-      <HBox minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f4f4f4;">
-         <children>
-            <ToolBar orientation="VERTICAL" prefHeight="513.0" prefWidth="116.0" style="-fx-background-color: #fff;">
-              <items>
-                <Button mnemonicParsing="false" text="Survey Results">
-                     <padding>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                     </padding>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-              </items>
-               <padding>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
-               </padding>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </ToolBar>
-            <VBox maxWidth="664.0" minWidth="620.0" prefWidth="620.0" style="-fx-background-color: #fff;">
-               <HBox.margin>
-                  <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
-               </HBox.margin>
-               <children>
-                  <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="456.0" prefWidth="620.0">
-                     <children>
-                        <HBox prefWidth="620.0">
-                           <children>
-                              <Label prefHeight="31.0" prefWidth="218.0" text="Showing results from ">
-                                 <font>
-                                    <Font name="System Bold" size="21.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="numberOfParticipantsLbl" text="0">
-                                 <font>
-                                    <Font name="System Bold" size="21.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="31.0" prefWidth="127.0" text="Participants">
-                                 <font>
-                                    <Font name="System Bold" size="21.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <VBox />
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="Sentiment Analysis">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <PieChart />
-                              <HBox prefHeight="100.0" prefWidth="200.0" />
-                              <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="358.0" prefWidth="600.0">
-                                 <children>
-                                    <Label text="Survey Results">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TableView fx:id="surveyResultTable" maxHeight="-Infinity" minHeight="250.0" prefWidth="600.0">
-                                      <columns>
-                                        <TableColumn maxWidth="322.0" minWidth="322.0" prefWidth="322.0" resizable="false" text="Questions" />
-                                        <TableColumn editable="false" maxWidth="256.0" minWidth="36.0" prefWidth="75.0" resizable="false" text="S.Disagree" />
-                                        <TableColumn editable="false" maxWidth="194.0" minWidth="52.0" prefWidth="75.0" resizable="false" text="Disagree" />
-                                        <TableColumn editable="false" maxWidth="186.0" minWidth="51.0" prefWidth="75.0" resizable="false" text="Agree" />
-                                        <TableColumn editable="false" maxWidth="107.0" minWidth="47.0" prefWidth="51.0" resizable="false" text="S.Agree" />
-                                      </columns>
-                                    </TableView>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </content>
-</ScrollPane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

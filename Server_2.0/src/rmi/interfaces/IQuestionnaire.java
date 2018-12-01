@@ -14,14 +14,14 @@ public interface IQuestionnaire extends Remote{
 	 * @throws RemoteException
 	 */
 	public ArrayList<Question> getQuestions() throws RemoteException;
-	
+		
 	/**
-	 * submit the answer. submitted answers will save on the database.
-	 * @param qID
-	 * @param answer
+	 *  submit the answer. submitted answers will save on the database.
+	 * @param submitedQList
+	 * @return
 	 * @throws RemoteException
 	 */
-	public void submitAnswer(Question question) throws RemoteException;
+	public boolean submitAnswer(ArrayList<Question> submitedQList) throws RemoteException;
 
 	
 }

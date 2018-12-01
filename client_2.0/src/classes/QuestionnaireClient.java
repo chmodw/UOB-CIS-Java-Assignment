@@ -36,5 +36,11 @@ public class QuestionnaireClient {
 		
 		return null;
 	}
+	
+	public boolean submitQuestions(ArrayList<Question> answerdQList) throws RemoteException{
+		
+		return remoteQuestionnaireClass.submitAnswer(answerdQList);
+			
+	}
 
 }

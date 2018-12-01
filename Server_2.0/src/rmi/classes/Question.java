@@ -69,8 +69,5 @@ public class Question implements Serializable{
 		return "Question [ID=" + ID + ", question=" + question + ", answer=" + answer + ", userEmail=" + userEmail
 				+ ", answerdOn=" + answerdOn + "]";
 	}
-	
-	
-	
 		
 }

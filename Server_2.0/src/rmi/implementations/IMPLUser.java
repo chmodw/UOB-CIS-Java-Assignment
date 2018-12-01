@@ -2,7 +2,8 @@ package rmi.implementations;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import rmi.classes.User;
 import rmi.interfaces.IUser;
@@ -36,12 +37,27 @@ public class IMPLUser extends UnicastRemoteObject implements IUser{
 
 	@Override
 	public boolean newDeveloper(User user) throws RemoteException {
+
 		
 		return false;
 	}
 
 	@Override
 	public boolean login(String username, String password) throws RemoteException {
+		
+		
+		String sql = "SELECT * FROM developers WHERE username = '" + username + "'";
+		
+		ResultSet rs = new Model("user").SELECT(sql);
+		
+		try {
+			if(rs.getString("password").equals(password)) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return false;
 	}

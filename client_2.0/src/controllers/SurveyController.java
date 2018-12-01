@@ -1,13 +1,13 @@
 package controllers;
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import classes.QuestionnaireClient;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -16,11 +16,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
 import rmi.classes.Question;
+import classes.QuestionnaireClient;
 
 
 public class SurveyController implements Initializable{
@@ -29,7 +31,7 @@ public class SurveyController implements Initializable{
 	private String currentUserName;
 	private String currentUserEmail;
 	
-	private ArrayList<Question> answerdQList;
+	private ArrayList<Question> answerdQList = new ArrayList<>();
 	private Question a1;
 	private Question a2;
 	private Question a3;
@@ -77,9 +79,12 @@ public class SurveyController implements Initializable{
 	@FXML
 	private ToggleGroup question8A;
 	
+	@FXML
+	private Button surveySubmit;
+	
 	
 	@FXML
-	private TextField userCommentTextArea;
+	private TextArea userCommentTextArea;
 	
 	
 	
@@ -123,7 +128,7 @@ public class SurveyController implements Initializable{
 	             if (question1A.getSelectedToggle() != null) {
 
 	                 String answer = selectedAnswer(question1A.getSelectedToggle().toString());
-	                 
+	   
 	                 a1 = new Question(qList.get(0).getQuestion(),answer, currentUserEmail, getNow());
 	             }
 	         }
@@ -139,8 +144,8 @@ public class SurveyController implements Initializable{
 	             if (question2A.getSelectedToggle() != null) {
 
 	                 String answer = selectedAnswer(question2A.getSelectedToggle().toString());
-	                 
-	                 a1 = new Question(qList.get(1).getQuestion(),answer, currentUserEmail, getNow());
+
+	                 a2 = new Question(qList.get(1).getQuestion(),answer, currentUserEmail, getNow());
 	             }
 	         }
 	    });
@@ -156,7 +161,7 @@ public class SurveyController implements Initializable{
 
 	                 String answer = selectedAnswer(question3A.getSelectedToggle().toString());
 	                 
-	                 a1 = new Question(qList.get(2).getQuestion(),answer, currentUserEmail, getNow());
+	                 a3 = new Question(qList.get(2).getQuestion(),answer, currentUserEmail, getNow());
 	             }
 	         }
 	    });
@@ -172,7 +177,7 @@ public class SurveyController implements Initializable{
 
 	                 String answer = selectedAnswer(question4A.getSelectedToggle().toString());
 	                 
-	                 a1 = new Question(qList.get(3).getQuestion(),answer, currentUserEmail, getNow());
+	                 a4 = new Question(qList.get(3).getQuestion(),answer, currentUserEmail, getNow());
 	             }
 	         }
 	    });
@@ -187,8 +192,8 @@ public class SurveyController implements Initializable{
 	             if (question5A.getSelectedToggle() != null) {
 
 	                 String answer = selectedAnswer(question5A.getSelectedToggle().toString());
-	                 
-	                 a1 = new Question(qList.get(4).getQuestion(),answer, currentUserEmail, getNow());
+		                 
+	                 a5 = new Question(qList.get(4).getQuestion(),answer, currentUserEmail, getNow());
 	             }
 	         }
 	    });
@@ -204,7 +209,7 @@ public class SurveyController implements Initializable{
 
 	                 String answer = selectedAnswer(question6A.getSelectedToggle().toString());
 	                 
-	                 a1 = new Question(qList.get(5).getQuestion(),answer, currentUserEmail, getNow());
+	                 a6 = new Question(qList.get(5).getQuestion(),answer, currentUserEmail, getNow());
 	             }
 	         }
 	    });
@@ -220,7 +225,7 @@ public class SurveyController implements Initializable{
 
 	                 String answer = selectedAnswer(question7A.getSelectedToggle().toString());
 	                 
-	                 a1 = new Question(qList.get(6).getQuestion(),answer, currentUserEmail, getNow());
+	                 a7 = new Question(qList.get(6).getQuestion(),answer, currentUserEmail, getNow());
 	             }
 	         }
 	    });
@@ -236,39 +241,44 @@ public class SurveyController implements Initializable{
 
 	                 String answer = selectedAnswer(question8A.getSelectedToggle().toString());
 	                 
-	                 a1 = new Question(qList.get(7).getQuestion(),answer, currentUserEmail, getNow());
+	                 a8 = new Question(qList.get(7).getQuestion(),answer, currentUserEmail, getNow());
 	             }
 	         }
 	    });
-	    
-	    
-	    /**
-	     * Submit the answers
-	     */
-	    servaySubmit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	
-            	answerdQList.add(a1);
-            	answerdQList.add(a2);
-            	answerdQList.add(a3);
-            	answerdQList.add(a4);
-            	answerdQList.add(a5);
-            	answerdQList.add(a6);
-            	answerdQList.add(a7);
-            	answerdQList.add(a8);
-            	answerdQList.add(a9 = getUserComment());
-                
-            	System.out.println(answerdQList);
-            }
-        });
-	    
+	    	    
 	}
 	
 	private Question getUserComment() {
 		
 		return new Question("User Comment",userCommentTextArea.getText(), currentUserEmail, getNow());
 		
+	}
+	
+    
+    /**
+     * Submit the answers
+     * @throws RemoteException 
+     */
+	public void submit(ActionEvent event) throws RemoteException {
+		
+		answerdQList.add(a1);
+    	answerdQList.add(a2);
+    	answerdQList.add(a3);
+    	answerdQList.add(a4);
+    	answerdQList.add(a5);
+    	answerdQList.add(a6);
+    	answerdQList.add(a7);
+    	answerdQList.add(a8);
+    	answerdQList.add(a9 = getUserComment());
+
+    	if(questionnaireClient.submitQuestions(answerdQList)) {
+    		
+    		surveySubmit.setText("Thank you");
+    		
+    	}else {
+    		
+    	}
+    	
 	}
 	
 	/**
