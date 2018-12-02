@@ -33,8 +33,7 @@ public class DevLoginController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		userClient = new UserClient();
-		
-		
+	
 	}
 
 	
@@ -46,10 +45,10 @@ public class DevLoginController implements Initializable{
 					FXMLLoader loader = new FXMLLoader();
 					Pane root = loader.load(getClass().getResource("../guis/DevHome.fxml").openStream());
 					
-//					//Pass the username
-//					DevHomeController devHomeController = (DevHomeController)loader.getController();
-//					devHomeController.setCurrentUser(username.getText());
-//					
+					//Pass the username
+					DevHomeController devHomeController = (DevHomeController)loader.getController();
+					devHomeController.setCurrentUser(username.getText());
+				
 					Scene scene = new Scene(root);
 					scene.getStylesheets().add(getClass().getResource("../guis/application.css").toExternalForm());
 					primaryStage.setScene(scene);
