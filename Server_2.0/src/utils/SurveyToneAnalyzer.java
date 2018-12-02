@@ -31,7 +31,7 @@ public class SurveyToneAnalyzer {
 			
 //			tones.add("anger");
 //			tones.add("sadness");
-			tones.add("joy");
+//			tones.add("joy");
 //			tones.add("disgust");
 //			tones.add("trust");
 
@@ -42,7 +42,7 @@ public class SurveyToneAnalyzer {
 			/**
 			 * JSON
 			 */
-			System.out.println(toneAnalysis.getDocumentTone());
+			System.out.println(toneAnalysis.toString());
 			/**
 			 * 
 			 */

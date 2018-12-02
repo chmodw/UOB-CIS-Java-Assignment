@@ -94,8 +94,32 @@ public class IMPLResults extends UnicastRemoteObject  implements IResults{
 	public void sentimentAnalysis() throws RemoteException {
 		// TODO Auto-generated method stub
 		
-		String text = "President George H.W. Bush led a long, successful and beautiful life.  Whenever I was with him I saw his absolute joy for life and true pride in his family. His accomplishments were great from beginning to end. He was a truly wonderful man and will be missed by all!";
-		new SurveyToneAnalyzer(text).analyze();
+		
+		String sql = "SELECT * FROM answers WHERE question='User Comment'";
+		
+		ResultSet rs = new Model("new_survey").SELECT(sql);
+		
+		try {
+			while(rs.next()) {
+				
+				try {
+//					new SurveyToneAnalyzer(rs.getString("answer")).analyze();
+					System.out.println(rs.getString("answer"));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
 		
 		
 	}
