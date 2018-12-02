@@ -7,6 +7,7 @@ import com.ibm.watson.developer_cloud.service.exception.RequestTooLargeException
 import com.ibm.watson.developer_cloud.service.exception.ServiceResponseException;
 import com.ibm.watson.developer_cloud.service.security.IamOptions;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.DocumentAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 
@@ -18,7 +19,7 @@ public class SurveyToneAnalyzer {
 		this.text = text;
 	}
 	
-	public ToneAnalysis analyze() {
+	public DocumentAnalysis analyze() {
 		
 		try {
 			IamOptions options = new IamOptions.Builder().apiKey("iyJGHXqpNoHfcP_k7lDcmU5Rik8adSgm8X2Lssry99Fd").build();
@@ -28,13 +29,11 @@ public class SurveyToneAnalyzer {
 			
 			ArrayList<String> tones = new ArrayList<>();
 			
-			tones.add("fear");
-			tones.add("anger");
-			tones.add("sadness");
+//			tones.add("anger");
+//			tones.add("sadness");
 			tones.add("joy");
-			tones.add("disgust");
-			tones.add("suprise");
-			tones.add("trust");
+//			tones.add("disgust");
+//			tones.add("trust");
 
 			ToneOptions toneOptions = new ToneOptions.Builder().text(text).tones(tones).build();
 
@@ -43,7 +42,7 @@ public class SurveyToneAnalyzer {
 			/**
 			 * JSON
 			 */
-			return toneAnalysis;
+			System.out.println(toneAnalysis.getDocumentTone());
 			/**
 			 * 
 			 */

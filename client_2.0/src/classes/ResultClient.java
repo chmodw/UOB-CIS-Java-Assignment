@@ -32,8 +32,8 @@ public class ResultClient {
 		return null;
 	}
 	
-	public void sentimentAnalysis() {
-		
+	public void sentimentAnalysis() throws RemoteException {
+		rmoteResults.sentimentAnalysis();
 	}
 
 }
