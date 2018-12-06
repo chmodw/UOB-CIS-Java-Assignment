@@ -1,0 +1,34 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+#mainWindow{
+	
+	-fx-background-color: linear-gradient(to right, #cc2b5e, #bc2a6d, #a82e7a, #903483, #753a88);
+}
+
+#login,#surveyWindow{
+	-fx-background-color: rgba(244, 244, 244, .9);
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 20, 0, 0, 0);
+	-fx-background-radius: 5;
+}
+
+#startBtn{
+	-fx-background-radius: 50;
+	-fx-background-color: linear-gradient(to right, #cc2b5e, #bc2a6d, #a82e7a, #903483, #753a88);
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+	-fx-cursor: hand;
+}
+
+#startBtn:hover {
+ 	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0 .1), 0, 0,0, 10); 
+}
+
+#startBtn:active{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 200, 0, 0, 0); 
+		-fx-background-radius: 0;
+}
+
+
+#fullNameTxt,#emailTxt,#countryTxt,#ageTxt,#brandTxt,#osTxt{
+	-fx-background-radius: 0;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
