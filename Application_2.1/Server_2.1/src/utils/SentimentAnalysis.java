@@ -35,20 +35,20 @@ public class SentimentAnalysis {
 			ToneOptions toneOptions = new ToneOptions.Builder().text(text).tones(tones).build();
 			ToneAnalysis toneAnalysis = toneAnalyzer.tone(toneOptions).execute();
 			
-			this.tone = toneAnalysis.getDocumentTone().getTones().get(0).getToneName();
+			this.tone = toneAnalysis.getDocumentTone().getTones().get(0).getToneId();
 
 			
 		} catch (NotFoundException e) {
 		    // Handle Not Found (404) exception
-			System.out.println("Not Found (404)");
+			Helpers.Debug("Not Found (404)");
 			
 		} catch (RequestTooLargeException e) {
 		    // Handle Request Too Large (413) exception
-			System.out.println("Too Large (413)");
+			Helpers.Debug("Too Large (413)");
 			
 		} catch (ServiceResponseException e) {
 		    // Base class for all exceptions caused by error responses from the service
-		    System.out.println("Service returned status code " + e.getStatusCode() + ": " + e.getMessage());
+			Helpers.Debug("Service returned status code " + e.getStatusCode() + ": " + e.getMessage());
 		}
 		
 	}
