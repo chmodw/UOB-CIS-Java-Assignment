@@ -17,6 +17,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+			
 	private Model model;
 
 	public Questionnaire() throws RemoteException {

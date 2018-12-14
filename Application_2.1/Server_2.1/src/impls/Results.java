@@ -45,19 +45,19 @@ public class Results extends UnicastRemoteObject implements IResults{
 		model = new Model();
 		
 		// Get the response count
-		this.setResultCount();
+//		this.setResultCount();
 		
 		// Get the questions
-		try {
-			qList = new Questionnaire().getQuestions();
-		} catch (RemoteException e) {
-			Helpers.Debug("can't get the questions --Results - " + e.toString());	
-		}
+//		try {
+//			qList = new Questionnaire().getQuestions();
+//		} catch (RemoteException e) {
+//			Helpers.Debug("can't get the questions --Results - " + e.toString());	
+//		}
 		
 		//process results
-		this.processResults();
+//		this.processResults();
 		//process SAR
-		this.processSARResults();
+//		this.processSARResults();
 	}
 
 	@Override

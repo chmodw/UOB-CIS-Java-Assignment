@@ -5,13 +5,13 @@ import java.sql.*;
 public class Model {
 
 	private Connection conn = null;
-	private Statement stmt = null;
+	private Statement stmt = null; 
 	
 	public Model() {
 		try {
 			
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:storage/test_data.db");
+			conn = DriverManager.getConnection("jdbc:sqlite:data.db");
 			conn.setAutoCommit(false);
 			Helpers.Status("Database Connected");
 			
