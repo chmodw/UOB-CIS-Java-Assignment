@@ -1,10 +1,14 @@
 package controllers;
 
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javax.swing.event.ChangeListener;
+import application.Questions;
+import application.User;
+import application.UserAccount;
+import application.Question;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,7 +17,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import utils.Helpers;
 
 public class UserController implements Initializable{
 	
@@ -21,6 +28,8 @@ public class UserController implements Initializable{
 	private VBox surveyContent;
 	@FXML
 	private VBox welcomeContent;
+	@FXML
+	private AnchorPane mainUserWindow;
 	
 	@FXML
 	private TextField fullNameTxt;
@@ -45,15 +54,36 @@ public class UserController implements Initializable{
 	private Label TDOError;
 	
 	@FXML
-	private Button startBtn;
+	private Label serverStatus;
 	
-	private int formValidationErrors = 0;
+	@FXML
+	private Button startBtn;
+
+	private UserAccount userAccount;
+	private User currentUser;
+	private ArrayList<Question> questionList;
+	
+	public UserController() {
+		
+		userAccount = new UserAccount();
+		
+		questionList = new Questions().getqList();
+	
+	}
 	
 	/**
 	 * 
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		if(userAccount.serverConnection) {
+			serverStatus.setText("Online");
+			serverStatus.setTextFill(Color.web("#008000"));
+		} else {
+			serverStatus.setText("Offline");
+			serverStatus.setTextFill(Color.web("##FF0000"));
+		}
 		
 		/**
 		 * Validate the input fields
@@ -65,45 +95,36 @@ public class UserController implements Initializable{
 				
 		        if(fullNameTxt.getText().isEmpty()) {
 		            fullNameError.setText("Please enter your name");
-		            formValidationErrors+=1;
 		        }
 		        
 		        if(emailTxt.getText().isEmpty()) {
 		            emailError.setText("Please enter your Email address");
-		            formValidationErrors+=1;
-		        }else {
-		        	/**
-		        	 * 
-		        	 * VAlidate Email. saved it for later
-		        	 * 
-		        	 */
 		        }
 		        
 		        if(countryTxt.getText().isEmpty()) {
 		            countryError.setText("Please your Country of Residence");
-		            formValidationErrors+=1;
-		        }
+		         }
 		        
 		        if(TDMTxt.getText().isEmpty()) {
-		        	TDMError.setText("Please enter your device manufacturer");
-		        	formValidationErrors+=1;
+		        	TDMError.setText("Please enter your device manufacturer");    	
 		        }
 		        
-		        if(TDOTxt.getText().isEmpty()) {
+		        if(TDOTxt.getText().isEmpty()) {	
 		        	TDOError.setText("Please enter your device OS");
-		        	formValidationErrors+=1;
 		        }
-				
-		        /**
-		         * check for any form validation errors if not start the next step
-		         */
-				if(formValidationErrors == 0) {
-					// Do the next steps
-					// validation is done
-					System.out.println("done");
-				}else {
-					System.out.println("not");
-				}
+		        
+		        if(!fullNameTxt.getText().isEmpty() && !emailTxt.getText().isEmpty() && !countryTxt.getText().isEmpty() && !TDMTxt.getText().isEmpty() && !TDOTxt.getText().isEmpty()){     	
+		        	
+		        	//create a new user object
+		        	currentUser = new User(fullNameTxt.getText().toString(),emailTxt.getText().toString(),countryTxt.getText().toString(), TDMTxt.getText().toString(), TDOTxt.getText().toString());       	
+		        	
+		        	// Hide the form
+		        	welcomeContent.setVisible(false);
+		    		
+		    		// show the questions
+		        	surveyContent.setVisible(true);
+		        	
+		        }
 				
 			}
 						
@@ -114,7 +135,6 @@ public class UserController implements Initializable{
 		 */
 		fullNameTxt.textProperty().addListener((observable, oldValue, newValue) -> {
 			fullNameError.setText("");
-			formValidationErrors-=1;
 		});
 		
 		/**
@@ -122,7 +142,6 @@ public class UserController implements Initializable{
 		 */
 		emailTxt.textProperty().addListener((observable, oldValue, newValue) -> {
 			emailError.setText("");
-			formValidationErrors-=1;
 		});
 		
 		/**
@@ -130,7 +149,6 @@ public class UserController implements Initializable{
 		 */
 		countryTxt.textProperty().addListener((observable, oldValue, newValue) -> {
 			countryError.setText("");
-			formValidationErrors-=1;
 		});
 		
 		/**
@@ -138,7 +156,6 @@ public class UserController implements Initializable{
 		 */
 		TDMTxt.textProperty().addListener((observable, oldValue, newValue) -> {
 			TDMError.setText("");
-			formValidationErrors-=1;
 		});
 		
 		/**
@@ -146,19 +163,12 @@ public class UserController implements Initializable{
 		 */
 		TDOTxt.textProperty().addListener((observable, oldValue, newValue) -> {
 			TDOError.setText("");
-			formValidationErrors-=1;
 		});
-		
-		
 		
 	}
 	
 
-
 	
-
-
-
 }
 
 

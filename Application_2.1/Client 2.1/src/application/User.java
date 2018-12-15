@@ -1,9 +1,16 @@
 package application;
 
+import java.io.Serializable;
+
 import utils.Helpers;
 
-public class User {
+public class User implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String full_name;
 	private String email;
 	private String country;
@@ -77,10 +84,4 @@ public class User {
 		return password;
 	}
 	
-	@Override
-	public String toString() {
-		return "User [full_name=" + full_name + ", email=" + email + ", country=" + country + ", device_manufacturer="
-						+ device_manufacturer + ", device_os=" + device_os + ", participated_on=" + participated_on
-						+ ", password=" + password + "]";
-	}
 }
