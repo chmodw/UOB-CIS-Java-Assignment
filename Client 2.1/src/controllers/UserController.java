@@ -93,28 +93,16 @@ public class UserController implements Initializable{
 			@Override
 			public void handle(ActionEvent event) {
 				
-		        if(fullNameTxt.getText().isEmpty()) {
-		            fullNameError.setText("Please enter your name");
-		        }
-		        
-		        if(emailTxt.getText().isEmpty()) {
-		            emailError.setText("Please enter your Email address");
-		        }
-		        
-		        if(countryTxt.getText().isEmpty()) {
-		            countryError.setText("Please your Country of Residence");
-		         }
-		        
-		        if(TDMTxt.getText().isEmpty()) {
-		        	TDMError.setText("Please enter your device manufacturer");    	
-		        }
-		        
-		        if(TDOTxt.getText().isEmpty()) {	
-		        	TDOError.setText("Please enter your device OS");
-		        }
-		        
-		        if(!fullNameTxt.getText().isEmpty() && !emailTxt.getText().isEmpty() && !countryTxt.getText().isEmpty() && !TDMTxt.getText().isEmpty() && !TDOTxt.getText().isEmpty()){     	
-		        	
+				/**
+				 * Check for empty Text fields 
+				 */
+				if(!isTextFieldEmpty(fullNameTxt, "Please enter your name", fullNameError) && 
+								!isTextFieldEmpty(emailTxt, "Please enter your Email address", emailError) &&
+								!isTextFieldEmpty(countryTxt, "Please your Country of Residence", countryError) &&
+								!isTextFieldEmpty(TDMTxt, "Please enter your device manufacturer", TDMError) &&
+								!isTextFieldEmpty(TDOTxt, "Please enter your device OS", TDOError)) {
+					//if all the text fields are not empty
+					
 		        	//create a new user object
 		        	currentUser = new User(fullNameTxt.getText().toString(),emailTxt.getText().toString(),countryTxt.getText().toString(), TDMTxt.getText().toString(), TDOTxt.getText().toString());       	
 		        	
@@ -122,12 +110,11 @@ public class UserController implements Initializable{
 		        	welcomeContent.setVisible(false);
 		    		
 		    		// show the questions
-		        	surveyContent.setVisible(true);
+		        	surveyContent.setVisible(true);	
 		        	
-		        }
-				
-			}
-						
+		        	new SurveyController();
+				}    	
+			}			
 		});
 		
 		/**
@@ -167,7 +154,22 @@ public class UserController implements Initializable{
 		
 	}
 	
-
+	/**
+	 * return true if a text field empty
+	 * @param fieldName
+	 * @param errorMsg
+	 * @param errorField
+	 */
+	private boolean isTextFieldEmpty(TextField fieldName, String errorMsg, Label errorField) {
+		
+        if(fieldName.getText().isEmpty()) {
+            errorField.setText(errorMsg);
+            return true;
+         }
+        
+        return false;
+        
+	}
 	
 }
 

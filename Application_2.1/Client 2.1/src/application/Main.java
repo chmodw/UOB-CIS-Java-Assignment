@@ -1,5 +1,7 @@
 package application;
 	
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -10,19 +12,22 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage stage) {
+		
+		Parent root = null;
+		
 		try {
-			
-			Parent root = FXMLLoader.load(getClass().getResource("../guis/user.fxml"));
-			Scene scene = new Scene(root);
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.show();
-			
-		} catch(Exception e) {
+			root = FXMLLoader.load(getClass().getResource("../guis/MainUserWindow.fxml"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Beta Test");
+        stage.show();
+        
 	}
 	
 	public static void main(String[] args) {		
