@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,54 +19,103 @@
             <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
          </padding>
       </Label>
-      <VBox>
-         <children>
-            <Label fx:id="questionTxt" text="Question one">
+                  <Label ellipsisString="" maxWidth="1.7976931348623157E308" prefHeight="101.0" prefWidth="500.0" text="We are thrilled that you are testing our mobile application. We have some simple questions for you to answer about your experience with the application.  we admire your response and willing to  make the application more helpful to you." textAlignment="JUSTIFY" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="30.0" />
-               </VBox.margin>
-            </Label>
-            <RadioButton mnemonicParsing="false" text="Strongly Disagree">
-               <toggleGroup>
-                  <ToggleGroup fx:id="answers" />
-               </toggleGroup>
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Disagree" toggleGroup="$answers">
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Agree" toggleGroup="$answers">
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Strongly Agree" toggleGroup="$answers">
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </RadioButton>
-            <Button fx:id="nextQuestionBtn" mnemonicParsing="false" prefHeight="33.0" prefWidth="76.0" text="Next">
-               <VBox.margin>
-                  <Insets left="127.0" right="127.0" top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <padding>
-                  <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
+                  <Insets bottom="10.0" left="45.0" right="45.0" top="10.0" />
                </padding>
-            </Button>
+            </Label>
+      <VBox>
+         <children>
+            <VBox fx:id="questionSection" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="questionTxt" alignment="TOP_LEFT" ellipsisString="" prefHeight="61.0" prefWidth="410.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <RadioButton fx:id="sdRadio" mnemonicParsing="false" text="Strongly Disagree">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                     </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="answersRadio" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="dRadio" mnemonicParsing="false" text="Disagree" toggleGroup="$answersRadio">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="aRadio" mnemonicParsing="false" text="Agree" toggleGroup="$answersRadio">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="saRadio" mnemonicParsing="false" text="Strongly Agree" toggleGroup="$answersRadio">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="30.0" top="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="114.0" prefWidth="387.0">
+               <children>
+                  <Button fx:id="nextQuestionBtn" mnemonicParsing="false" prefHeight="33.0" prefWidth="76.0" text="Next">
+                     <padding>
+                        <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="submitData" mnemonicParsing="false" prefHeight="33.0" prefWidth="87.0" text="Submit" textAlignment="CENTER" visible="false">
+                     <padding>
+                        <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <VBox.margin>
-            <Insets left="45.0" right="45.0" top="50.0" />
+            <Insets left="45.0" right="45.0" top="20.0" />
          </VBox.margin>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
       </VBox>
+      <HBox prefHeight="8.0" prefWidth="500.0">
+         <children>
+            <Label fx:id="currentQuestionNumber" text="0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="of">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="allQuestionCount" text="0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="45.0" right="45.0" />
+         </padding>
+      </HBox>
    </children>
 </VBox>

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -91,9 +90,7 @@ public class MainUserController implements Initializable {
 			
 			// remove the form from the main window
 			userMainWindow.getChildren().remove(surveyForm);
-			
-
-			
+		
         	//Load the questions window in the main window
 			userMainWindow.getChildren().add(root);
 			
