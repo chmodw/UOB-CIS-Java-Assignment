@@ -35,10 +35,10 @@ public class SurveyController implements Initializable {
 //	@FXML private VBox commentSection;
 	
 	private User currentUser;
-	
 	private UserAccount userAccount;
 	private ArrayList<Question> questionList;
-
+	private ArrayList<Question> answerList = new ArrayList<>();
+	private Question currentAnswer;
 	private int qIndex = 0;
 	
 	public SurveyController() {
@@ -48,77 +48,84 @@ public class SurveyController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		//initialize the Account class in the server
+		/**
+		 * initialize the Account class in the server
+		 */
 		userAccount = new UserAccount();
-		//get the question list from the server
+		/**
+		 * get the question list from the server
+		 */
 		questionList = new Questions().getqList();
-		
-		//show question count in user interface
+		/**
+		 * show question count in user interface
+		 */
 		this.showMetaData();
-		
-		// Show the first question
+		/**
+		 * Show the first question in the user interface
+		 */
 		showQuestion(qIndex);
 		qIndex++;
-		
+		/**
+		 * Executes when a user select one of radio buttons	
+		 */
+		answersRadio.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+
+			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+
+	             if (answersRadio.getSelectedToggle() != null) {
+	            	 /**
+	            	  * create answer object using question class when user selecting a toggle button
+	            	  */
+	            	 RadioButton chk = (RadioButton) answersRadio.getSelectedToggle();
+	            	 /**
+	            	  * create a answer object when user selecting a radio button
+	            	  */
+	            	 currentAnswer = new Question(questionList.get(qIndex-1).getId(), chk.getText(), currentUser.getEmail());	
+	             }
+	         }
+	    });
+		/**
+		 * Executes when click on the next button in the user interface
+		 */
 		nextQuestionBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
-			public void handle(ActionEvent event) {			
+			public void handle(ActionEvent event) {		
+				/**
+				 * Go through the question array one by one
+				 */
 				if(questionList.size() > qIndex) {
-					// refresh the data
+					/**
+					 * Add previously answered question data to answer List
+					 */
+					answerList.add(currentAnswer);
+					/**
+					 * update the question number in the user interface
+					 */
 					showMetaData();
-					//show next question
+					/**
+					 * display the question
+					 */
 					showQuestion(qIndex);
-					qIndex++;
+					qIndex++;	
+				
 				}else {
-					showUserComment();
-					qIndex++;
+					/**
+					 * Add the last answer
+					 */
+					answerList.add(currentAnswer);
+					/**
+					 * Hide the next button
+					 */
+					nextQuestionBtn.setVisible(false);
+					
+					
+					for(int i=0; answerList.size() > i; i++) {
+						System.out.println(answerList.get(i).getId() + " = " + answerList.get(i).getAnswer());
+					}
 				}
 				
 			}	
 		});
-		
-		// TODO Auto-generated method stub		
-		answersRadio.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-	    	
-	        public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-
-	             if (answersRadio.getSelectedToggle() != null) {
-	            	 
-	            	 RadioButton chk = (RadioButton) answersRadio.getSelectedToggle();
-	                 
-	            	 chk.getText();
-	            	 
-	            	 new Question(questionID, answer, userEmail);
-	            	 
-	            	 /*********************
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * comment section
-	            	  * 
-	            	  * Fix question id
-	            	  * 
-	            	  * 
-	            	  * new questions
-	            	  * view results
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  * 
-	            	  */
-	            	 
-	            	 
-	             }
-	         }
-	    });
 				
 	}
 		
@@ -128,7 +135,7 @@ public class SurveyController implements Initializable {
 	
 	private void showMetaData() {
 		// show question count in user interface
-		allQuestionCount.setText(Integer.toString(questionList.size()+1));
+		allQuestionCount.setText(Integer.toString(questionList.size()));
 		//show current question index in user interface
 		currentQuestionNumber.setText(Integer.toString(qIndex + 1));
 	}
