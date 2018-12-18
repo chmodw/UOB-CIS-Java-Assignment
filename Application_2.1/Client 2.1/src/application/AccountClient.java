@@ -9,12 +9,12 @@ import application.User;
 import interfaces.IAccount;
 import utils.Helpers;
 
-public class UserAccount {
+public class AccountClient {
 	
 	private IAccount look_up_account;
 	public boolean serverConnection;
 
-	public UserAccount() {
+	public AccountClient() {
 		try {
 			look_up_account = (IAccount) Naming.lookup("rmi://192.168.1.2/survey/account");
 			serverConnection = true;

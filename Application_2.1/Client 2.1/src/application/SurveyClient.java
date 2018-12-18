@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import interfaces.IQuestionnaire;
 import utils.Helpers;
 
-public class Questions {
+public class SurveyClient {
 	
 	private IQuestionnaire look_up_questions;
 	
@@ -17,15 +17,21 @@ public class Questions {
 	
 	private ArrayList<Question> qList;
 
-	public Questions() {
+	public SurveyClient() {
 		
 		try {
+			/**
+			 * look for the server
+			 */
 			look_up_questions = (IQuestionnaire) Naming.lookup("rmi://192.168.1.2/survey/questionnaire");
 			serverConnection = true;
+			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			serverConnection = false;
 		}
-		
+		/**
+		 * get questions from the server
+		 */
 		fetchQuestions();
 		
 	}
@@ -43,8 +49,17 @@ public class Questions {
 		return qList;
 	}
 	
-//	public boolean submitQuestions() {
-//		
-//	}
+	public boolean submitQuestions(ArrayList<Question> answerList) {
+		
+		try {
+			return look_up_questions.submitAnswer(answerList);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+	}
 	
 }

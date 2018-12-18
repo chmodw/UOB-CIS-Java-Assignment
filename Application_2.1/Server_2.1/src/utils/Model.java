@@ -12,8 +12,9 @@ public class Model {
 			
 			Class.forName("org.sqlite.JDBC");
 			conn = DriverManager.getConnection("jdbc:sqlite:data.db");
+			
 			conn.setAutoCommit(false);
-			Helpers.Status("Database Connected");
+			Helpers.Status("Model Class : Database Connected");
 			
 		}catch(Exception e) {
 			Helpers.Debug("Model Class : Model() Database Connection error = " +e.toString());

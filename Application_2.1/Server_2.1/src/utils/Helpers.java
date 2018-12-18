@@ -10,11 +10,11 @@ public class Helpers {
 	}
 	
 	public static void Debug(String text) {
-		System.out.println(text);
+		System.out.println(text + "["+ DateNow() +"]");
 	}
 	
 	public static void Status(String text) {
-		System.out.println(text);
+		System.out.println(text + "["+ DateNow() +"]");
 	}
 	
 	public static void ErrorLog(String text) {

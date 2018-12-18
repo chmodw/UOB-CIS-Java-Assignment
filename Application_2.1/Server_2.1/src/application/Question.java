@@ -1,10 +1,8 @@
 package application;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.io.Serializable;
 
 import utils.Helpers;
-import utils.SentimentAnalysis;
 
 /**
  * Question Class
@@ -13,7 +11,12 @@ import utils.SentimentAnalysis;
  *
  */
 
-public class Question {
+public class Question implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private String id;
 	private String question;
@@ -23,9 +26,6 @@ public class Question {
 	private String answer;
 	private String user_email;
 	private String answerd_on;
-	
-	// sentimental analysis results
-	private String SAR = null;
 	
 	/**
 	 * New question
@@ -59,17 +59,7 @@ public class Question {
 		this.id = questionID;
 		this.answer = answer;
 		this.user_email = userEmail;
-		this.answerd_on = Helpers.DateNow();
-		
-		if(questionID.equals("usercomment")) {
-			try {
-				this.SAR = generateSAR(URLEncoder.encode(answer, "UTF-8"));
-			} catch (UnsupportedEncodingException e) {
-				// e.printStackTrace();
-				Helpers.Debug("Error! Question URL encoding");
-			}
-		}
-		
+		this.answerd_on = Helpers.DateNow();	
 		Helpers.Status("Answered question Object Created");
 		
 	}
@@ -77,11 +67,6 @@ public class Question {
 	private String qid(String question) {
 		// generate question id by removing all characters other than letters
 		return question.replaceAll("[^A-Za-z]+", "");
-	}
-	
-	private String generateSAR(String answer) {		
-		//get the sentimental result from the user comment
-		return new SentimentAnalysis(answer).getTone();
 	}
 
 	public String getId() {
@@ -110,12 +95,6 @@ public class Question {
 
 	public String getAnswerd_on() {
 		return answerd_on;
-	}
-
-	public String getSAR() {
-		return SAR;
-	}
-	
-	
+	}	
 
 }

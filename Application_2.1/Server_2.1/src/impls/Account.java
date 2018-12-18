@@ -21,27 +21,28 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	public Account() throws RemoteException {
 
 		//instantiating the model class. which has database functions
-//		model = new Model();
+		model = new Model();
 		
 	}
 
 	@Override
 	public boolean newParticipant(User user) throws RemoteException {
 		
-		String sql = "INSERT INTO participent_data (full_name, email, country, device_manufacturer, device_os, participated_on) VALUES("
-				+ "'" + user.getFull_name() + "'"
-				+ "'" + user.getEmail() + "'"
-				+ "'" + user.getCountry() + "'"
-				+ "'" + user.getDevice_manufacturer() + "'"
-				+ "'" + user.getDevice_os() + "'"
+		Helpers.Status("A Client added new participant");
+		
+		
+		
+		String sql = "INSERT INTO participant_data (full_name, email, country, device_manufacturer, device_os, participated_on) VALUES("
+				+ "'" + user.getFull_name() + "',"
+				+ "'" + user.getEmail() + "',"
+				+ "'" + user.getCountry() + "',"
+				+ "'" + user.getDevice_manufacturer() + "',"
+				+ "'" + user.getDevice_os() + "',"
 				+ "'" + user.getParticipated_on() + "'"
 				+ ")";
 		
-		if(model.INSERT(sql)) {
-			return true;
-		}
-		
-		return false;
+		return model.INSERT(sql);
+			
 	}
 
 	@Override

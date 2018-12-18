@@ -1,15 +1,20 @@
 package impls;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.w3c.dom.Document;
+
 import application.Question;
 import interfaces.IQuestionnaire;
 import utils.Helpers;
 import utils.Model;
+import utils.SentimentAnalysis;
 
 public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire{
 
@@ -22,16 +27,16 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 
 	public Questionnaire() throws RemoteException {
 		//instantiate the model class. which includes database functionalities
-//		model = new Model();
+		model = new Model();
 		
 	}
 
 	@Override
 	public ArrayList<Question> getQuestions() throws RemoteException {
+				
+		ArrayList<Question> questionList = new ArrayList<>();
 		
-		ArrayList<Question> qList = new ArrayList<>();
-		
-		String sql = "SELECT * FROM questions";
+		String sql = "SELECT * FROM question";
 		
 		ResultSet res = model.SELECT(sql);
 		
@@ -40,11 +45,13 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 								
 				if(res.getString("is_active").equals("true")) {
 					//get only active questions and add to the array list
-					qList.add(new Question(res.getString("id"),res.getString("question")));
+					questionList.add(new Question(res.getString("id"),res.getString("question")));
 				}	
 			}
 			// return the questions array list
-			return qList;
+			Helpers.Status("A Client requeted Question List");
+			return questionList;
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -60,21 +67,35 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		for(int i=0; i < submitedQList.size(); i++) {
 			
 			String sql;
+			String SAR;
 			
 			//find the user comment
 			if(submitedQList.get(i).getId().equals("usercomment")) {
 				
+				
+				
+				/**
+				 * Get the Sentiment analysis result 
+				 */
+				try {
+					SAR = generateSAR(URLEncoder.encode(submitedQList.get(i).getAnswer(), "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// e.printStackTrace();
+					Helpers.Debug("Error! Question URL encoding");
+					return false; // return the method if some error occurs
+				}
+				
 				sql = "INSERT INTO sentiment_analysis_result (email, sa_result, created_on) VALUES ("
-						+ "'" + submitedQList.get(i).getUser_email() + "'"
-						+ "'" + submitedQList.get(i).getSAR() + "'"
-						+ "'" + submitedQList.get(i).getAnswerd_on() + "'"
+						+ "'" + submitedQList.get(i).getUser_email() + "',"
+						+ "'" + SAR + "',"
+						+ "'" + submitedQList.get(i).getAnswerd_on() + "',"
 						+ ")";
 				
 			}else {
 				
 				sql = "INSERT INTO results (question_id,participent_email, answer, answerd_on) VALUES ("
-						+ "'" + submitedQList.get(i).getId() + "'"
-						+ "'" + submitedQList.get(i).getUser_email() + "'"
+						+ "'" + submitedQList.get(i).getId() + "',"
+						+ "'" + submitedQList.get(i).getUser_email() + "',"
 						+ "'" + submitedQList.get(i).getAnswer() + "'"
 						+ "'" + submitedQList.get(i).getAnswerd_on() + "'"
 						+ ")";
@@ -92,15 +113,20 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		return true;
 	}
 	
+	private String generateSAR(String answer) {		
+		//get the sentimental result from the user comment
+		return new SentimentAnalysis(answer).getTone();
+	}
+	
 	
 	@Override
 	public boolean newQuestion(Question question) throws RemoteException {
 		
 		 String sql = "INSERT INTO questions (id, question, is_active, created_on) values("
-					+ "'" + question.getId() + "'"
-					+ "'" + question.getQuestion() + "'"
-					+ "'" + question.getIs_active() + "'"
-					+ "'" + question.getCreated_on() + "'"
+					+ "'" + question.getId() + "',"
+					+ "'" + question.getQuestion() + "',"
+					+ "'" + question.getIs_active() + "',"
+					+ "'" + question.getCreated_on() + "',"
 					+ ")";
 		
 		if(model.INSERT(sql)) {

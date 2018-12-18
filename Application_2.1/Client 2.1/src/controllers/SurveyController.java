@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Question;
-import application.Questions;
+import application.SurveyClient;
 import application.User;
-import application.UserAccount;
+import application.AccountClient;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -37,10 +37,12 @@ public class SurveyController implements Initializable {
 	@FXML private VBox radioVbox;
 	
 	private User currentUser;
-	private UserAccount userAccount;
+	private AccountClient userAccount;
 	private ArrayList<Question> questionList;
 	private ArrayList<Question> answerList = new ArrayList<>();
 	private Question currentAnswer;
+	private SurveyClient clientQuestions;
+	
 	private int qIndex = 0;
 	
 	public SurveyController() {
@@ -51,13 +53,14 @@ public class SurveyController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		/**
-		 * initialize the Account class in the server
+		 * initialize the Account class and question class in the server
 		 */
-		userAccount = new UserAccount();
+		userAccount = new AccountClient();
+		clientQuestions = new SurveyClient();
 		/**
 		 * get the question list from the server
 		 */
-		questionList = new Questions().getqList();
+		questionList = new SurveyClient().getqList();
 		/**
 		 * Add user comment question to the question list
 		 */
@@ -131,23 +134,17 @@ public class SurveyController implements Initializable {
 							 * Add the last answer which is the user comment
 							 */
 							answerList.add(new Question(questionList.get(qIndex-1).getId(), userCommentField.getText().toString(), currentUser.getEmail()));
-							/**
-							 * Hide the next button
-							 */
-							nextQuestionBtn.setVisible(false);
-							/**
-							 * save user data and answers in the database
-							 */
-							saveData();
+
 							/**
 							 * end the survey
 							 */
 							surveyEnd();
+
 						}
 						
-						for(int i=0; answerList.size() > i; i++) {
-							System.out.println(i + "----" +answerList.get(i).getAnswer());
-						}
+//						for(int i=0; answerList.size() > i; i++) {
+//							System.out.println(i + "----" +answerList.get(i).getAnswer());
+//						}
 						
 						
 					}
@@ -200,6 +197,22 @@ public class SurveyController implements Initializable {
 	
 	private void showUserComment() {
 		userCommentField.setMinHeight(150);
+	}
+	
+	private void surveyEnd() {
+		
+		/**
+		 * Save data
+		 */
+		
+		System.out.println(clientQuestions.submitQuestions(answerList));
+		
+		/**
+		 * show end interface
+		 */
+		
+		
+		
 	}
 	
 
