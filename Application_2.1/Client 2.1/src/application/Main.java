@@ -32,7 +32,9 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {		
-		//Load the main view.
+		/**
+		 * Load the main view
+		 */
 		launch(args);
 	}
 }
