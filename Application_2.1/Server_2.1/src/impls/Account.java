@@ -27,11 +27,7 @@ public class Account extends UnicastRemoteObject implements IAccount{
 
 	@Override
 	public boolean newParticipant(User user) throws RemoteException {
-		
-		Helpers.Status("A Client added new participant");
-		
-		
-		
+				
 		String sql = "INSERT INTO participant_data (full_name, email, country, device_manufacturer, device_os, participated_on) VALUES("
 				+ "'" + user.getFull_name() + "',"
 				+ "'" + user.getEmail() + "',"
@@ -41,6 +37,7 @@ public class Account extends UnicastRemoteObject implements IAccount{
 				+ "'" + user.getParticipated_on() + "'"
 				+ ")";
 		
+		Helpers.Status("A Client added new participant");
 		return model.INSERT(sql);
 			
 	}
@@ -48,7 +45,7 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	@Override
 	public boolean newDeveloper(User user) throws RemoteException {
 		
-		String sql = "INSERT INTO participent_data (username, password, created_on) VALUES("
+		String sql = "INSERT INTO participant_data (username, password, created_on) VALUES("
 				+ "'" + user.getEmail() + "'"
 				+ "'" + user.getPassword() + "'"
 				+ "'" + user.getParticipated_on() + "'"

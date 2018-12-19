@@ -104,7 +104,8 @@ public class SurveyController implements Initializable {
 	           	/**
 	           	 * remove toggle. 
 	           	 */
-	    		 answersRadioGroup.getToggles().remove(answersRadioGroup.getSelectedToggle());	
+				answersRadioGroup.selectToggle(null);
+					
 		    	/**
 				 * stop going further without a question not answered
 				 */
@@ -140,12 +141,7 @@ public class SurveyController implements Initializable {
 							 */
 							surveyEnd();
 
-						}
-						
-//						for(int i=0; answerList.size() > i; i++) {
-//							System.out.println(i + "----" +answerList.get(i).getAnswer());
-//						}
-						
+						}					
 						
 					}
 					
@@ -179,12 +175,12 @@ public class SurveyController implements Initializable {
 			
 			questionTxt.setText(questionList.get(questionIndex).getQuestion());
 			/**
-			 * hide radio buttons and show textarea
+			 * hide radio buttons and show text area
 			 */
 			radioVbox.getChildren().clear();
 			
 			/**
-			 * add a dummy question object to current answer. so the if statement can execute in next button
+			 * add a dummy question object to current answer. so the if statement can execute when pressing the next button
 			 */
 			currentAnswer = new Question("Temp", "Temp", "Temp");
 			
@@ -202,11 +198,20 @@ public class SurveyController implements Initializable {
 	private void surveyEnd() {
 		
 		/**
+		 * hide the next button
+		 */
+		nextQuestionBtn.setVisible(false);;
+		
+		/**
 		 * Save data
 		 */
 		
-		System.out.println(clientQuestions.submitQuestions(answerList));
-		
+		if(clientQuestions.submitQuestions(answerList) && userAccount.newParticipant(currentUser.getFull_name(), currentUser.getEmail(), currentUser.getCountry(), currentUser.getDevice_manufacturer(), currentUser.getDevice_os())){
+			
+			System.out.println("Data saved");
+			
+		}		
+				
 		/**
 		 * show end interface
 		 */

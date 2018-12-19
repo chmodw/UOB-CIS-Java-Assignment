@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import interfaces.IQuestionnaire;
 import utils.Helpers;
 
+/**
+ * @author Chamodya Wimansha
+ *
+ */
+
 public class SurveyClient {
 	
 	private IQuestionnaire look_up_questions;
@@ -23,7 +28,7 @@ public class SurveyClient {
 			/**
 			 * look for the server
 			 */
-			look_up_questions = (IQuestionnaire) Naming.lookup("rmi://192.168.1.2/survey/questionnaire");
+			look_up_questions = (IQuestionnaire) Naming.lookup("rmi://192.168.8.102/survey/questionnaire");
 			serverConnection = true;
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
@@ -57,7 +62,6 @@ public class SurveyClient {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return false;
 		
 	}

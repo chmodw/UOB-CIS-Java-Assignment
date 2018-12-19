@@ -36,7 +36,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 				
 		ArrayList<Question> questionList = new ArrayList<>();
 		
-		String sql = "SELECT * FROM question";
+		String sql = "SELECT * FROM questions";
 		
 		ResultSet res = model.SELECT(sql);
 		
@@ -64,52 +64,48 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	@Override
 	public boolean submitAnswer(ArrayList<Question> submitedQList) throws RemoteException {
 		//loop through the questions
-		for(int i=0; i < submitedQList.size(); i++) {
-			
+		for(int i=0; submitedQList.size() > i ; i++) {
+						
 			String sql;
 			String SAR;
 			
-			//find the user comment
-			if(submitedQList.get(i).getId().equals("usercomment")) {
-				
-				
-				
-				/**
-				 * Get the Sentiment analysis result 
-				 */
-				try {
-					SAR = generateSAR(URLEncoder.encode(submitedQList.get(i).getAnswer(), "UTF-8"));
-				} catch (UnsupportedEncodingException e) {
-					// e.printStackTrace();
-					Helpers.Debug("Error! Question URL encoding");
-					return false; // return the method if some error occurs
-				}
-				
-				sql = "INSERT INTO sentiment_analysis_result (email, sa_result, created_on) VALUES ("
-						+ "'" + submitedQList.get(i).getUser_email() + "',"
-						+ "'" + SAR + "',"
-						+ "'" + submitedQList.get(i).getAnswerd_on() + "',"
-						+ ")";
-				
-			}else {
-				
-				sql = "INSERT INTO results (question_id,participent_email, answer, answerd_on) VALUES ("
-						+ "'" + submitedQList.get(i).getId() + "',"
-						+ "'" + submitedQList.get(i).getUser_email() + "',"
-						+ "'" + submitedQList.get(i).getAnswer() + "'"
-						+ "'" + submitedQList.get(i).getAnswerd_on() + "'"
-						+ ")";
-			}
-					
-
+			sql = "INSERT INTO results (question_id, participent_email, answer, answerd_on) VALUES ('"
+					+ submitedQList.get(i).getId() + "','" + submitedQList.get(i).getUser_email() + "','"
+					+ submitedQList.get(i).getAnswer() + "','" + submitedQList.get(i).getAnswerd_on() + "')";
 			
 			//This will pause the loop while data saved in the database. otherwise it will occur an error
 			if(!model.INSERT(sql)) {
 				return false;
 			}
+			
+			//find the user comment
+			if(submitedQList.get(i).getId().equals("usercomment")) {		
+				/**
+				 * Get the Sentiment analysis result 
+				 */
+				try {
+					SAR = generateSAR(URLEncoder.encode(submitedQList.get(i).getAnswer(), "UTF-8"));
+					
+				} catch (UnsupportedEncodingException e) {
+					// e.printStackTrace();
+					Helpers.Debug("Error! Question URL encoding");
+					return false; // return the method if some error occurs
+				}
+						
+				sql = "INSERT INTO sentiment_analysis_results (email, sa_result, created_on) VALUES ("
+						+ "'" + submitedQList.get(i).getUser_email() + "',"
+						+ "'" + SAR + "',"
+						+ "'" + submitedQList.get(i).getAnswerd_on() + "'"
+						+ ")";
+				
+				if(!model.INSERT(sql)) {
+					return false;
+				}
+				
+			}
 	
 		}
-		// return true if all went well
+		
 		return true;
 	}
 	

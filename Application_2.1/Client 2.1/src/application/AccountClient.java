@@ -16,7 +16,7 @@ public class AccountClient {
 
 	public AccountClient() {
 		try {
-			look_up_account = (IAccount) Naming.lookup("rmi://192.168.1.2/survey/account");
+			look_up_account = (IAccount) Naming.lookup("rmi://192.168.8.102/survey/account");
 			serverConnection = true;
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			serverConnection = false;

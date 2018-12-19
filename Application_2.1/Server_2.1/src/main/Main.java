@@ -10,7 +10,7 @@ import impls.Results;
 
 public class Main {
 
-	private static String ip = "192.168.1.2:1099";
+	private static String ip = "192.168.8.102:1099";
 	
 	public static void main(String[] args) {
 		
