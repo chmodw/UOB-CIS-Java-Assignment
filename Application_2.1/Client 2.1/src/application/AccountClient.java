@@ -36,4 +36,14 @@ public class AccountClient {
 		return false;
 	}
 	
+	public boolean login(String username, String password) {
+		try {
+			return look_up_account.login(username, password);
+		} catch (RemoteException e) {
+			Helpers.Debug("Error!! Can't check username or password. Client Error - " + e.toString());
+		}
+		
+		return false;
+	}
+	
 }

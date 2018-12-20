@@ -3,6 +3,8 @@ package controllers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import application.Question;
 import application.SurveyClient;
@@ -21,6 +23,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import utils.Helpers;
 
 
 public class SurveyController implements Initializable {
@@ -32,6 +35,7 @@ public class SurveyController implements Initializable {
 	@FXML private Label allQuestionCount;
 	@FXML private Label currentQuestionNumber;
 	@FXML private TextArea userCommentField;
+	
 	
 	@FXML private VBox questionSection;
 	@FXML private VBox radioVbox;
@@ -97,7 +101,6 @@ public class SurveyController implements Initializable {
 		/**
 		 * Executes when click on the next button in the user interface
 		 */
-		
 		nextQuestionBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {				
@@ -137,9 +140,28 @@ public class SurveyController implements Initializable {
 							answerList.add(new Question(questionList.get(qIndex-1).getId(), userCommentField.getText().toString(), currentUser.getEmail()));
 
 							/**
+							 * hide the next button
+							 */
+							nextQuestionBtn.setVisible(false);
+							
+							/**
+							 * Show loading text
+							 */
+							questionSection.getChildren().clear();
+							
+							Label loadText = new Label();
+							
+							loadText.setText("Please wait while your data is saving");
+							
+							questionSection.getChildren().add(loadText);
+							/**
 							 * end the survey
 							 */
-							surveyEnd();
+							if(surveyEnd()) {
+								loadText.setText("Thank you for your support. we will inform you about our future updates");
+							}else {
+								loadText.setText("We couldn't save your data. Please try again later");
+							}
 
 						}					
 						
@@ -147,7 +169,8 @@ public class SurveyController implements Initializable {
 					
 				}
 	    		 
-		    }
+		    }			
+			
 		});
 		
 					
@@ -195,12 +218,17 @@ public class SurveyController implements Initializable {
 		userCommentField.setMinHeight(150);
 	}
 	
-	private void surveyEnd() {
-		
-		/**
-		 * hide the next button
-		 */
-		nextQuestionBtn.setVisible(false);;
+	private boolean surveyEnd() {
+//		
+//		CompletableFuture.supplyAsync(() -> {
+//			
+//			return userAccount.newParticipant(currentUser.getFull_name(), currentUser.getEmail(), currentUser.getCountry(), currentUser.getDevice_manufacturer(), currentUser.getDevice_os());
+//
+//		}).thenApply(result ->{
+//			
+//			return clientQuestions.submitQuestions(answerList);
+//		
+//		});
 		
 		/**
 		 * Save data
@@ -208,9 +236,12 @@ public class SurveyController implements Initializable {
 		
 		if(clientQuestions.submitQuestions(answerList) && userAccount.newParticipant(currentUser.getFull_name(), currentUser.getEmail(), currentUser.getCountry(), currentUser.getDevice_manufacturer(), currentUser.getDevice_os())){
 			
-			System.out.println("Data saved");
+			return true;
 			
 		}		
+		
+		return false;
+
 				
 		/**
 		 * show end interface
@@ -219,6 +250,8 @@ public class SurveyController implements Initializable {
 		
 		
 	}
+	
+
 	
 
 

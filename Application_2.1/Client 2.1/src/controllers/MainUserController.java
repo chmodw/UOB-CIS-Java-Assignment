@@ -7,11 +7,14 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MainUserController implements Initializable {
 	
@@ -96,6 +99,23 @@ public class MainUserController implements Initializable {
 			
 		}
 	
+	}
+	
+	@FXML
+	public void developerLogin() {
+
+        try {
+        	Parent root = FXMLLoader.load(getClass().getResource("../guis/DeveloperLogin.fxml"));
+            
+			// remove the form from the main window
+			userMainWindow.getChildren().remove(surveyForm);
+		
+        	//Load the questions window in the main window
+			userMainWindow.getChildren().add(root);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	/**

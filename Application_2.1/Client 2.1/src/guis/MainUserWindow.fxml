@@ -140,7 +140,7 @@
             </TextField>
             <HBox prefWidth="450.0">
                <children>
-                  <Label text="Not a Participant ?">
+                  <Label fx:id="notAParticipant" onMouseClicked="#developerLogin" text="Not a Participant ?">
                      <HBox.margin>
                         <Insets right="228.0" />
                      </HBox.margin>

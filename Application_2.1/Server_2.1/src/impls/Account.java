@@ -9,6 +9,7 @@ import application.User;
 import interfaces.IAccount;
 import utils.Helpers;
 import utils.Model;
+import utils.Securepass;
 
 public class Account extends UnicastRemoteObject implements IAccount{
 
@@ -46,8 +47,8 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	public boolean newDeveloper(User user) throws RemoteException {
 		
 		String sql = "INSERT INTO participant_data (username, password, created_on) VALUES("
-				+ "'" + user.getEmail() + "'"
-				+ "'" + user.getPassword() + "'"
+				+ "'" + user.getEmail() + "',"
+				+ "'" + user.getPassword() + "',"
 				+ "'" + user.getParticipated_on() + "'"
 				+ ")";
 		
@@ -61,16 +62,17 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	@Override
 	public boolean login(String username, String password) throws RemoteException {
 		
-		String sql = "SELET * FROM developers WHERE username = '" + username +  "'";
+		String sql = "SELECT * FROM developers WHERE username = '" + username +  "'";
 		
 		ResultSet res = model.SELECT(sql);
 		
+		
 		try {
-			if(res.getString("password").equals(password)) {
-				return true;
-			}
+			
+			return new Securepass(password).isSame(res.getString("password"));
+			
 		} catch (SQLException e) {
-			Helpers.Debug("Error!! Can't check username or password. - " + e.toString());
+			Helpers.Debug("Error!! Can't check username or password. Server Error - " + e.toString());
 		}
 		
 		return false;

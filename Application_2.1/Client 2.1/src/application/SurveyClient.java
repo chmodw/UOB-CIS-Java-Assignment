@@ -5,6 +5,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import interfaces.IQuestionnaire;
 import utils.Helpers;
@@ -24,6 +26,19 @@ public class SurveyClient {
 
 	public SurveyClient() {
 		
+		/**
+		 * get questions from the server
+		 */
+		try {
+			fetchQuestions.get();
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	CompletableFuture<Void> serverConnect = CompletableFuture.runAsync(() -> {
 		try {
 			/**
 			 * look for the server
@@ -34,21 +49,16 @@ public class SurveyClient {
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			serverConnection = false;
 		}
-		/**
-		 * get questions from the server
-		 */
-		fetchQuestions();
-		
-	}
+	});
 	
-	private void fetchQuestions() {
+	CompletableFuture<Void> fetchQuestions = serverConnect.thenRun(() -> {
 		try {
 			qList = look_up_questions.getQuestions();
 		} catch (RemoteException e) {
 			Helpers.Debug("Client Questions : Can't fetch questions form the server");
 			
 		}
-	}
+	});
 
 	public ArrayList<Question> getqList() {
 		return qList;

@@ -18,7 +18,7 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 
 public class SentimentAnalysis {
 	
-	private String tone;
+	private String tone = "Null";
 	
 	public SentimentAnalysis(String text) {
 		

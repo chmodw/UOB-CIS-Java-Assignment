@@ -1,7 +1,10 @@
 package main;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
-import java.rmi.registry.LocateRegistry;
+import java.rmi.RemoteException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import impls.Account;
 import impls.Questionnaire;
@@ -13,21 +16,41 @@ public class Main {
 	private static String ip = "192.168.8.102:1099";
 	
 	public static void main(String[] args) {
-		
-		try {
-			 
-//			start rmiregistry -J-Djava.rmi.server.hostname=192.168.1.1:1099
+        
+			try {
+				Naming.rebind("rmi://" + ip + "/survey/questionnaire", new Questionnaire());
+				Naming.rebind("rmi://" + ip + "/survey/account", new Account());   
+				Naming.rebind("rmi://" + ip + "/survey/results", new Results()); 
+				System.out.println("Server running");
+			} catch (RemoteException | MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 	
+	}
+	
+	/*
+	public static void main(String[] args) {
+        try {
+			System.out.println(start.get());
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	static CompletableFuture<String> start = CompletableFuture.supplyAsync(() -> {
+		try {
 			Naming.rebind("rmi://" + ip + "/survey/questionnaire", new Questionnaire());
 			Naming.rebind("rmi://" + ip + "/survey/account", new Account());   
-			Naming.rebind("rmi://" + ip + "/survey/results", new Results());   
-
-            System.err.println("Server ready");
-            
-        } catch (Exception e) {
-        	System.err.println("Server exception: " + e.toString());
-        }
-
-	}
-
+			Naming.rebind("rmi://" + ip + "/survey/results", new Results()); 
+			return "Server running";
+		} catch (RemoteException | MalformedURLException e) {
+			
+			return "Oops! Server exception: " + e.toString();
+			
+		}
+	});
+*/
 }
