@@ -34,5 +34,9 @@ public interface IResults  extends Remote{
 	 */
 	public Map<String, Integer> getSARResults() throws RemoteException;
 	
-	
+	/**
+	 * process results and ready them to send back to the client
+	 * @throws RemoteException
+	 */
+	public void readyResults() throws RemoteException;
 }

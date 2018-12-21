@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.concurrent.CompletableFuture;
 
 import application.Question;
 import impls.Questionnaire;
@@ -26,7 +26,7 @@ public class Results extends UnicastRemoteObject implements IResults{
 	
 	private static final long serialVersionUID = 1L;
 	private Model model; // model class. which has database functions
-	private int resultCount; //how many people participated
+	private int resultCount = 0; //how many people participated
 	private String sql; 
 	private String[] params; // params for filter results
 	private ArrayList<Question> qList; // question list
@@ -41,25 +41,30 @@ public class Results extends UnicastRemoteObject implements IResults{
 	private int others;
 	
 	public Results() throws RemoteException {
-		
 		model = new Model();
+	}
+	
+	@Override
+	public void readyResults() {
 		
 		// Get the response count
-//		this.setResultCount();
+		this.setResultCount();
 		
 		// Get the questions
-//		try {
-//			qList = new Questionnaire().getQuestions();
-//		} catch (RemoteException e) {
-//			Helpers.Debug("can't get the questions --Results - " + e.toString());	
-//		}
+		try {
+			qList = new Questionnaire().getQuestions();
+		} catch (RemoteException e) {
+			Helpers.Debug("can't get the questions --Results - " + e.toString());	
+		}
 		
 		//process results
-//		this.processResults();
+		this.processResults();
+		
 		//process SAR
-//		this.processSARResults();
+		this.processSARResults();			
+		
 	}
-
+	
 	@Override
 	public int getResultCount() throws RemoteException {
 		return resultCount;
@@ -67,7 +72,10 @@ public class Results extends UnicastRemoteObject implements IResults{
 	
 	private void setResultCount() {
 		
-		sql = "SELECT * FROM sentiment_analysis_results";
+		//reset the result count
+		resultCount = 0;
+		
+		sql = "SELECT * FROM participant_data";
 		ResultSet rs = model.SELECT(sql);
 		
 		try {
@@ -75,7 +83,6 @@ public class Results extends UnicastRemoteObject implements IResults{
 				this.resultCount++;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -105,16 +112,16 @@ public class Results extends UnicastRemoteObject implements IResults{
 			try {
 				
 				while(res.next()) {
-					if(res.getString("answer").equals("stronglyDisagree")) {
+					if(res.getString("answer").equals("Strongly Disagree")) {
 						sdc++;
 						continue;
-					}else if (res.getString("answer").equals("disagree")) {
+					}else if (res.getString("answer").equals("Disagree")) {
 						dc++;
 						continue;
-					}else if (res.getString("answer").equals("agree")) {
+					}else if (res.getString("answer").equals("Agree")) {
 						ac++;
 						continue;
-					}else if (res.getString("answer").equals("stronglyAgree")) {
+					}else if (res.getString("answer").equals("Strongly Agree")) {
 						sac++;
 						continue;
 					}
@@ -159,14 +166,14 @@ public class Results extends UnicastRemoteObject implements IResults{
 	private void processSARResults() {
 		
 		//Get participant email addresses from the database
-		sql = "SELECT * FROM participent_data";
+		sql = "SELECT * FROM participant_data";
 		ResultSet res = model.SELECT(sql);
 		
 		try {
 			// loop through the results to find participant response from the sentiment_analysis_results Table
 			while(res.next()) {
 				//look for current email from the sentiment_analysis_result table
-				ResultSet rs = model.SELECT("SELECT * FROM sentiment_analysis_result WHERE email='" + res.getString("participent_email") + "'");
+				ResultSet rs = model.SELECT("SELECT * FROM sentiment_analysis_results WHERE email='" + res.getString("email") + "'");
 				while(rs.next()) {
 					
 					switch(rs.getString("sa_result")) {

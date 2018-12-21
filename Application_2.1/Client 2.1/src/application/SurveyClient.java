@@ -26,19 +26,6 @@ public class SurveyClient {
 
 	public SurveyClient() {
 		
-		/**
-		 * get questions from the server
-		 */
-		try {
-			fetchQuestions.get();
-		} catch (InterruptedException | ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	CompletableFuture<Void> serverConnect = CompletableFuture.runAsync(() -> {
 		try {
 			/**
 			 * look for the server
@@ -49,16 +36,18 @@ public class SurveyClient {
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			serverConnection = false;
 		}
-	});
-	
-	CompletableFuture<Void> fetchQuestions = serverConnect.thenRun(() -> {
+		
+		/**
+		 * get questions from the server
+		 */
 		try {
 			qList = look_up_questions.getQuestions();
 		} catch (RemoteException e) {
 			Helpers.Debug("Client Questions : Can't fetch questions form the server");
 			
 		}
-	});
+		
+	}
 
 	public ArrayList<Question> getqList() {
 		return qList;
