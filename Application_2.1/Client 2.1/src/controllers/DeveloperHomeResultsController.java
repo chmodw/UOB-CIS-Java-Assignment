@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 
 import application.Question;
+import application.Result;
 import application.ResultsConnector;
 import application.SurveyClient;
 import javafx.collections.FXCollections;
@@ -21,19 +22,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+
 public class DeveloperHomeResultsController  implements Initializable{
 
 	@FXML private PieChart q1PieChart;
 	@FXML private Button loadbtn;
 	
 	@FXML private TableView<String> resultTable; 
+	@FXML private TableColumn<String, Integer> qIndexCol;
 	@FXML private TableColumn<String, Integer> aCol;
 	@FXML private TableColumn<String, Integer> dCol;
 	@FXML private TableColumn<String, Integer> saCol;
 	@FXML private TableColumn<String, Integer> sdCol;
 	
 	private ResultsConnector rc = new ResultsConnector();
-	private Map<String, Integer[]> res;
+	private ArrayList<Result> res;
 	private ArrayList<Question> qList;
 	
 	
@@ -63,15 +66,9 @@ public class DeveloperHomeResultsController  implements Initializable{
 			 */
 			res = rc.getResults();
 						
-			for ( Entry<String, Integer[]> entry : res.entrySet()) {
-			    String key = entry.getKey();
-			    Integer[] tab = entry.getValue();
-			    
-			    System.out.println(key + " == " + tab[0].toString() + " : " + tab[1].toString() + " : " + tab[2].toString() + " : " + tab[3].toString());
-			    
-			    // do something with key and/or tab
+			for(int i = 0; res.size() > i; i++) {
+				System.out.println(res.get(i).toString());
 			}
-
 
 		    
 //			ObservableList<Data> list = FXCollections.observableArrayList(

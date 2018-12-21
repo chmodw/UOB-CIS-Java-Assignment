@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import interfaces.IResults;
@@ -42,7 +43,7 @@ public class ResultsConnector {
 		return 0;
 	}
 	
-	public Map<String, Integer[]> getResults(){
+	public ArrayList<Result> getResults(){
 		try {
 			return resultsConn.getResluts();
 		} catch (RemoteException e) {
