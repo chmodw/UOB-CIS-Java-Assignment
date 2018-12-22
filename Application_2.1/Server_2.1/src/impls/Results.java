@@ -162,7 +162,45 @@ public class Results extends UnicastRemoteObject implements IResults{
 		return SARResult;
 	}
 	
-	private void processSARResults() {
+	private void processSARResults(){
+		
+		int resultCount = 0;
+		
+		ResultSet rs = model.SELECT("SELECT * FROM sentiment_analysis_results");
+		
+		try {
+			while(rs.next()) {
+				resultCount++;
+				switch(rs.getString("sa_result")) {
+				case("sadness"):
+					sadness++;
+					break;
+				case("joy"):
+					joy++;
+					break;
+				case("fear"):
+					fear++;
+					break;
+				case("anger"):
+					anger++;
+					break;
+				default:
+					others++;
+				}
+				
+			}
+
+			SARResult.put("joy", (int) Math.round(100 / resultCount * joy));
+			SARResult.put("sadness", (int) Math.round(100 / resultCount * sadness));
+			SARResult.put("anger", (int) Math.round(100 / resultCount * anger));
+			SARResult.put("fear", (int) Math.round(100 / resultCount * fear));
+			SARResult.put("others", (int) Math.round(100 / resultCount * others));
+			
+		} catch (SQLException e) {
+			Helpers.ErrorLog("Can't caluculate SAR - " + e.toString());
+		}
+		
+		/*
 		
 		//Get participant email addresses from the database
 		sql = "SELECT * FROM participant_data";
@@ -192,26 +230,15 @@ public class Results extends UnicastRemoteObject implements IResults{
 							others++;
 					}
 				}
+				*/
 				
-//				SARResult.put("joy", 100 / participantCount * joy);
-//				SARResult.put("sadness", 100 / participantCount * sadness);
-//				SARResult.put("anger", 100 / participantCount * anger);
-//				SARResult.put("fear", 100 / participantCount * fear);
-//				SARResult.put("others", 100 / participantCount * others);
-				
-				SARResult.put("joy", joy);
-				SARResult.put("sadness", sadness);
-				SARResult.put("anger", anger);
-				SARResult.put("fear", fear);
-				SARResult.put("others", others);
-				
-			}
+//			}
 			
-		} catch (SQLException e) {
-		
-			Helpers.Debug("Can't Get Participents for SAR Results - " + e.toString());
-		
-		}
+//		} catch (SQLException e) {
+//		
+//			Helpers.Debug("Can't Get Participents for SAR Results - " + e.toString());
+//		
+//		}
 		
 	}
 			

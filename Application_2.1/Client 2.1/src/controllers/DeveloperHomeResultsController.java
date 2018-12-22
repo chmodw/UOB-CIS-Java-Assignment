@@ -97,22 +97,22 @@ public class DeveloperHomeResultsController  implements Initializable{
 		 * add data to charts
 		 */
 		
-		System.out.println(SARes.get("joy"));
-		System.out.println(SARes.get("sadness"));
-		System.out.println(SARes.get("fear"));
-		System.out.println(SARes.get("anger"));
-		System.out.println(SARes.get("others"));
+//		System.out.println(SARes.get("joy"));
+//		System.out.println(SARes.get("sadness"));
+//		System.out.println(SARes.get("fear"));
+//		System.out.println(SARes.get("anger"));
+//		System.out.println(SARes.get("others"));
 		
 	    
-//		ObservableList<Data> list = FXCollections.observableArrayList(
-//						
-//						new PieChart.Data("Joy", SARes.get("joy")),
-//						new PieChart.Data("Sad", SARes.get("sadness")),
-//						new PieChart.Data("Angry", SARes.get("fear")),
-//						new PieChart.Data("Fear", SARes.get("anger")),
-//						new PieChart.Data("Mix", SARes.get("others"))
-//						);
-//		q1PieChart.setData(list);
+		ObservableList<Data> list = FXCollections.observableArrayList(
+						
+						new PieChart.Data("Joy", SARes.get("joy")),
+						new PieChart.Data("Sad", SARes.get("sadness")),
+						new PieChart.Data("Angry", SARes.get("fear")),
+						new PieChart.Data("Fear", SARes.get("anger")),
+						new PieChart.Data("Mix", SARes.get("others"))
+						);
+		q1PieChart.setData(list);
 		
 	});
 	
