@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import interfaces.IResults;
+import utils.ClientConfig;
+import utils.Helpers;
 
 public class ResultsConnector {
 	
@@ -19,10 +21,9 @@ public class ResultsConnector {
 			/**
 			 * look for the server
 			 */
-			resultsConn = (IResults) Naming.lookup("rmi://192.168.8.102/survey/results");
+			resultsConn = (IResults) Naming.lookup("rmi://"+ClientConfig.getIp()+"/survey/results");
 			
-			System.out.println("Server Found");
-//				serverConnection = true;
+//			Helpers.Debug("Server Found");
 			
 			resultsConn.readyResults();
 			
@@ -36,7 +37,6 @@ public class ResultsConnector {
 		try {
 			return resultsConn.getResultCount();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -47,11 +47,24 @@ public class ResultsConnector {
 		try {
 			return resultsConn.getResluts();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return null;
+	}
+	
+	public Map<String, Integer> getSentimentResults() {
+		
+		try {
+			
+			return resultsConn.getSARResults();
+			
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
 	}
 	
 

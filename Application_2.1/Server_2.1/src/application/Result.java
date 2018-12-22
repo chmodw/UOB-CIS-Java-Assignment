@@ -30,6 +30,10 @@ public class Result  implements Serializable{
 		this.stronglyAgreeCount = stronglyAgreeCount;
 	}
 	
+	public Result(String question2) {
+		this.question = question2;
+	}
+
 	public String getQuestion() {
 		return question;
 	}

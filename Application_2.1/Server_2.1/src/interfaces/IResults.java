@@ -2,7 +2,10 @@ package interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Map;
+
+import application.Result;
 
 public interface IResults  extends Remote{
 		
@@ -18,7 +21,7 @@ public interface IResults  extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public Map<String, Integer[]> getResluts() throws RemoteException;
+	public ArrayList<Result> getResluts() throws RemoteException;
 	
 	/**
 	 * Parameters for filter the results

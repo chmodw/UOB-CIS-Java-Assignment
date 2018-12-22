@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 
 import application.Question;
+import application.Result;
 import impls.Questionnaire;
 import interfaces.IResults;
 import utils.Helpers;
@@ -26,19 +26,19 @@ public class Results extends UnicastRemoteObject implements IResults{
 	
 	private static final long serialVersionUID = 1L;
 	private Model model; // model class. which has database functions
-	private int resultCount = 0; //how many people participated
+	private int participantCount; //how many people participated
 	private String sql; 
-	private String[] params; // params for filter results
+	private String[] params; // params for filter results 
 	private ArrayList<Question> qList; // question list
-	private Map<String, Integer[]> results = new HashMap<String, Integer[]>(); // <question id, [sdc,dc,ac,sac]>
+	private ArrayList<Result> results;
 	
 	private Map<String, Integer> SARResult = new HashMap<String, Integer>();
 	
-	private int anger;
-	private int sadness;
-	private int joy;
-	private int fear;
-	private int others;
+	private int anger = 0;
+	private int sadness  = 0;
+	private int joy  = 0;
+	private int fear  = 0;
+	private int others  = 0;
 	
 	public Results() throws RemoteException {
 		model = new Model();
@@ -46,6 +46,8 @@ public class Results extends UnicastRemoteObject implements IResults{
 	
 	@Override
 	public void readyResults() {
+		
+		results = new ArrayList<>();
 		
 		// Get the response count
 		this.setResultCount();
@@ -67,31 +69,30 @@ public class Results extends UnicastRemoteObject implements IResults{
 	
 	@Override
 	public int getResultCount() throws RemoteException {
-		return resultCount;
+		return participantCount;
 	}
 	
 	private void setResultCount() {
 		
 		//reset the result count
-		resultCount = 0;
+		participantCount = 0;
 		
 		sql = "SELECT * FROM participant_data";
 		ResultSet rs = model.SELECT(sql);
 		
 		try {
 			while(rs.next()) {
-				this.resultCount++;
+				participantCount++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 	
 	private void processResults() {
 
 		//loop through the question list and find the result for that question.
-		for(int i = 0; qList.size() > i; i++) {
+		for(int i = 0; qList.size() > i; i++) {	
 			
 			// Strongly Disagree Count
 			int sdc = 0;
@@ -102,12 +103,13 @@ public class Results extends UnicastRemoteObject implements IResults{
 			// Strongly agree Count
 			int sac = 0;
 			
+
 			// Find answered questions from the results table where question id equivalent to 
 			// the current question id in the loop
 			sql = "SELECT * FROM results WHERE question_id = '" + qList.get(i).getId() + "'";
 			
 			ResultSet res = model.SELECT(sql);
-			
+
 			// Loop through the found answered questions
 			try {
 				
@@ -131,15 +133,14 @@ public class Results extends UnicastRemoteObject implements IResults{
 				Helpers.Debug("something happent when looping through the results --answerd_results - " + e.toString());
 			}
 				
-			results.put(qList.get(i).getId(),new Integer[]{sdc,dc,ac,sac});
-				
+			results.add(new Result(qList.get(i).getQuestion(), qList.get(i).getId(), participantCount, sdc, dc, ac, sac));
 		}
 
 		
 	}
 
 	@Override
-	public Map<String, Integer[]> getResluts() throws RemoteException {
+	public ArrayList<Result> getResluts() throws RemoteException {
 		return results;
 	}
 
@@ -152,12 +153,10 @@ public class Results extends UnicastRemoteObject implements IResults{
 
 	@Override
 	public Map<String, Integer> getSARResults() throws RemoteException {
-		
-		SARResult.put("joy", 100 / resultCount * joy); //get percentage
-		SARResult.put("sadness", 100 / resultCount * sadness);
-		SARResult.put("anger", 100 / resultCount * anger);
-		SARResult.put("fear", 100 / resultCount * fear);
-		SARResult.put("others", 100 / resultCount * others);
+		/**
+		 * return results as a percentage
+		 */
+
 		
 		
 		return SARResult;
@@ -192,8 +191,19 @@ public class Results extends UnicastRemoteObject implements IResults{
 						default:
 							others++;
 					}
-					
 				}
+				
+//				SARResult.put("joy", 100 / participantCount * joy);
+//				SARResult.put("sadness", 100 / participantCount * sadness);
+//				SARResult.put("anger", 100 / participantCount * anger);
+//				SARResult.put("fear", 100 / participantCount * fear);
+//				SARResult.put("others", 100 / participantCount * others);
+				
+				SARResult.put("joy", joy);
+				SARResult.put("sadness", sadness);
+				SARResult.put("anger", anger);
+				SARResult.put("fear", fear);
+				SARResult.put("others", others);
 				
 			}
 			

@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 
 import application.User;
 import interfaces.IAccount;
+import utils.ClientConfig;
 import utils.Helpers;
 
 public class AccountClient {
@@ -16,7 +17,7 @@ public class AccountClient {
 
 	public AccountClient() {
 		try {
-			look_up_account = (IAccount) Naming.lookup("rmi://192.168.8.102/survey/account");
+			look_up_account = (IAccount) Naming.lookup("rmi://"+ClientConfig.getIp()+"/survey/account");
 			serverConnection = true;
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			serverConnection = false;

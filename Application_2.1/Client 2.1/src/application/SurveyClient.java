@@ -9,6 +9,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 import interfaces.IQuestionnaire;
+import utils.ClientConfig;
 import utils.Helpers;
 
 /**
@@ -30,7 +31,7 @@ public class SurveyClient {
 			/**
 			 * look for the server
 			 */
-			look_up_questions = (IQuestionnaire) Naming.lookup("rmi://192.168.8.102/survey/questionnaire");
+			look_up_questions = (IQuestionnaire) Naming.lookup("rmi://"+ClientConfig.getIp()+"/survey/questionnaire");
 			serverConnection = true;
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {

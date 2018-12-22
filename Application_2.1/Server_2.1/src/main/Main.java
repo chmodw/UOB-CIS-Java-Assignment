@@ -9,11 +9,12 @@ import java.util.concurrent.ExecutionException;
 import impls.Account;
 import impls.Questionnaire;
 import impls.Results;
+import utils.ServerConfig;
 
 
 public class Main {
 
-	private static String ip = "192.168.8.102:1099";
+	private static String ip = ServerConfig.getIp();
 	
 	public static void main(String[] args) {
         

@@ -15,11 +15,11 @@
                <children>
                   <TableView fx:id="resultTable" prefHeight="325.0" prefWidth="628.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Q Index" />
-                      <TableColumn fx:id="sdCol" editable="false" prefWidth="105.0" text="Strongly disagree" />
-                        <TableColumn fx:id="dCol" prefWidth="105.0" text="Disagree" />
-                        <TableColumn fx:id="aCol" prefWidth="105.0" text="Agree" />
-                        <TableColumn fx:id="saCol" maxWidth="105.0" prefWidth="105.0" text="Strongly Agree" />
+                      <TableColumn fx:id="qIndexCol" prefWidth="350.0" resizable="false" text="Question" />
+                      <TableColumn fx:id="sdCol" editable="false" minWidth="0.0" prefWidth="70.0" resizable="false" text="S. Disagree" />
+                        <TableColumn fx:id="dCol" prefWidth="70.0" resizable="false" text="Disagree" />
+                        <TableColumn fx:id="aCol" prefWidth="70.0" resizable="false" text="Agree" />
+                        <TableColumn fx:id="saCol" maxWidth="358.0" prefWidth="70.0" resizable="false" text="S. Agree" />
                     </columns>
                   </TableView>
                   <PieChart fx:id="q1PieChart" maxHeight="200.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0">
