@@ -1,5 +1,6 @@
 package utils;
 
+import com.ibm.watson.developer_cloud.http.ServiceCallback;
 import com.ibm.watson.developer_cloud.service.exception.NotFoundException;
 import com.ibm.watson.developer_cloud.service.exception.RequestTooLargeException;
 import com.ibm.watson.developer_cloud.service.exception.ServiceResponseException;
@@ -7,6 +8,9 @@ import com.ibm.watson.developer_cloud.service.security.IamOptions;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
+
+import application.DocumentTone;
+import sun.reflect.generics.tree.ReturnType;
 
 /**
  * Some codes on this class I got from the Tone Analyzer documentation. I did some changes to it according to my project
@@ -27,15 +31,17 @@ public class SentimentAnalysis {
 			IamOptions options = new IamOptions.Builder().apiKey("iyJGHXqpNoHfcP_k7lDcmU5Rik8adSgm8X2Lssry99Fd").build();
 
 			ToneAnalyzer toneAnalyzer = new ToneAnalyzer("2017-09-21", options);
-			toneAnalyzer.setEndPoint("https://gateway.watsonplatform.net/tone-analyzer/api");
 
+			toneAnalyzer.setEndPoint("https://gateway.watsonplatform.net/tone-analyzer/api");
 
 			ToneOptions toneOptions = new ToneOptions.Builder().text(text).build();
 
-			ToneAnalysis toneAnalysis = toneAnalyzer.tone(toneOptions).execute();		
-
-			tone = toneAnalysis.getDocumentTone().getTones().get(0).getToneId().toString();
+			ToneAnalysis toneAnalysis = toneAnalyzer.tone(toneOptions).execute();	
 			
+			/**
+			 * convert returning Json to a java object and get the tone name
+			 */
+			tone = (new ToneConvert(toneAnalysis.getDocumentTone().getTones().get(0).toString()).getDocTone()).getTone_id();			
 			
 		} catch (NotFoundException e) {
 		    // Handle Not Found (404) exception

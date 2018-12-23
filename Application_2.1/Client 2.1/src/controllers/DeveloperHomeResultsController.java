@@ -1,10 +1,8 @@
 package controllers;
 
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -96,14 +94,6 @@ public class DeveloperHomeResultsController  implements Initializable{
 		/**
 		 * add data to charts
 		 */
-		
-//		System.out.println(SARes.get("joy"));
-//		System.out.println(SARes.get("sadness"));
-//		System.out.println(SARes.get("fear"));
-//		System.out.println(SARes.get("anger"));
-//		System.out.println(SARes.get("others"));
-		
-	    
 		ObservableList<Data> list = FXCollections.observableArrayList(
 						
 						new PieChart.Data("Joy", SARes.get("joy")),

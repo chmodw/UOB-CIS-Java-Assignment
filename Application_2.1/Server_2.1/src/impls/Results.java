@@ -132,11 +132,32 @@ public class Results extends UnicastRemoteObject implements IResults{
 					
 				Helpers.Debug("something happent when looping through the results --answerd_results - " + e.toString());
 			}
-				
-			results.add(new Result(qList.get(i).getQuestion(), qList.get(i).getId(), participantCount, sdc, dc, ac, sac));
+			
+			
+			/**
+			 * all the results as a percentage
+			 */
+			results.add(new Result(qList.get(i).getQuestion(), qList.get(i).getId(), participantCount, 
+							toPercentage(participantCount, sdc), 
+							toPercentage(participantCount, dc),
+							toPercentage(participantCount, ac),
+							toPercentage(participantCount, sac)
+							));
+			
+//			results.add(new Result(qList.get(i).getQuestion(), qList.get(i).getId(), participantCount, sdc, dc, ac, sac));
+		
 		}
 
 		
+	}
+	
+	private int toPercentage(int total, int numPt) {
+		
+		if(numPt != 0) {
+			return (int) Math.round(100 / total * numPt);
+		}
+		
+		return 0;
 	}
 
 	@Override
@@ -155,10 +176,7 @@ public class Results extends UnicastRemoteObject implements IResults{
 	public Map<String, Integer> getSARResults() throws RemoteException {
 		/**
 		 * return results as a percentage
-		 */
-
-		
-		
+		 */		
 		return SARResult;
 	}
 	
@@ -190,55 +208,15 @@ public class Results extends UnicastRemoteObject implements IResults{
 				
 			}
 
-			SARResult.put("joy", (int) Math.round(100 / resultCount * joy));
-			SARResult.put("sadness", (int) Math.round(100 / resultCount * sadness));
-			SARResult.put("anger", (int) Math.round(100 / resultCount * anger));
-			SARResult.put("fear", (int) Math.round(100 / resultCount * fear));
-			SARResult.put("others", (int) Math.round(100 / resultCount * others));
+			SARResult.put("joy",toPercentage(resultCount, joy));
+			SARResult.put("sadness", toPercentage(resultCount, sadness));
+			SARResult.put("anger", toPercentage(resultCount, anger));
+			SARResult.put("fear", toPercentage(resultCount, fear));
+			SARResult.put("others", toPercentage(resultCount, others));
 			
 		} catch (SQLException e) {
 			Helpers.ErrorLog("Can't caluculate SAR - " + e.toString());
 		}
-		
-		/*
-		
-		//Get participant email addresses from the database
-		sql = "SELECT * FROM participant_data";
-		ResultSet res = model.SELECT(sql);
-		
-		try {
-			// loop through the results to find participant response from the sentiment_analysis_results Table
-			while(res.next()) {
-				//look for current email from the sentiment_analysis_result table
-				ResultSet rs = model.SELECT("SELECT * FROM sentiment_analysis_results WHERE email='" + res.getString("email") + "'");
-				while(rs.next()) {
-					
-					switch(rs.getString("sa_result")) {
-						case("sadness"):
-							sadness++;
-							break;
-						case("joy"):
-							joy++;
-							break;
-						case("fear"):
-							fear++;
-							break;
-						case("anger"):
-							anger++;
-							break;
-						default:
-							others++;
-					}
-				}
-				*/
-				
-//			}
-			
-//		} catch (SQLException e) {
-//		
-//			Helpers.Debug("Can't Get Participents for SAR Results - " + e.toString());
-//		
-//		}
 		
 	}
 			

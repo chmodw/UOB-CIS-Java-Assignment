@@ -3,8 +3,6 @@ package controllers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 import application.Question;
 import application.SurveyClient;
@@ -23,8 +21,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
-import utils.Helpers;
-
 
 public class SurveyController implements Initializable {
 	

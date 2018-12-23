@@ -24,6 +24,14 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="60.0" maxWidth="1.7976931348623157E308" prefHeight="60.0" text="Question">
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
             <VBox fx:id="mainSection" minHeight="250.0" minWidth="500.0" style="-fx-background-color: eee;" />
