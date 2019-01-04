@@ -39,5 +39,21 @@ public interface IQuestionnaire extends Remote{
 	 * @throws RemoteException
 	 */
 	public boolean changeStatusQuestion(String questionId, String status) throws RemoteException;
+	
+	/**
+	 * modify a question
+	 * @param question
+	 * @return
+	 * @throws RemoteException
+	 */
+	public boolean updateQuestion(Question question)throws RemoteException;
+	
+	/**
+	 * Delete a question from the database
+	 * @param questionId
+	 * @return
+	 * @throws RemoteException
+	 */
+	public boolean deleteQuestion(int questionId)throws RemoteException;
 
 }

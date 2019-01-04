@@ -45,7 +45,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 								
 				if(res.getString("is_active").equals("true")) {
 					//get only active questions and add to the array list
-					questionList.add(new Question(res.getString("id"),res.getString("question")));
+					questionList.add(new Question(res.getString("id"),res.getString("question"),res.getString("is_active"),res.getString("created_on")));
 				}	
 			}
 			// return the questions array list
@@ -118,22 +118,46 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	@Override
 	public boolean newQuestion(Question question) throws RemoteException {
 		
-		 String sql = "INSERT INTO questions (id, question, is_active, created_on) values("
+		 String sql = "INSERT INTO questions (id, question, is_active, created_on) VALUES ("
 					+ "'" + question.getId() + "',"
 					+ "'" + question.getQuestion() + "',"
 					+ "'" + question.getIs_active() + "',"
-					+ "'" + question.getCreated_on() + "',"
+					+ "'" + question.getCreated_on() + "'"
 					+ ")";
-		
-		if(model.INSERT(sql)) {
-			return true;
-		}
 		 
+		 System.out.println(sql);
+		 
+		 
+		 /**
+		  * cant add the new question
+		  * database lock
+		  * but can add from the db browser
+		  */
+		 
+		 
+		 
+		
+//		if(model.INSERT(sql)) {
+//			return true;
+//		}
+//		 
 		return false;
 	}
 
 	@Override
 	public boolean changeStatusQuestion(String questionId, String status) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateQuestion(Question question) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteQuestion(int questionId) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

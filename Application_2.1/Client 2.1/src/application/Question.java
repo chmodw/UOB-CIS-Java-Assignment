@@ -32,9 +32,11 @@ public class Question implements Serializable{
 	 * 
 	 * @param question
 	 */
-	public Question(String id,String question) {
+	public Question(String id,String question, String is_active,String created_on) {
 		this.id = id;
 		this.question = question;
+		this.is_active = is_active;
+		this.created_on = created_on;
 	
 		Helpers.Status("Question Object Created");
 	}

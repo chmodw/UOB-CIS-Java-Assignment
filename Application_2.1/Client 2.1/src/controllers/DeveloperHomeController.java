@@ -11,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class DeveloperHomeController implements Initializable{
@@ -20,7 +19,8 @@ public class DeveloperHomeController implements Initializable{
 	@FXML private VBox mainSection;
 	
 	@FXML private Button showQuestion;
-	@FXML private Label showResults;
+	@FXML private Button showResults;
+	@FXML private Button showDeveloper;
 
 	
 	
@@ -30,15 +30,22 @@ public class DeveloperHomeController implements Initializable{
 		/**
 		 * open results section when open the developer window
 		 */
-        try {
-        	Parent root = FXMLLoader.load(getClass().getResource("../guis/DeveloperHomeResults.fxml"));
-            		
-        	//Load the questions window in the main window
-        	mainSection.getChildren().add(root);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+		openWindow("DeveloperHomeResults");
+		
+        /**
+         * show the questions section when click on the questions button
+         */
+		showResults.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				/**
+				 * open the results window
+				 */
+				openWindow("DeveloperHomeResults");
+			
+			}
+        	
+        });
         
         /**
          * show the questions section when click on the questions button
@@ -46,28 +53,49 @@ public class DeveloperHomeController implements Initializable{
         showQuestion.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {
-				
-				/**
-				 * remove the current window
-				 */
-				mainSection.getChildren().clear();;
-				
 				/**
 				 * open the questions window
 				 */
-		        try {
-		        	Parent root = FXMLLoader.load(getClass().getResource("../guis/EditQuestions.fxml"));
-		            		
-		        	//Load the questions window in the main window
-		        	mainSection.getChildren().add(root);
-		        }
-		        catch (IOException e) {
-		            e.printStackTrace();
-		        }
-				
-			}
-        	
+				openWindow("EditQuestions");		
+			}     	
+        });
+        
+        /**
+         * show the developer section when click on the questions button
+         */
+        showDeveloper.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				/**
+				 * open the questions window
+				 */
+				openWindow("DeveloperManager");		
+			}     	
         });
 		
 	}
+	
+	/**
+	 * a method to open developer windows when user clicks on buttons
+	 */
+	private void openWindow(String windowName) {
+		/**
+		 * remove the current window
+		 */
+		mainSection.getChildren().clear();
+		
+		/**
+		 * open the window
+		 */
+        try {
+        	Parent root = FXMLLoader.load(getClass().getResource("../guis/"+windowName+".fxml"));
+            		
+        	//Load the questions window in the main window
+        	mainSection.getChildren().add(root);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
 }

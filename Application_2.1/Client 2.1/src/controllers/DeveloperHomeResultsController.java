@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 import application.Question;
 import application.Result;
 import application.ResultsConnector;
-import application.SurveyClient;
+import application.QuestionClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -44,14 +44,6 @@ public class DeveloperHomeResultsController  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
 
-
-
-	}
-	
-	/**
-	 * Load data without blocking
-	 */
-	CompletableFuture<Void> startup = CompletableFuture.runAsync(() -> {
 		
 		
 		rc = new ResultsConnector();
@@ -59,7 +51,7 @@ public class DeveloperHomeResultsController  implements Initializable{
 		/**
 		 * get the question list from the server
 		 */
-		qList = new SurveyClient().getqList();
+		qList = new QuestionClient().getqList();
 		
 		/**
 		 * get the main results from the server
@@ -90,8 +82,8 @@ public class DeveloperHomeResultsController  implements Initializable{
 						new PieChart.Data("Mix", SARes.get("others"))
 						);
 		q1PieChart.setData(list);
-		
-	});
+
+	}
 	
 
 	   private void populateTableview(ObservableList<Result> resultTableData) {

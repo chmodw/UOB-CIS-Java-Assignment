@@ -76,10 +76,10 @@ public class MainUserController implements Initializable {
 	public void startSuervey() throws IOException {
 		
 		if(!isTextFieldEmpty(fullNameTxt, "Please enter your name", fullNameError) && 
-						!isTextFieldEmpty(emailTxt, "Please enter your Email address", emailError) &&
-						!isTextFieldEmpty(countryTxt, "Please your Country of Residence", countryError) &&
-						!isTextFieldEmpty(TDMTxt, "Please enter your device manufacturer", TDMError) &&
-						!isTextFieldEmpty(TDOTxt, "Please enter your device OS", TDOError)) {
+		   !isTextFieldEmpty(emailTxt, "Please enter your Email address", emailError) &&
+		   !isTextFieldEmpty(countryTxt, "Please your Country of Residence", countryError) &&
+		   !isTextFieldEmpty(TDMTxt, "Please enter your device manufacturer", TDMError) &&
+		   !isTextFieldEmpty(TDOTxt, "Please enter your device OS", TDOError)) {
 			
 			
 			FXMLLoader loader = new FXMLLoader();

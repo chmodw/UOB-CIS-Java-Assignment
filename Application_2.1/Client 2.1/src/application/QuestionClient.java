@@ -17,7 +17,7 @@ import utils.Helpers;
  *
  */
 
-public class SurveyClient {
+public class QuestionClient {
 	
 	private IQuestionnaire look_up_questions;
 	
@@ -25,7 +25,7 @@ public class SurveyClient {
 	
 	private ArrayList<Question> qList;
 
-	public SurveyClient() {
+	public QuestionClient() {
 		
 		try {
 			/**
@@ -49,6 +49,15 @@ public class SurveyClient {
 		}
 		
 	}
+	
+	public boolean newQuestion(Question question) {
+		try {
+			return look_up_questions.newQuestion(question);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	public ArrayList<Question> getqList() {
 		return qList;
@@ -63,7 +72,10 @@ public class SurveyClient {
 			e.printStackTrace();
 		}
 		return false;
-		
 	}
+	
+	/**
+	 * Update Question
+	 */
 	
 }

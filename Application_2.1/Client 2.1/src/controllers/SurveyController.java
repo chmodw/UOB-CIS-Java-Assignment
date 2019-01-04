@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Question;
-import application.SurveyClient;
+import application.QuestionClient;
 import application.User;
 import application.AccountClient;
 import javafx.beans.value.ChangeListener;
@@ -21,6 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import utils.Helpers;
 
 public class SurveyController implements Initializable {
 	
@@ -41,7 +42,7 @@ public class SurveyController implements Initializable {
 	private ArrayList<Question> questionList;
 	private ArrayList<Question> answerList = new ArrayList<>();
 	private Question currentAnswer;
-	private SurveyClient clientQuestions;
+	private QuestionClient clientQuestions;
 	
 	private int qIndex = 0;
 	
@@ -56,15 +57,15 @@ public class SurveyController implements Initializable {
 		 * initialize the Account class and question class in the server
 		 */
 		userAccount = new AccountClient();
-		clientQuestions = new SurveyClient();
+		clientQuestions = new QuestionClient();
 		/**
 		 * get the question list from the server
 		 */
-		questionList = new SurveyClient().getqList();
+		questionList = new QuestionClient().getqList();
 		/**
 		 * Add user comment question to the question list
 		 */
-		questionList.add(new Question("usercomment", "Few words about the experiance with the app"));
+		questionList.add(new Question("usercomment", "Few words about the experiance with the app","true",Helpers.DateNow()));
 		/**
 		 * show question count in user interface
 		 */
