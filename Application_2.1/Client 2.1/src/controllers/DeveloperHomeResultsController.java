@@ -39,25 +39,12 @@ public class DeveloperHomeResultsController  implements Initializable{
 	private ResultsConnector rc;
 	private ArrayList<Result> res;
 	private ArrayList<Question> qList;
-	
-	
-	
-	
-	public DeveloperHomeResultsController() {
-        
-		
-
-	}
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
 
-		try {
-			startup.get();
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-		}
+
 
 	}
 	
@@ -105,8 +92,6 @@ public class DeveloperHomeResultsController  implements Initializable{
 		q1PieChart.setData(list);
 		
 	});
-	
-
 	
 
 	   private void populateTableview(ObservableList<Result> resultTableData) {
