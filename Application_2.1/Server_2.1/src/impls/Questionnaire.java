@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.w3c.dom.Document;
-
 import application.Question;
 import interfaces.IQuestionnaire;
 import utils.Helpers;
@@ -18,9 +16,6 @@ import utils.SentimentAnalysis;
 
 public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private Model model;
@@ -31,10 +26,6 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		
 	}
 	
-	/**
-	 * Create new model object every time
-	 */
-
 	@Override
 	public ArrayList<Question> getQuestions() throws RemoteException {
 				
@@ -65,6 +56,34 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		return null;
 	}
 
+
+	@Override
+	public ArrayList<Question> getAllQuestions() throws RemoteException {
+		
+		ArrayList<Question> questionList = new ArrayList<>();
+		
+		String sql = "SELECT * FROM question";
+		
+		ResultSet res = model.SELECT(sql);
+		
+		try {
+			while(res.next()) {
+				questionList.add(new Question(res.getString("index").toString(),res.getString("question"),res.getString("is_active"),res.getString("created_on")));
+			}
+			// return the questions array list
+			Helpers.Status("A Client requeted Question List");
+			
+			return questionList;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Helpers.Debug("Can't get Questions from the database - " + e.toString());
+		}
+		
+		return null;
+	}
+	
 	@Override
 	public boolean submitAnswer(ArrayList<Question> submitedQList) throws RemoteException {
 		//loop through the questions
@@ -118,35 +137,18 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		return new SentimentAnalysis(answer).getTone();
 	}
 	
-	
 	@Override
 	public boolean newQuestion(Question question) throws RemoteException {
 		
-//		 String sql = "INSERT INTO questions (id, question, is_active, created_on) VALUES ("
-//					+ "'" + question.getId() + "',"
-//					+ "'" + question.getQuestion() + "',"
-//					+ "'" + question.getIs_active() + "',"
-//					+ "'" + question.getCreated_on() + "'"
-//					+ ")";
-		
-		 String sql = "INSERT INTO question(id,question,is_active,created_on) VALUES ('good','test','test','test')";
+		 String sql = "INSERT INTO question(id, question, is_active, created_on) VALUES ("
+					+ "'" + question.getId() + "',"
+					+ "'" + question.getQuestion() + "',"
+					+ "'" + question.getIs_active() + "',"
+					+ "'" + question.getCreated_on() + "'"
+					+ ")";		 
+
 		 
-		 System.out.println(sql);
-		 
-		 
-		 /**
-		  * cant add the new question
-		  * database lock
-		  * but can add from the db browser
-		  */
-		 
-		 model.INSERT(sql);
-		
-//		if() {
-//			return true;
-//		}
-		 
-		return false;
+		return model.INSERT(sql);
 	}
 
 	@Override
@@ -166,5 +168,6 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	
 }

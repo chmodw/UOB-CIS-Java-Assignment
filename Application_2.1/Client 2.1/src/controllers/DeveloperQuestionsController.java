@@ -48,8 +48,10 @@ public class DeveloperQuestionsController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		clientQuestions = new QuestionClient();
+		//get all the questions from the database
+		qList = clientQuestions.getAllQuestions();
 		
-		populateTableview(FXCollections.observableArrayList(clientQuestions.getqList()));
+		populateTableview(FXCollections.observableArrayList(qList));
 		
 //		CompletableFuture.supplyAsync(this::updateQuestion);
 		
@@ -61,13 +63,22 @@ public class DeveloperQuestionsController implements Initializable{
 			public void handle(ActionEvent arg0) {
 				
 				if(!newQuestionTxt.getText().isEmpty()) {
+					
 					if(clientQuestions.newQuestion(new Question(
+							
 							newQuestionTxt.getText(),
 							newQuestionCheck.isSelected()
 							))) {
+						/**
+						 * Show message in the user interface
+						 */
 						newQuestionMsg.setTextFill(Color.GREEN);
 						newQuestionMsg.setText("Question Saved");
+						
 					}else {
+						/**
+						 * Show message in the user interface
+						 */
 						newQuestionMsg.setTextFill(Color.RED);
 						newQuestionMsg.setText("Something went wrong, Could't Save the question");
 					}

@@ -9,11 +9,18 @@ import application.Question;
 public interface IQuestionnaire extends Remote{
 	
 	/**
-	 * Get available questions from the database
+	 * Get available questions from the database. this returns only active questions
 	 * @return
 	 * @throws RemoteException
 	 */
 	public ArrayList<Question> getQuestions() throws RemoteException;
+	
+	/**
+	 * this returns all the questions from the database. active or not
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ArrayList<Question> getAllQuestions() throws RemoteException;
 	
 	/**
 	 * submit the answer. submitted answers will save on the database.

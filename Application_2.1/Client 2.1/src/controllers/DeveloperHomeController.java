@@ -22,11 +22,12 @@ public class DeveloperHomeController implements Initializable{
 	@FXML private Button showResults;
 	@FXML private Button showDeveloper;
 
+	private String currentUsername;
 	
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-	
+	public void initialize(URL location, ResourceBundle resources) {	
+		
 		/**
 		 * open results section when open the developer window
 		 */
@@ -98,4 +99,7 @@ public class DeveloperHomeController implements Initializable{
         }
 	}
 	
+	public void setCurrentUsername(String name){
+		this.currentUsername = name;
+	}
 }

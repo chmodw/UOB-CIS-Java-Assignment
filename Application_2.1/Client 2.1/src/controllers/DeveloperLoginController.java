@@ -97,9 +97,14 @@ public class DeveloperLoginController  implements Initializable {
 		/**
 		 * open the developer home window and close the login window
 		 */
-        Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("../guis/DeveloperHome.fxml"));
+        	
+			FXMLLoader loader = new FXMLLoader();
+			Parent root = loader.load(getClass().getResource("../guis/DeveloperHome.fxml").openStream());
+			DeveloperHomeController dhc = (DeveloperHomeController)loader.getController();
+			// pass the username to the developer home controller class
+			dhc.setCurrentUsername(usernameTxt.getText());
+			
             Stage stage = new Stage();
             stage.setTitle("Developer Home");
             stage.setScene(new Scene(root));

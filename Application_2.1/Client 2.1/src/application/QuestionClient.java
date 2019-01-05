@@ -74,6 +74,16 @@ public class QuestionClient {
 		return false;
 	}
 	
+	public ArrayList<Question> getAllQuestions(){
+		try {
+			return look_up_questions.getAllQuestions();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	/**
 	 * Update Question
 	 */
