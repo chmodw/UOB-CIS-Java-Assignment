@@ -6,7 +6,6 @@ public class Model {
 
 	private Connection conn = null;
 	private Statement stmt = null; 
-	private PreparedStatement pstmt;
 	
 	public Model(String dbName) {
 		try {
@@ -55,23 +54,24 @@ public class Model {
 		return null;
 	}
 	
-	public boolean UPDATE(String sql) {
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-	          pstmt.setString(1, "Test");
-//	          pstmt.setString(2, "false");
-	          pstmt.setInt(2, 1);
-			
-			 System.out.println(pstmt.executeUpdate());
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return false;
-	}
+//	public boolean UPDATE(String sql) {
+//		
+//		try {
+//			PreparedStatement pstmt = conn.prepareStatement(sql);
+//			
+//	          pstmt.setString(1, "Test");
+////	          pstmt.setString(2, "false");
+//	          pstmt.setString(2, "1");
+//			
+//			 System.out.println(pstmt.executeUpdate());
+//			 conn.commit();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return false;
+//	}
 	
 }
 

@@ -160,11 +160,9 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	@Override
 	public boolean updateQuestion(int index, String question, String is_active) throws RemoteException {
 		
-//		String sql = "UPDATE questions SET question='"+question+"', is_active='"+ is_active+"' WHERE index="+index+";";
+		String sql = "UPDATE questions SET question='"+question+"', is_active='"+ is_active+"' WHERE id='1';";
 		
-		String sql = "UPDATE questions SET question=? WHERE id=? ;";
-		
-		return model.UPDATE(sql);
+		return model.INSERT(sql);
 	}
 
 	@Override
