@@ -18,11 +18,10 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Model model;
-
 	public Account() throws RemoteException {
 
 		//instantiating the model class. which has database functions
-		model = new Model();
+		model = new Model("account");
 		
 	}
 
@@ -37,8 +36,7 @@ public class Account extends UnicastRemoteObject implements IAccount{
 				+ "'" + user.getDevice_os() + "',"
 				+ "'" + user.getParticipated_on() + "'"
 				+ ")";
-		
-		Helpers.Status("A Client added new participant");
+
 		return model.INSERT(sql);
 			
 	}
@@ -46,27 +44,26 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	@Override
 	public boolean newDeveloper(User user) throws RemoteException {
 		
-		String sql = "INSERT INTO participant_data (username, password, created_on) VALUES("
+		String sql = "INSERT INTO developers (username, password, created_on) VALUES("
 				+ "'" + user.getEmail() + "',"
 				+ "'" + user.getPassword() + "',"
 				+ "'" + user.getParticipated_on() + "'"
 				+ ")";
 		
-		if(model.INSERT(sql)) {
-			return true;
-		}
+		return model.INSERT(sql);
 		
-		return false;
+//		System.out.println(user.toString());
+
 	}
 
 	@Override
 	public boolean login(String username, String password) throws RemoteException {
 		
+		
 		String sql = "SELECT * FROM developers WHERE username = '" + username +  "'";
 		
 		ResultSet res = model.SELECT(sql);
-		
-		
+				
 		try {
 			
 			return new Securepass(password).isSame(res.getString("password"));

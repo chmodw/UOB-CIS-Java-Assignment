@@ -46,7 +46,7 @@ public class User implements Serializable{
 	 * @param password
 	 * @param participated_on
 	 */
-	public User(String email, String password,String participated_on) {
+	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
 		this.participated_on = Helpers.DateNow();

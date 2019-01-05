@@ -25,8 +25,8 @@ public class Results extends UnicastRemoteObject implements IResults{
 
 	
 	private static final long serialVersionUID = 1L;
-	private Model model; // model class. which has database functions
 	private int participantCount; //how many people participated
+	private Model model;
 	private String sql; 
 	private String[] params; // params for filter results 
 	private ArrayList<Question> qList; // question list
@@ -41,7 +41,7 @@ public class Results extends UnicastRemoteObject implements IResults{
 	private int others  = 0;
 	
 	public Results() throws RemoteException {
-		model = new Model();
+		model = new Model("application");
 	}
 	
 	@Override

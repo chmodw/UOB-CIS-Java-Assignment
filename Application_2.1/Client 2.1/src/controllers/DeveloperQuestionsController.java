@@ -12,12 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-
+import javafx.scene.paint.Color;
 import application.Question;
 import application.QuestionClient;
 import utils.Helpers;
@@ -35,6 +35,7 @@ public class DeveloperQuestionsController implements Initializable{
 	@FXML private CheckBox updateIsActiveCheck;
 	@FXML private TextField newQuestionTxt;
 	@FXML private CheckBox newQuestionCheck;
+	@FXML private Label newQuestionMsg;
 	
 	
 	@FXML private Button newQuestionBtn;
@@ -60,11 +61,16 @@ public class DeveloperQuestionsController implements Initializable{
 			public void handle(ActionEvent arg0) {
 				
 				if(!newQuestionTxt.getText().isEmpty()) {
-					System.out.println(clientQuestions.newQuestion(new Question(
+					if(clientQuestions.newQuestion(new Question(
 							newQuestionTxt.getText(),
 							newQuestionCheck.isSelected()
-							)));
-
+							))) {
+						newQuestionMsg.setTextFill(Color.GREEN);
+						newQuestionMsg.setText("Question Saved");
+					}else {
+						newQuestionMsg.setTextFill(Color.RED);
+						newQuestionMsg.setText("Something went wrong, Could't Save the question");
+					}
 				}
 			}     	
         });

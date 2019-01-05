@@ -83,7 +83,7 @@
                   <CheckBox fx:id="newQuestionCheck" mnemonicParsing="false" text="Is Active" />
                </children>
             </HBox>
-            <Label fx:id="newQuestionMsg" text="Informer" textFill="#1dc300">
+            <Label fx:id="newQuestionMsg" textFill="#1dc300">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

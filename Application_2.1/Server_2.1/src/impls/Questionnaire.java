@@ -22,21 +22,25 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-			
+	
 	private Model model;
 
 	public Questionnaire() throws RemoteException {
-		//instantiate the model class. which includes database functionalities
-		model = new Model();
+	
+		model = new Model("application");
 		
 	}
+	
+	/**
+	 * Create new model object every time
+	 */
 
 	@Override
 	public ArrayList<Question> getQuestions() throws RemoteException {
 				
 		ArrayList<Question> questionList = new ArrayList<>();
 		
-		String sql = "SELECT * FROM questions";
+		String sql = "SELECT * FROM question";
 		
 		ResultSet res = model.SELECT(sql);
 		
@@ -118,12 +122,14 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	@Override
 	public boolean newQuestion(Question question) throws RemoteException {
 		
-		 String sql = "INSERT INTO questions (id, question, is_active, created_on) VALUES ("
-					+ "'" + question.getId() + "',"
-					+ "'" + question.getQuestion() + "',"
-					+ "'" + question.getIs_active() + "',"
-					+ "'" + question.getCreated_on() + "'"
-					+ ")";
+//		 String sql = "INSERT INTO questions (id, question, is_active, created_on) VALUES ("
+//					+ "'" + question.getId() + "',"
+//					+ "'" + question.getQuestion() + "',"
+//					+ "'" + question.getIs_active() + "',"
+//					+ "'" + question.getCreated_on() + "'"
+//					+ ")";
+		
+		 String sql = "INSERT INTO question(id,question,is_active,created_on) VALUES ('good','test','test','test')";
 		 
 		 System.out.println(sql);
 		 
@@ -134,13 +140,12 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		  * but can add from the db browser
 		  */
 		 
-		 
-		 
+		 model.INSERT(sql);
 		
-//		if(model.INSERT(sql)) {
+//		if() {
 //			return true;
 //		}
-//		 
+		 
 		return false;
 	}
 

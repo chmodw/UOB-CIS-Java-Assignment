@@ -28,7 +28,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+            <TextField fx:id="newUsername" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -41,7 +41,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+            <PasswordField fx:id="newPassword" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <padding>
                   <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
                </padding>
@@ -49,7 +49,12 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </PasswordField>
-            <Button mnemonicParsing="false" text="Save">
+            <Label fx:id="newUserMessage" text="Label">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="newSaveBtn" mnemonicParsing="false" text="Save">
                <padding>
                   <Insets bottom="6.0" left="30.0" right="30.0" top="6.0" />
                </padding>
@@ -104,6 +109,11 @@
                   <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
                </padding>
             </PasswordField>
+            <Label fx:id="updatePassMessage" text="Label">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
             <Button mnemonicParsing="false" text="Save">
                <padding>
                   <Insets bottom="6.0" left="30.0" right="30.0" top="6.0" />

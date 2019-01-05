@@ -47,4 +47,15 @@ public class AccountClient {
 		return false;
 	}
 	
+	public boolean newDev(User developer) {
+		
+		try {
+			return look_up_account.newDeveloper(developer);
+		} catch (RemoteException e) {
+			Helpers.Debug("Error!! Could Not save the Developer Account - " + e.toString());
+		}
+		
+		return false;
+	}
+	
 }
