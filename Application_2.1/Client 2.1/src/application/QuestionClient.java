@@ -58,13 +58,21 @@ public class QuestionClient {
 		}
 		return false;
 	}
+	
+	public boolean updateQuestion(int index, String question, String is_active) {
+		try {
+			return look_up_questions.updateQuestion(index,question,is_active);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	public ArrayList<Question> getqList() {
 		return qList;
 	}
 	
 	public boolean submitQuestions(ArrayList<Question> answerList) {
-		
 		try {
 			return look_up_questions.submitAnswer(answerList);
 		} catch (RemoteException e) {

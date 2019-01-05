@@ -53,7 +53,7 @@ public interface IQuestionnaire extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public boolean updateQuestion(Question question)throws RemoteException;
+	public boolean updateQuestion(int index, String question, String is_active)throws RemoteException;
 	
 	/**
 	 * Delete a question from the database

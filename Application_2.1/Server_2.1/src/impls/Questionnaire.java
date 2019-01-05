@@ -31,7 +31,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 				
 		ArrayList<Question> questionList = new ArrayList<>();
 		
-		String sql = "SELECT * FROM question";
+		String sql = "SELECT * FROM questions";
 		
 		ResultSet res = model.SELECT(sql);
 		
@@ -62,7 +62,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		
 		ArrayList<Question> questionList = new ArrayList<>();
 		
-		String sql = "SELECT * FROM question";
+		String sql = "SELECT * FROM questions";
 		
 		ResultSet res = model.SELECT(sql);
 		
@@ -158,9 +158,13 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	}
 
 	@Override
-	public boolean updateQuestion(Question question) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateQuestion(int index, String question, String is_active) throws RemoteException {
+		
+//		String sql = "UPDATE questions SET question='"+question+"', is_active='"+ is_active+"' WHERE index="+index+";";
+		
+		String sql = "UPDATE questions SET question=? WHERE id=? ;";
+		
+		return model.UPDATE(sql);
 	}
 
 	@Override

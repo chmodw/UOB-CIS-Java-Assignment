@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,14 +32,17 @@ public class DeveloperQuestionsController implements Initializable{
 	@FXML private TableColumn<Question, String> active_status;
 	
 	@FXML private TextField updateId;
-	@FXML private TextField updateQuestion;
+	@FXML private TextField updateQuestionTxt;
 	@FXML private CheckBox updateIsActiveCheck;
 	@FXML private TextField newQuestionTxt;
 	@FXML private CheckBox newQuestionCheck;
 	@FXML private Label newQuestionMsg;
+	@FXML private Label questionUpdateMsg;
+	@FXML private ComboBox<Integer> questionIdCombo;
 	
 	
 	@FXML private Button newQuestionBtn;
+	@FXML private Button updateQuestionBtn;
 	
 	private QuestionClient clientQuestions;
 	
@@ -55,6 +59,12 @@ public class DeveloperQuestionsController implements Initializable{
 		
 //		CompletableFuture.supplyAsync(this::updateQuestion);
 		
+		/**
+		 * Add question indexes to the combo box.
+		 * this use to modify questions
+		 */
+		populateCombo();
+		
         /**
          * Save the new question when use press the save button
          */
@@ -64,11 +74,7 @@ public class DeveloperQuestionsController implements Initializable{
 				
 				if(!newQuestionTxt.getText().isEmpty()) {
 					
-					if(clientQuestions.newQuestion(new Question(
-							
-							newQuestionTxt.getText(),
-							newQuestionCheck.isSelected()
-							))) {
+					if(clientQuestions.newQuestion(new Question(newQuestionTxt.getText(), newQuestionCheck.isSelected()))) {
 						/**
 						 * Show message in the user interface
 						 */
@@ -86,6 +92,52 @@ public class DeveloperQuestionsController implements Initializable{
 			}     	
         });
 		
+		/**
+		 * Update the question when user click on update button
+		 */
+		updateQuestionBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				if(updateQuestion()) {
+					/**
+					 * Show message in the user interface
+					 */
+					questionUpdateMsg.setTextFill(Color.GREEN);
+					questionUpdateMsg.setText("Question Updated");
+				}else {
+					/**
+					 * Show message in the user interface
+					 */
+					questionUpdateMsg.setTextFill(Color.RED);
+					questionUpdateMsg.setText("Something went wrong, Could't Update the question");
+				}
+				
+			}
+		});
+		
+		/**
+		 * Load a question when user select id number from the combo box
+		 */
+		questionIdCombo.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				//find the relevant question from the qList
+				   for(int i=0; qList.size() > i; i++) {
+					   if(questionIdCombo.getValue() == Integer.parseInt(qList.get(i).getId())){
+							updateQuestionTxt.setText(qList.get(i).getQuestion());
+							//check or uncheck the is active 
+							if(qList.get(i).getIs_active().equals("true")) {
+								updateIsActiveCheck.setSelected(true);
+							}else {
+								updateIsActiveCheck.setSelected(false);
+							}	
+					   }
+				   }
+				
+			}
+		});
+		
 	}
 
    private void populateTableview(ObservableList<Question> resultTableData) {
@@ -101,28 +153,17 @@ public class DeveloperQuestionsController implements Initializable{
    
    private boolean updateQuestion() {
 	   
-	   /**
-	    * get data from the form and create new quesiton object
-	    */
-	   new Question(
-			   updateId.getText(), 
-			   updateQuestion.getText(), 
-			   ((updateIsActiveCheck.isSelected()) ? "true":"false"), 
-			   Helpers.DateNow()
-			   );
-	   /**
-	    * send the question to server to update
-	    */
-	   
+	   if(clientQuestions.updateQuestion(questionIdCombo.getValue(), updateQuestionTxt.getText(), Boolean.toString(updateIsActiveCheck.isSelected()))){
+		   return true;
+	   }
 	   return false;
    }
    
+   private void populateCombo() {   
+	   for(int i=0; qList.size() > i; i++) {
+		   questionIdCombo.getItems().add(Integer.parseInt(qList.get(i).getId()));
+	   }
 
-//private boolean updateQuestion() {
-//	
-//    while(true){
-//        System.out.println("printing...");
-//    }
-//}
-
+   }
+ 
 }
