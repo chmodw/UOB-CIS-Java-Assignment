@@ -3,7 +3,11 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
+import application.Session;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -73,8 +77,22 @@ public class DeveloperHomeController implements Initializable{
 				openWindow("DeveloperManager");		
 			}     	
         });
-		
+        
+        
+    	/**
+    	 * runs in background and add current user to the session
+    	 */
+		Runnable helloRunnable = new Runnable() {
+			public void run(){
+				Session.add(Session.getCurrentUser(), Session.getCurrentUser().getEmail(), true);
+		    };
+		};
+
+		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+		executor.scheduleAtFixedRate(helloRunnable, 0, 5, TimeUnit.SECONDS);
+    	
 	}
+		
 	
 	/**
 	 * a method to open developer windows when user clicks on buttons
