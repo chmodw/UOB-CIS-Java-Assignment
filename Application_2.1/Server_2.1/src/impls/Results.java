@@ -41,7 +41,7 @@ public class Results extends UnicastRemoteObject implements IResults{
 	private int others  = 0;
 	
 	public Results() throws RemoteException {
-		model = new Model("application");
+		model = new Model();
 	}
 	
 	@Override

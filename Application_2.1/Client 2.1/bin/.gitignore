@@ -1,4 +1,6 @@
 /application/
+/classes/
 /controllers/
-/interfaces/
 /guis/
+/interfaces/
+/utils/

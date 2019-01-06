@@ -21,7 +21,7 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	public Account() throws RemoteException {
 
 		//instantiating the model class. which has database functions
-		model = new Model("account");
+		model = new Model();
 		
 	}
 
@@ -61,11 +61,11 @@ public class Account extends UnicastRemoteObject implements IAccount{
 		
 		
 		String sql = "SELECT * FROM developers WHERE username = '" + username +  "'";
-		
-		ResultSet res = model.SELECT(sql);
-				
+						
 		try {
 			
+			ResultSet res = model.SELECT(sql);
+						
 			return new Securepass(password).isSame(res.getString("password"));
 			
 		} catch (SQLException e) {

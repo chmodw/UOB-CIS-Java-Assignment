@@ -22,7 +22,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 
 	public Questionnaire() throws RemoteException {
 	
-		model = new Model("application");
+		model = new Model();
 		
 	}
 	
@@ -31,18 +31,22 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 				
 		ArrayList<Question> questionList = new ArrayList<>();
 		
-		String sql = "SELECT * FROM questions";
+		String sql = "SELECT * FROM questions;";
 		
 		ResultSet res = model.SELECT(sql);
 		
 		try {
 			while(res.next()) {
+				
+				System.out.println(res.toString());
 								
 				if(res.getString("is_active").equals("true")) {
 					//get only active questions and add to the array list
-					questionList.add(new Question(res.getString("id"),res.getString("question"),res.getString("is_active"),res.getString("created_on")));
+					questionList.add(new Question(Integer.toString(res.getInt("id")),res.getString("question"),res.getString("is_active"),res.getString("created_on")));
 				}	
 			}
+			
+			res.close();
 			// return the questions array list
 			Helpers.Status("A Client requeted Question List");
 			return questionList;
@@ -68,7 +72,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		
 		try {
 			while(res.next()) {
-				questionList.add(new Question(res.getString("index").toString(),res.getString("question"),res.getString("is_active"),res.getString("created_on")));
+				questionList.add(new Question(Integer.toString(res.getInt("id")),res.getString("question"),res.getString("is_active"),res.getString("created_on")));
 			}
 			// return the questions array list
 			Helpers.Status("A Client requeted Question List");
@@ -94,7 +98,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 			
 			sql = "INSERT INTO results (question_id, participent_email, answer, answerd_on) VALUES ('"
 					+ submitedQList.get(i).getId() + "','" + submitedQList.get(i).getUser_email() + "','"
-					+ submitedQList.get(i).getAnswer() + "','" + submitedQList.get(i).getAnswerd_on() + "')";
+					+ submitedQList.get(i).getAnswer() + "','" + submitedQList.get(i).getAnswerd_on() + "');";
 			
 			//This will pause the loop while data saved in the database. otherwise it will occur an error
 			if(!model.INSERT(sql)) {
@@ -119,7 +123,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 						+ "'" + submitedQList.get(i).getUser_email() + "',"
 						+ "'" + SAR + "',"
 						+ "'" + submitedQList.get(i).getAnswerd_on() + "'"
-						+ ")";
+						+ ");";
 				
 				if(!model.INSERT(sql)) {
 					return false;
@@ -140,12 +144,11 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	@Override
 	public boolean newQuestion(Question question) throws RemoteException {
 		
-		 String sql = "INSERT INTO question(id, question, is_active, created_on) VALUES ("
-					+ "'" + question.getId() + "',"
+		 String sql = "INSERT INTO questions(question, is_active, created_on) VALUES ("
 					+ "'" + question.getQuestion() + "',"
 					+ "'" + question.getIs_active() + "',"
 					+ "'" + question.getCreated_on() + "'"
-					+ ")";		 
+					+ ");";		 
 
 		 
 		return model.INSERT(sql);
@@ -160,9 +163,9 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	@Override
 	public boolean updateQuestion(int index, String question, String is_active) throws RemoteException {
 		
-		String sql = "UPDATE questions SET question='"+question+"', is_active='"+ is_active+"' WHERE id='1';";
+		String sql = "UPDATE questions SET question='"+question+"', is_active='"+ is_active+"' WHERE id='"+index+"';";
 		
-		return model.INSERT(sql);
+		return model.UPDATE(sql);
 	}
 
 	@Override

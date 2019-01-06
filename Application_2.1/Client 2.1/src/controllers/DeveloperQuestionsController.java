@@ -48,12 +48,16 @@ public class DeveloperQuestionsController implements Initializable{
 	
 	private ArrayList<Question> qList;
 	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+	public DeveloperQuestionsController() {
 		clientQuestions = new QuestionClient();
 		//get all the questions from the database
 		qList = clientQuestions.getAllQuestions();
+	}
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+
 		
 		populateTableview(FXCollections.observableArrayList(qList));
 		
