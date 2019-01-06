@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import application.Question;
 import interfaces.IQuestionnaire;
+import main.Main;
 import utils.Helpers;
 import utils.Model;
 import utils.SentimentAnalysis;
@@ -21,9 +22,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 	private Model model;
 
 	public Questionnaire() throws RemoteException {
-	
-		model = new Model();
-		
+		model = Main.getMainModel();
 	}
 	
 	@Override

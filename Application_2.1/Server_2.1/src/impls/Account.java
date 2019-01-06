@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import application.User;
 import interfaces.IAccount;
+import main.Main;
 import utils.Helpers;
 import utils.Model;
 import utils.Securepass;
@@ -18,11 +19,9 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Model model;
+	
 	public Account() throws RemoteException {
-
-		//instantiating the model class. which has database functions
-		model = new Model();
-		
+		model = Main.getMainModel();
 	}
 
 	@Override

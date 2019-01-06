@@ -12,6 +12,7 @@ import application.Question;
 import application.Result;
 import impls.Questionnaire;
 import interfaces.IResults;
+import main.Main;
 import utils.Helpers;
 import utils.Model;
 
@@ -41,7 +42,7 @@ public class Results extends UnicastRemoteObject implements IResults{
 	private int others  = 0;
 	
 	public Results() throws RemoteException {
-		model = new Model();
+		model = Main.getMainModel();
 	}
 	
 	@Override
