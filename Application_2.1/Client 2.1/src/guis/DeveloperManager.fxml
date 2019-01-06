@@ -13,7 +13,7 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <children>
-      <VBox style="-fx-background-color: #fff;">
+      <VBox>
          <children>
             <Label text="New Developer">
                <font>
@@ -33,7 +33,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
                <padding>
-                  <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
+                  <Insets bottom="4.0" top="4.0" />
                </padding>
             </TextField>
             <Label text="Password :">
@@ -43,7 +43,7 @@
             </Label>
             <PasswordField fx:id="newPassword" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <padding>
-                  <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
+                  <Insets bottom="4.0" top="4.0" />
                </padding>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -61,17 +61,17 @@
             </Button>
          </children>
          <padding>
-            <Insets bottom="40.0" left="100.0" right="100.0" top="10.0" />
+            <Insets bottom="20.0" left="100.0" right="100.0" top="10.0" />
          </padding>
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
       </VBox>
-      <VBox style="-fx-background-color: #fff;">
+      <VBox>
          <children>
             <Label text="Change Password">
                <font>
-                  <Font size="13.0" />
+                  <Font size="16.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -80,7 +80,7 @@
             <Label text="Old Password :" />
             <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <padding>
-                  <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
+                  <Insets bottom="4.0" top="4.0" />
                </padding>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -93,7 +93,7 @@
             </Label>
             <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <padding>
-                  <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
+                  <Insets bottom="4.0" top="4.0" />
                </padding>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -106,7 +106,7 @@
             </Label>
             <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <padding>
-                  <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
+                  <Insets bottom="4.0" top="4.0" />
                </padding>
             </PasswordField>
             <Label fx:id="updatePassMessage" text="Label">
@@ -124,7 +124,7 @@
             </Button>
          </children>
          <padding>
-            <Insets bottom="40.0" left="100.0" right="100.0" top="10.0" />
+            <Insets bottom="20.0" left="100.0" right="100.0" top="10.0" />
          </padding>
       </VBox>
    </children>

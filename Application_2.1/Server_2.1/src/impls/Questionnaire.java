@@ -36,16 +36,13 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 		
 		try {
 			while(res.next()) {
-				
-				System.out.println(res.toString());
 								
 				if(res.getString("is_active").equals("true")) {
 					//get only active questions and add to the array list
 					questionList.add(new Question(Integer.toString(res.getInt("id")),res.getString("question"),res.getString("is_active"),res.getString("created_on")));
 				}	
 			}
-			
-			res.close();
+
 			// return the questions array list
 			Helpers.Status("A Client requeted Question List");
 			return questionList;
@@ -100,7 +97,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 					+ submitedQList.get(i).getAnswer() + "','" + submitedQList.get(i).getAnswerd_on() + "');";
 			
 			//This will pause the loop while data saved in the database. otherwise it will occur an error
-			if(!model.INSERT(sql)) {
+			if(!model.EXECUTE(sql)) {
 				return false;
 			}
 			
@@ -124,7 +121,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 						+ "'" + submitedQList.get(i).getAnswerd_on() + "'"
 						+ ");";
 				
-				if(!model.INSERT(sql)) {
+				if(!model.EXECUTE(sql)) {
 					return false;
 				}
 				
@@ -150,7 +147,7 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 					+ ");";		 
 
 		 
-		return model.INSERT(sql);
+		return model.EXECUTE(sql);
 	}
 
 	@Override
@@ -169,8 +166,9 @@ public class Questionnaire extends UnicastRemoteObject implements IQuestionnaire
 
 	@Override
 	public boolean deleteQuestion(int questionId) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "DELETE FROM questions WHERE id="+questionId+";";
+		
+		return model.EXECUTE(sql);
 	}
 
 	

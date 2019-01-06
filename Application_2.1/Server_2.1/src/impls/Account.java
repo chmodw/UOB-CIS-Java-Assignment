@@ -36,7 +36,7 @@ public class Account extends UnicastRemoteObject implements IAccount{
 				+ "'" + user.getParticipated_on() + "'"
 				+ ")";
 
-		return model.INSERT(sql);
+		return model.EXECUTE(sql);
 			
 	}
 
@@ -49,7 +49,7 @@ public class Account extends UnicastRemoteObject implements IAccount{
 				+ "'" + user.getParticipated_on() + "'"
 				+ ")";
 		
-		return model.INSERT(sql);
+		return model.EXECUTE(sql);
 		
 //		System.out.println(user.toString());
 
@@ -94,7 +94,7 @@ public class Account extends UnicastRemoteObject implements IAccount{
 				 */
 				sql = "UPDATE developers set password='"+newPassword+"' WHERE username='"+username+"'";
 				
-				return model.INSERT(sql);
+				return model.EXECUTE(sql);
 				
 			}else {
 				return false;

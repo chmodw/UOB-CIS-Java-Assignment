@@ -2,9 +2,12 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import application.AccountClient;
+import application.Main;
+import application.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -41,8 +44,36 @@ public class DeveloperLoginController  implements Initializable {
 				
 				if(usernameTxt.getText().toString() != null && passwordTxt.getText() != null) {
 					
-					if(accountClient.login(usernameTxt.getText().toString(),passwordTxt.getText())) {
+					User userNow = new User(usernameTxt.getText(), passwordTxt.getText());
+					/**
+					 * add the user to the Global variable
+					 */
+					Main.setCurrentUser(userNow);
+					
+					/**
+					 * check the user in the server session for other logins
+					 */
+					try {
+						if(Main.session.find(Main.getCurrentUser().getEmail()) != null) {
+							
+							errorLbl.setText("This account is already signed in");
+							return;
+							
+						}
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+					
+					if(accountClient.login(usernameTxt.getText(),passwordTxt.getText())) {	
 						
+						/**
+						 * Add the user to the Session
+						 */
+						try {	
+							Main.session.add(userNow, Main.getCurrentUser().getEmail(),true);
+						} catch (RemoteException e) {
+							e.printStackTrace();
+						}
 						/**
 						 * open the developer home
 						 */
@@ -71,28 +102,7 @@ public class DeveloperLoginController  implements Initializable {
 		});
 		
 	}
-	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * SESSION CLASS 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	
+
 	private void showHome() {
 		/**
 		 * open the developer home window and close the login window

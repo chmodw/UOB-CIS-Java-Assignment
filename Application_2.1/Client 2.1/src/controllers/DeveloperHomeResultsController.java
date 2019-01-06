@@ -46,53 +46,53 @@ public class DeveloperHomeResultsController  implements Initializable{
 
 		
 		
-//		rc = new ResultsConnector();
+		rc = new ResultsConnector();
 		
 		/**
 		 * get the question list from the server
 		 */
-//		qList = new QuestionClient().getqList();
+		qList = new QuestionClient().getqList();
 		
 		/**
 		 * get the main results from the server
 		 */
-//		res = rc.getResults();
+		res = rc.getResults();
 		
 		/**
 		 * Get Sentiment analysis results from the server
 		 */
-//		SARes = rc.getSentimentResults();
+		SARes = rc.getSentimentResults();
 		
 		/**
 		 * Add data to the table
 		 */
-//		populateTableview(FXCollections.observableArrayList(res));
+		populateTableview(FXCollections.observableArrayList(res));
 
 		/**
 		 * add data to charts
 		 */
-//		ObservableList<Data> list = FXCollections.observableArrayList(
-//						
-//						new PieChart.Data("Joy", SARes.get("joy")),
-//						new PieChart.Data("Sad", SARes.get("sadness")),
-//						new PieChart.Data("Angry", SARes.get("fear")),
-//						new PieChart.Data("Fear", SARes.get("anger")),
-//						new PieChart.Data("Mix", SARes.get("others"))
-//						);
-//		q1PieChart.setData(list);
+		ObservableList<Data> list = FXCollections.observableArrayList(
+						
+						new PieChart.Data("Joy", SARes.get("joy")),
+						new PieChart.Data("Sad", SARes.get("sadness")),
+						new PieChart.Data("Angry", SARes.get("fear")),
+						new PieChart.Data("Fear", SARes.get("anger")),
+						new PieChart.Data("Mix", SARes.get("others"))
+						);
+		q1PieChart.setData(list);
 
 	}
 	
-//
-//	   private void populateTableview(ObservableList<Result> resultTableData) {
-//		   
-//			qIndexCol.setCellValueFactory(new PropertyValueFactory<>("Question"));
-//			sdCol.setCellValueFactory(new PropertyValueFactory<>("StronglyDissagreeCount"));
-//			dCol.setCellValueFactory(new PropertyValueFactory<>("DissagreeCount"));
-//			aCol.setCellValueFactory(new PropertyValueFactory<>("AgreeCount"));
-//			saCol.setCellValueFactory(new PropertyValueFactory<>("StronglyAgreeCount"));
-//			
-//			resultTable.setItems(resultTableData);
-//			
-//	   }
+
+	   private void populateTableview(ObservableList<Result> resultTableData) {
+		   
+			qIndexCol.setCellValueFactory(new PropertyValueFactory<>("Question"));
+			sdCol.setCellValueFactory(new PropertyValueFactory<>("StronglyDissagreeCount"));
+			dCol.setCellValueFactory(new PropertyValueFactory<>("DissagreeCount"));
+			aCol.setCellValueFactory(new PropertyValueFactory<>("AgreeCount"));
+			saCol.setCellValueFactory(new PropertyValueFactory<>("StronglyAgreeCount"));
+			
+			resultTable.setItems(resultTableData);
+			
+	   }
 }

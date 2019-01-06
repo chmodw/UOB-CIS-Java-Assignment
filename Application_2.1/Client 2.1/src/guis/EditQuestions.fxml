@@ -43,7 +43,7 @@
                   <CheckBox fx:id="updateIsActiveCheck" mnemonicParsing="false" text="Is Active" />
                </children>
             </HBox>
-            <Label fx:id="questionUpdateMsg" text="Informer" textFill="#1dc300">
+            <Label fx:id="questionUpdateMsg" textFill="#1dc300">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -117,13 +117,13 @@
             </Label>
             <HBox>
                <children>
-                  <TextField prefHeight="25.0" prefWidth="62.0" promptText="Id">
+                  <ComboBox fx:id="deleteQuestionIdCombo" prefHeight="25.0" prefWidth="86.0">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
-                  </TextField>
-                  <Button mnemonicParsing="false" text="Delete" />
-                  <Label prefHeight="25.0" prefWidth="57.0" text="Deleted" textFill="RED">
+                  </ComboBox>
+                  <Button fx:id="deleteBtn" disable="true" mnemonicParsing="false" text="Delete" />
+                  <Label fx:id="deleteMessage" prefHeight="25.0" prefWidth="57.0" textFill="RED">
                      <font>
                         <Font size="13.0" />
                      </font>

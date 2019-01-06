@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
  * @author chamo
  *
  */
-public interface ISession extends Remote{
+public interface ISession  extends Remote{
 	
 	/**
 	 * Find objects in the Session Map and return the found

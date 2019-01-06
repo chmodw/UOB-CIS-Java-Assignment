@@ -22,7 +22,7 @@ public class Model {
 		}
 	}
 
-	public boolean INSERT(String sql) {
+	public boolean EXECUTE(String sql) {
 		
 		try {
 			

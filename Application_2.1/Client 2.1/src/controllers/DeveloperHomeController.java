@@ -79,7 +79,7 @@ public class DeveloperHomeController implements Initializable{
 	/**
 	 * a method to open developer windows when user clicks on buttons
 	 */
-	private void openWindow(String windowName) {
+	public void openWindow(String windowName) {
 		/**
 		 * remove the current window
 		 */

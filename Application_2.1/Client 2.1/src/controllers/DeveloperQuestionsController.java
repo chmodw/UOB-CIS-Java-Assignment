@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +22,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import application.Question;
 import application.QuestionClient;
-import utils.Helpers;
 
 public class DeveloperQuestionsController implements Initializable{
 	
@@ -39,6 +39,10 @@ public class DeveloperQuestionsController implements Initializable{
 	@FXML private Label newQuestionMsg;
 	@FXML private Label questionUpdateMsg;
 	@FXML private ComboBox<Integer> questionIdCombo;
+	@FXML private ComboBox<Integer> deleteQuestionIdCombo;
+	
+	@FXML private Button deleteBtn;
+	@FXML private Label deleteMessage;
 	
 	
 	@FXML private Button newQuestionBtn;
@@ -67,7 +71,7 @@ public class DeveloperQuestionsController implements Initializable{
 		 * Add question indexes to the combo box.
 		 * this use to modify questions
 		 */
-		populateCombo();
+		populateCombos();
 		
         /**
          * Save the new question when use press the save button
@@ -84,6 +88,7 @@ public class DeveloperQuestionsController implements Initializable{
 						 */
 						newQuestionMsg.setTextFill(Color.GREEN);
 						newQuestionMsg.setText("Question Saved");
+						refresh();
 						
 					}else {
 						/**
@@ -109,6 +114,7 @@ public class DeveloperQuestionsController implements Initializable{
 					 */
 					questionUpdateMsg.setTextFill(Color.GREEN);
 					questionUpdateMsg.setText("Question Updated");
+					refresh();
 				}else {
 					/**
 					 * Show message in the user interface
@@ -142,6 +148,37 @@ public class DeveloperQuestionsController implements Initializable{
 			}
 		});
 		
+		deleteBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				if(clientQuestions.deleteQuestion(deleteQuestionIdCombo.getValue())) {
+					/**
+					 * Show message in the user interface
+					 */
+					deleteMessage.setTextFill(Color.GREEN);
+					deleteMessage.setText("Deleted");
+					refresh();
+					
+				}else {
+					/**
+					 * Show message in the user interface
+					 */
+					deleteMessage.setTextFill(Color.RED);
+					deleteMessage.setText("Something went wrong, Could't delete the question");
+				}
+			}
+		});
+		
+		/**
+		 * Enable the Delete button after selecting a question id from the combobox
+		 */
+		deleteQuestionIdCombo.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				deleteBtn.setDisable(false);
+			}
+		});
+		
 	}
 
    private void populateTableview(ObservableList<Question> resultTableData) {
@@ -163,11 +200,22 @@ public class DeveloperQuestionsController implements Initializable{
 	   return false;
    }
    
-   private void populateCombo() {   
-	   for(int i=0; qList.size() > i; i++) {
-		   questionIdCombo.getItems().add(Integer.parseInt(qList.get(i).getId()));
-	   }
-
+   private void populateCombos() {   
+	   new Thread(() -> {
+		   for(int i=0; qList.size() > i; i++) {
+			   questionIdCombo.getItems().add(Integer.parseInt(qList.get(i).getId()));
+			   deleteQuestionIdCombo.getItems().add(Integer.parseInt(qList.get(i).getId()));
+		   }
+		}).start();
+   }
+   
+   /**
+    * refresh the Table
+    */
+   private void refresh() {
+	   new Thread(() -> {
+		    System.out.println("Hi");
+		}).start();
    }
  
 }

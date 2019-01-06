@@ -216,17 +216,6 @@ public class SurveyController implements Initializable {
 	}
 	
 	private boolean surveyEnd() {
-//		
-//		CompletableFuture.supplyAsync(() -> {
-//			
-//			return userAccount.newParticipant(currentUser.getFull_name(), currentUser.getEmail(), currentUser.getCountry(), currentUser.getDevice_manufacturer(), currentUser.getDevice_os());
-//
-//		}).thenApply(result ->{
-//			
-//			return clientQuestions.submitQuestions(answerList);
-//		
-//		});
-		
 		/**
 		 * Save data
 		 */
@@ -237,14 +226,7 @@ public class SurveyController implements Initializable {
 			
 		}		
 		
-		return false;
-
-				
-		/**
-		 * show end interface
-		 */
-		
-		
+		return false;		
 		
 	}
 	

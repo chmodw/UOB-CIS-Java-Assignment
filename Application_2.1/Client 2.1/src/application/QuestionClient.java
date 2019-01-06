@@ -92,8 +92,14 @@ public class QuestionClient {
 		return null;
 	}
 	
-	/**
-	 * Update Question
-	 */
+	public boolean deleteQuestion(int questionId){
+		try {
+			return look_up_questions.deleteQuestion(questionId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 }

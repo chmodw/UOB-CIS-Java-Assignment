@@ -12,21 +12,16 @@ public class Session implements ISession{
 	 * contains main data
 	 */
 	private Map<String, Object> session= new HashMap<>();
-	
-	/**
-	 * contains data to auto destroy. like login information
-	 */
-	
 
 	@Override
-	public Object find(String txt,boolean autoDestroy) throws RemoteException {
-		
+	public Object find(String txt) throws RemoteException {
+
 		return null;
 	}
 
 	@Override
 	public String add(Object obj, String txt, boolean autoDestroy) throws RemoteException {
-		
+		this.session.put(txt, obj);
 		return null;
 	}
 
@@ -35,5 +30,12 @@ public class Session implements ISession{
 
 		return false;
 	}
+
+	@Override
+	public void ping() throws RemoteException {
+		
+	}
+	
+	
 
 }
