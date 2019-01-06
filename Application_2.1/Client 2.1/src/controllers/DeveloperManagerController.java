@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.AccountClient;
+import application.Main;
+import application.Session;
 import application.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,12 +27,15 @@ public class DeveloperManagerController implements Initializable{
 	@FXML private Label updatePassMessage;
 	
 	private AccountClient accountClient;
+	
+	//get the current user from the main class
+	private String currentUser = Session.getCurrentUser().getEmail();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		accountClient = new AccountClient();
-		System.out.println("Hello");
+
 		/**
 		 * Save user 
 		 */
@@ -108,12 +113,3 @@ public class DeveloperManagerController implements Initializable{
 	}
 	
 }
-
-
-
-
-
-
-
-
-

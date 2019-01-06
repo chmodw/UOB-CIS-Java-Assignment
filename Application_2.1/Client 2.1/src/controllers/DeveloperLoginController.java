@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import application.AccountClient;
 import application.Main;
+import application.Session;
 import application.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -48,32 +49,27 @@ public class DeveloperLoginController  implements Initializable {
 					/**
 					 * add the user to the Global variable
 					 */
-					Main.setCurrentUser(userNow);
+					Session.setCurrentUser(userNow);
 					
 					/**
 					 * check the user in the server session for other logins
 					 */
-					try {
-						if(Main.session.find(Main.getCurrentUser().getEmail()) != null) {
+
+						if(Session.find(Session.getCurrentUser().getEmail()) != null) {
 							
 							errorLbl.setText("This account is already signed in");
 							return;
 							
 						}
-					} catch (RemoteException e) {
-						e.printStackTrace();
-					}
+
 					
 					if(accountClient.login(usernameTxt.getText(),passwordTxt.getText())) {	
 						
 						/**
 						 * Add the user to the Session
 						 */
-						try {	
-							Main.session.add(userNow, Main.getCurrentUser().getEmail(),true);
-						} catch (RemoteException e) {
-							e.printStackTrace();
-						}
+						Session.add(userNow, Session.getCurrentUser().getEmail(),true);
+	
 						/**
 						 * open the developer home
 						 */

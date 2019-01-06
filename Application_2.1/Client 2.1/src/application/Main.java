@@ -17,8 +17,7 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 	
-	public static ISession session;
-	private static User currentUser; 
+
 	
 	@Override
 	public void start(Stage stage) {
@@ -41,28 +40,13 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {		
+		
+		Session.load();
+		
 		/**
 		 * Load the main view
 		 */
 		launch(args);
 	}
-	
-	/**
-	 * 
-	 */
-	private static void getSession() {
-		try {
-			session = (ISession) Naming.lookup("rmi://"+ClientConfig.getIp()+"/survey/session");
-		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 
-		}
-	}
-	
-	public static void setCurrentUser(User user) {
-		Main.currentUser = user;
-	}
-	
-	public static User getCurrentUser() {
-		return Main.currentUser;
-	}
 }
