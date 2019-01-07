@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -31,23 +31,20 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
             </VBox>
-            <TableView fx:id="resultTable" prefHeight="325.0" prefWidth="628.0">
-              <columns>
-                <TableColumn fx:id="qIndexCol" prefWidth="350.0" resizable="false" text="Question" />
-                <TableColumn fx:id="sdCol" editable="false" minWidth="0.0" prefWidth="70.0" resizable="false" text="S. Disagree" />
-                  <TableColumn fx:id="dCol" prefWidth="70.0" resizable="false" text="Disagree" />
-                  <TableColumn fx:id="aCol" prefWidth="70.0" resizable="false" text="Agree" />
-                  <TableColumn fx:id="saCol" maxWidth="358.0" prefWidth="70.0" resizable="false" text="S. Agree" />
-              </columns>
-            </TableView>
-            <BarChart fx:id="mainResBarChart">
+            <StackedBarChart fx:id="mainResBarChart">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis prefHeight="329.0" prefWidth="28.0" side="LEFT" />
+                <NumberAxis side="LEFT" />
               </yAxis>
-            </BarChart>
+            </StackedBarChart>
+            <TableView fx:id="questionsTable" prefHeight="270.0" prefWidth="581.0">
+              <columns>
+                <TableColumn fx:id="questionIdCol" prefWidth="59.0" text="ID" />
+                  <TableColumn fx:id="questionCol" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="Question" />
+              </columns>
+            </TableView>
             <PieChart fx:id="q1PieChart" maxHeight="300.0" maxWidth="300.0" prefHeight="300.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets bottom="50.0" top="50.0" />

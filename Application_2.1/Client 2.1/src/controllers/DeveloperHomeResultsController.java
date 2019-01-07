@@ -2,6 +2,7 @@ package controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
@@ -15,8 +16,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -30,12 +36,19 @@ public class DeveloperHomeResultsController  implements Initializable{
 	@FXML private Button loadbtn;
 	@FXML private Label totalParticipantCount;
 	
-	@FXML private TableView<Result> resultTable; 
-	@FXML private TableColumn<Result, String> qIndexCol;
-	@FXML private TableColumn<Result, Integer> aCol;
-	@FXML private TableColumn<Result, Integer> dCol;
-	@FXML private TableColumn<Result, Integer> saCol;
-	@FXML private TableColumn<Result, Integer> sdCol;
+	@FXML private TableView<Result> questionsTable; 
+	@FXML private TableColumn<Result, String> questionIdCol;
+	@FXML private TableColumn<Result, String> questionCol;
+	
+	private CategoryAxis xAxis = new CategoryAxis(); 
+	private NumberAxis yAxis = new NumberAxis(); 
+	
+	@FXML private StackedBarChart<String, Number> mainResBarChart;
+	
+	XYChart.Series<String, Number> stronglyDissagree = new XYChart.Series<>();
+	XYChart.Series<String, Number> dissagree = new XYChart.Series<>();
+	XYChart.Series<String, Number> agree = new XYChart.Series<>();
+	XYChart.Series<String, Number> stronglyAgree = new XYChart.Series<>();
 
 	private Map<String, Integer> SARes;
 	private ResultsConnector rc;
@@ -43,6 +56,8 @@ public class DeveloperHomeResultsController  implements Initializable{
 	private ArrayList<Question> qList;
 
 
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
 
@@ -67,9 +82,42 @@ public class DeveloperHomeResultsController  implements Initializable{
 		 * Get Sentiment analysis results from the server
 		 */
 		SARes = rc.getSentimentResults();
+
+		/**
+		 * Defining the bar chart axis Question IDs
+		 */
+		xAxis.setCategories(FXCollections.<String>observableArrayList(getQuestionIds())); 
+		xAxis.setLabel("Questions");  
+		
+		yAxis.setLabel("Response Count");
+		
+		stronglyDissagree.setName("Strongly Dissagree");
+		dissagree.setName("Dissagree");
+		agree.setName("Agree");		
+		stronglyAgree.setName("Strongly Agree");
+
+		
+		for(int i=0; res.size() > i; i++) {
+			/**
+			 * Add data to the bar chart columns
+			 */
+			addSeriesData(stronglyDissagree,res.get(i).getQuestionId(),res.get(i).getStronglyDissagreeCount());
+			
+			addSeriesData(dissagree,res.get(i).getQuestionId(),res.get(i).getDissagreeCount());
+			
+			addSeriesData(agree,res.get(i).getQuestionId(),res.get(i).getAgreeCount());
+			
+			addSeriesData(stronglyAgree,res.get(i).getQuestionId(),res.get(i).getStronglyAgreeCount());
+			
+		}
 		
 		/**
-		 * Add data to the table
+		 * Add data to the stacked bar chart
+		 */
+		mainResBarChart.getData().addAll(stronglyDissagree, dissagree, agree,stronglyAgree); 
+		
+		/**
+		 * Add questions to the table
 		 */
 		populateTableview(FXCollections.observableArrayList(res));
 
@@ -91,13 +139,26 @@ public class DeveloperHomeResultsController  implements Initializable{
 
 	   private void populateTableview(ObservableList<Result> resultTableData) {
 		   
-			qIndexCol.setCellValueFactory(new PropertyValueFactory<>("Question"));
-			sdCol.setCellValueFactory(new PropertyValueFactory<>("StronglyDissagreeCount"));
-			dCol.setCellValueFactory(new PropertyValueFactory<>("DissagreeCount"));
-			aCol.setCellValueFactory(new PropertyValueFactory<>("AgreeCount"));
-			saCol.setCellValueFactory(new PropertyValueFactory<>("StronglyAgreeCount"));
+		   	questionIdCol.setCellValueFactory(new PropertyValueFactory<>("QuestionId"));
+			questionCol.setCellValueFactory(new PropertyValueFactory<>("Question"));
 			
-			resultTable.setItems(resultTableData);
+			questionsTable.setItems(resultTableData);
 			
+	   }
+	   
+	   private ArrayList<String> getQuestionIds() {
+		   	
+		   ArrayList<String> ids = new ArrayList<>();
+		   	
+			for(int i=0;res.size() > i;i++) {
+				ids.add(res.get(i).getQuestionId());
+			}
+			
+			return ids;
+		   
+	   }
+	   
+	   private void addSeriesData(XYChart.Series<String, Number> se, String name, int data) {
+		   se.getData().add(new XYChart.Data<>(name, data));
 	   }
 }

@@ -17,7 +17,6 @@ public class Session {
 	public static void load() {
 		try {
 			session = (ISession) Naming.lookup("rmi://"+ClientConfig.getIp()+"/survey/session");
-			Helpers.Status("Session Started");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 
 		}
