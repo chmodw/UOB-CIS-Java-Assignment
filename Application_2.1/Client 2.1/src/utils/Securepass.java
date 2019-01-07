@@ -27,6 +27,11 @@ public class Securepass {
 		return this.hash;
 	}
 	
+	/**
+	 * Compare two passwords
+	 * @param hash
+	 * @return
+	 */
 	public boolean isSame(String hash) {
 		
 		if(this.hash.equals(hash)) {

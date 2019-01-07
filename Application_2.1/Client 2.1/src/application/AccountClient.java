@@ -58,4 +58,15 @@ public class AccountClient {
 		return false;
 	}
 	
+	public boolean updatePass(String username, String newPass) {
+		
+		try {
+			return look_up_account.updateDeveloperPassword(username, newPass);
+		} catch (RemoteException e) {
+			Helpers.Debug("Error!! Could Not save the Developer Account - " + e.toString());
+		}
+		
+		return false;
+	}
+	
 }

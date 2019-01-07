@@ -49,7 +49,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </PasswordField>
-            <Label fx:id="newUserMessage" text="Label">
+            <Label fx:id="newUserMessage" text=".">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -78,7 +78,7 @@
                </VBox.margin>
             </Label>
             <Label text="Old Password :" />
-            <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+            <PasswordField fx:id="oldPasswordEditTxt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <padding>
                   <Insets bottom="4.0" top="4.0" />
                </padding>
@@ -91,7 +91,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+            <PasswordField fx:id="newPasswordEditTxt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <padding>
                   <Insets bottom="4.0" top="4.0" />
                </padding>
@@ -104,17 +104,17 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <PasswordField maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+            <PasswordField fx:id="newPasswordAgainEditTxt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                <padding>
                   <Insets bottom="4.0" top="4.0" />
                </padding>
             </PasswordField>
-            <Label fx:id="updatePassMessage" text="Label">
+            <Label fx:id="updatePassMessage">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" text="Save">
+            <Button fx:id="changePasswordBtn" mnemonicParsing="false" text="Save">
                <padding>
                   <Insets bottom="6.0" left="30.0" right="30.0" top="6.0" />
                </padding>
@@ -122,6 +122,27 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="100.0" right="100.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox>
+         <children>
+            <Label text="Delete The Account">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Label text="Deleted" textFill="RED" />
          </children>
          <padding>
             <Insets bottom="20.0" left="100.0" right="100.0" top="10.0" />

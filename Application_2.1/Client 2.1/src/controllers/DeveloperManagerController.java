@@ -23,6 +23,10 @@ public class DeveloperManagerController implements Initializable{
 	@FXML private TextField newUsername;
 	@FXML private PasswordField newPassword;
 	@FXML private Button newSaveBtn;
+	@FXML private Button changePasswordBtn;
+	@FXML private PasswordField oldPasswordEditTxt;
+	@FXML private PasswordField newPasswordEditTxt;
+	@FXML private PasswordField newPasswordAgainEditTxt;
 	@FXML private Label newUserMessage;
 	@FXML private Label updatePassMessage;
 	
@@ -45,7 +49,9 @@ public class DeveloperManagerController implements Initializable{
 				
 				if(isEmpty(newUsername) && isEmpty(newPassword)){
 					if(textSize(newPassword, 6)) {
+
 						saveUser();
+
 					}else {
 						showMsg(newUserMessage, "Password need to be more than 6 charachters", "RED");
 					}
@@ -57,13 +63,52 @@ public class DeveloperManagerController implements Initializable{
 			}
 		});
 
+		/**
+		 * change password
+		 */
+		changePasswordBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				
+				if(isEmpty(oldPasswordEditTxt) && isEmpty(newPasswordEditTxt) && isEmpty(newPasswordAgainEditTxt)){
+					if(textSize(newPasswordEditTxt, 6)) {
+						if(newPasswordEditTxt.getText().equals(newPasswordAgainEditTxt.getText())) {
+							if(accountClient.login(currentUser, oldPasswordEditTxt.getText())) {
+								/**
+								 * encrypt password before send it to the server
+								 */
+								if(accountClient.updatePass(currentUser,new Securepass(newPasswordEditTxt.getText()).getHash())){
+									showMsg(updatePassMessage, "Password Updated", "GREEN");
+								}
+
+							}else {
+								showMsg(updatePassMessage, "Old password doesn't match", "RED");
+							}
+						}else {
+							showMsg(updatePassMessage, "New password doesn't match", "RED");
+						}
+
+					}else {
+						showMsg(updatePassMessage, "Password need to be more than 6 charachters", "RED");
+					}
+					
+				}else {
+					showMsg(updatePassMessage, "Please type required fields", "RED");
+				}
+				
+			}
+		});
 	}
 	
+	/**
+	 * Save the new user
+	 */
 	private void saveUser() {
+		//encrypt password before send it to the server
 		if(accountClient.newDev(new User(newUsername.getText(),new Securepass(newPassword.getText()).getHash()))) {
 			showMsg(newUserMessage, "Developer Account Added", "GREEN");
 		}else {
-			showMsg(newUserMessage, "Something went wrong. Could't save the developer Account", "RED");
+			showMsg(newUserMessage, "Something went wrong. Could't save the developer Account. please try diffrent username", "RED");
 		}
 	}
 
@@ -81,6 +126,12 @@ public class DeveloperManagerController implements Initializable{
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param fieldName
+	 * @param size
+	 * @return
+	 */
 	private boolean textSize(PasswordField fieldName, int size) {
 		
 		if(fieldName.getText().toCharArray().length > size) {

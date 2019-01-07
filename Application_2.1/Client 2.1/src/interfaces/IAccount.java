@@ -40,5 +40,5 @@ public interface IAccount extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public boolean updateDeveloperPassword(String username, String oldpassword,String newPassword) throws RemoteException;
+	public boolean updateDeveloperPassword(String username,String newPassword) throws RemoteException;
 }

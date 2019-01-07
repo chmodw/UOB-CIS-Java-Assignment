@@ -43,15 +43,28 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	@Override
 	public boolean newDeveloper(User user) throws RemoteException {
 		
-		String sql = "INSERT INTO developers (username, password, created_on) VALUES("
+		/**
+		 * check for similer accounts
+		 */
+		String sql = "SELECT * FROM developers WHERE username='"+user.getEmail()+"';";
+		
+		ResultSet res = model.SELECT(sql);
+		
+		try {
+			if(res.next()) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		sql = "INSERT INTO developers (username, password, created_on) VALUES("
 				+ "'" + user.getEmail() + "',"
 				+ "'" + user.getPassword() + "',"
 				+ "'" + user.getParticipated_on() + "'"
 				+ ")";
 		
 		return model.EXECUTE(sql);
-		
-//		System.out.println(user.toString());
 
 	}
 
@@ -75,37 +88,12 @@ public class Account extends UnicastRemoteObject implements IAccount{
 	}
 
 	@Override
-	public boolean updateDeveloperPassword(String username, String oldpassword, String newPassword) throws RemoteException {
-		
-		/**
-		 * find the user from the database and get the old password
-		 */
-		String sql = "SELECT * FROM developers WHERE username='" + username + "'";
-		
-		ResultSet userdata = model.SELECT(sql);
-		
-		try {
-			/**
-			 * compare the old and new passwords
-			 */
-			if(userdata.getString("passwword").equals(oldpassword)) {
-				/**
-				 * update the password
-				 */
-				sql = "UPDATE developers set password='"+newPassword+"' WHERE username='"+username+"'";
-				
-				return model.EXECUTE(sql);
-				
-			}else {
-				return false;
-			}
-			
-		} catch (SQLException e) {
+	public boolean updateDeveloperPassword(String username, String newPassword) throws RemoteException {
 
-			Helpers.Debug("Error!! Can't check compare passwords. Server Error - " + e.toString());
-		}
-				
-		return false;
+		String sql = "UPDATE developers SET password='"+newPassword+"' WHERE username='"+username+"'";
+		
+		return model.EXECUTE(sql);
+
 	}
 
 }
