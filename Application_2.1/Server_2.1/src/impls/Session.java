@@ -72,25 +72,15 @@ public class Session extends UnicastRemoteObject implements ISession{
 		Runnable runnable = new Runnable() {
 						
 			public void run(){	
-				System.out.println("Session run");
-
 				while(!(destroyList.size() <= 0)) {
 					session.remove(destroyList.get(0));
 					destroyList.remove(0);
-					System.out.println("Session des");
-					continue;
-				}
-				System.out.println("Session run end");
-				
+				}				
 		    };
 		};
 
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-		executor.scheduleAtFixedRate(runnable, 0, 5, TimeUnit.SECONDS);
-	}
-	
-	private void h() {
-		
+		executor.scheduleAtFixedRate(runnable, 0, 10, TimeUnit.SECONDS);
 	}
  
 }

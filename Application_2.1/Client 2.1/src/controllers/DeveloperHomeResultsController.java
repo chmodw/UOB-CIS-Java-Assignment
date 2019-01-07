@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,6 +28,7 @@ public class DeveloperHomeResultsController  implements Initializable{
 
 	@FXML private PieChart q1PieChart;
 	@FXML private Button loadbtn;
+	@FXML private Label totalParticipantCount;
 	
 	@FXML private TableView<Result> resultTable; 
 	@FXML private TableColumn<Result, String> qIndexCol;
@@ -44,19 +46,22 @@ public class DeveloperHomeResultsController  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
 
-		
-		
 		rc = new ResultsConnector();
-		
 		/**
 		 * get the question list from the server
 		 */
 		qList = new QuestionClient().getqList();
+
 		
 		/**
 		 * get the main results from the server
 		 */
 		res = rc.getResults();
+
+		
+		if(qList != null) {
+			totalParticipantCount.setText(Integer.toString(res.get(0).getAnswerCount()));
+		}
 		
 		/**
 		 * Get Sentiment analysis results from the server

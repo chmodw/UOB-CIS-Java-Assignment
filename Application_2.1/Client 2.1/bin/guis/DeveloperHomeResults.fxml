@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeveloperHomeResultsController">
    <children>
@@ -16,7 +17,12 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
                <children>
-                  <Label text="Total Participation :" />
+                  <Label text="Total Participations" />
+                  <Label fx:id="totalParticipantCount" prefHeight="27.0" prefWidth="94.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />
