@@ -1,4 +1,4 @@
-package controllers;
+package userControllers;
 
 import java.net.URL;
 import java.util.ArrayList;

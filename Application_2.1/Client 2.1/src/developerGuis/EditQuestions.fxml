@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxWidth="700.0" minHeight="550.0" minWidth="700.0" prefWidth="700.0" style="-fx-background-color: #eee;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeveloperQuestionsController">
+<VBox maxWidth="700.0" minHeight="550.0" minWidth="700.0" prefWidth="700.0" style="-fx-background-color: #eee;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="developerControllers.DeveloperQuestionsController">
    <children>
       <TableView fx:id="questionEditTable" maxWidth="680.0" minWidth="680.0" prefHeight="320.0" prefWidth="680.0">
         <columns>

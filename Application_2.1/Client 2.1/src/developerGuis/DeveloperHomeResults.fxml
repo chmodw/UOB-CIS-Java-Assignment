@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeveloperHomeResultsController">
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="developerControllers.DeveloperHomeResultsController">
    <children>
       <VBox alignment="TOP_CENTER" prefWidth="685.0">
          <children>
@@ -36,7 +36,7 @@
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis label="Percentage" side="LEFT" />
               </yAxis>
             </StackedBarChart>
             <TableView fx:id="questionsTable" prefHeight="270.0" prefWidth="581.0">

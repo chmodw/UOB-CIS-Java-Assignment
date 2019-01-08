@@ -1,4 +1,4 @@
-package controllers;
+package userControllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -83,7 +83,7 @@ public class MainUserController implements Initializable {
 			
 			
 			FXMLLoader loader = new FXMLLoader();
-			Parent root = loader.load(getClass().getResource("../guis/SurveyQuestions.fxml").openStream());
+			Parent root = loader.load(getClass().getResource("../userGuis/SurveyQuestions.fxml").openStream());
 			SurveyController surveyController = (SurveyController)loader.getController();
 			//pass the user information the questions window
 			surveyController.setCurrentUser(fullNameTxt.getText().toString(),emailTxt.getText().toString(),countryTxt.getText().toString(), TDMTxt.getText().toString(), TDOTxt.getText().toString());
@@ -102,7 +102,7 @@ public class MainUserController implements Initializable {
 	public void developerLogin() {
 
         try {
-        	Parent root = FXMLLoader.load(getClass().getResource("../guis/DeveloperLogin.fxml"));
+        	Parent root = FXMLLoader.load(getClass().getResource("../developerGuis/DeveloperLogin.fxml"));
             
 			// remove the form from the main window
 			userMainWindow.getChildren().remove(surveyForm);

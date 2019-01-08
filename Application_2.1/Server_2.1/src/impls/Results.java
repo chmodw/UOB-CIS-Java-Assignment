@@ -102,14 +102,11 @@ public class Results extends UnicastRemoteObject implements IResults{
 			// Agree Count
 			int ac = 0;
 			// Strongly agree Count
-			int sac = 0;
+			int sac = 0;		
 			
-			
-			System.out.println(qList.get(i).getId());
-			
-			
-			// Find answered questions from the results table where question id equivalent to 
-			// the current question id in the loop
+			/**
+			 * Find answered questions from the results table where question id equivalent to the current question id in the loop
+			 */
 			sql = "SELECT * FROM results WHERE question_id = '" + qList.get(i).getId() + "'";
 			
 			ResultSet res = model.SELECT(sql);
@@ -146,10 +143,7 @@ public class Results extends UnicastRemoteObject implements IResults{
 							toPercentage(participantCount, dc),
 							toPercentage(participantCount, ac),
 							toPercentage(participantCount, sac)
-							));
-			
-//			results.add(new Result(qList.get(i).getQuestion(), qList.get(i).getId(), participantCount, sdc, dc, ac, sac));
-		
+							));		
 		}
 
 		

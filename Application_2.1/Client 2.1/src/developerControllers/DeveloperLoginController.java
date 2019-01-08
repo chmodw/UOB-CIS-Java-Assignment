@@ -1,4 +1,4 @@
-package controllers;
+package developerControllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -6,7 +6,6 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import application.AccountClient;
-import application.Main;
 import application.Session;
 import application.User;
 import javafx.event.ActionEvent;
@@ -23,6 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import main.Main;
 
 public class DeveloperLoginController  implements Initializable {
 	
@@ -106,7 +106,7 @@ public class DeveloperLoginController  implements Initializable {
         try {
         	
 			FXMLLoader loader = new FXMLLoader();
-			Parent root = loader.load(getClass().getResource("../guis/DeveloperHome.fxml").openStream());
+			Parent root = loader.load(getClass().getResource("../developerGuis/DeveloperHome.fxml").openStream());
 			DeveloperHomeController dhc = (DeveloperHomeController)loader.getController();
 			// pass the username to the developer home controller class
 			dhc.setCurrentUsername(usernameTxt.getText());

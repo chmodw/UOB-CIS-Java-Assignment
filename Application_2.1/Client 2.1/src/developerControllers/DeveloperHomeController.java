@@ -1,4 +1,4 @@
-package controllers;
+package developerControllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -107,7 +107,7 @@ public class DeveloperHomeController implements Initializable{
 		 * open the window
 		 */
         try {
-        	Parent root = FXMLLoader.load(getClass().getResource("../guis/"+windowName+".fxml"));
+        	Parent root = FXMLLoader.load(getClass().getResource("../developerGuis/"+windowName+".fxml"));
             		
         	//Load the questions window in the main window
         	mainSection.getChildren().add(root);

@@ -1,4 +1,4 @@
-package application;
+package main;
 	
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -6,6 +6,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import application.Session;
 import interfaces.ISession;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ public class Main extends Application {
 		Parent root = null;
 		
 		try {
-			root = FXMLLoader.load(getClass().getResource("../guis/MainUserWindow.fxml"));
+			root = FXMLLoader.load(getClass().getResource("../userGuis/MainUserWindow.fxml"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
