@@ -1,4 +1,4 @@
-package application;
+package serverConnections;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import application.Result;
 import interfaces.IResults;
 import utils.ClientConfig;
 import utils.Helpers;
@@ -23,12 +24,13 @@ public class ResultsConnector {
 			 */
 			resultsConn = (IResults) Naming.lookup("rmi://"+ClientConfig.getIp()+"/survey/results");
 			
-//			Helpers.Debug("Server Found");
-			
+			/**
+			 * ready the results to get from the server
+			 */
 			resultsConn.readyResults();
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
-//				serverConnection = false;
+			Helpers.ErrorAlert("Server Connection Error. Try restrating the application");
 		}					
 		
 	}

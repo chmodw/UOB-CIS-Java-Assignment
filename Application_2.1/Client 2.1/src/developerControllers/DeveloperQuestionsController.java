@@ -20,8 +20,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
+import serverConnections.QuestionClient;
 import application.Question;
-import application.QuestionClient;
 
 public class DeveloperQuestionsController implements Initializable{
 	
@@ -60,13 +60,9 @@ public class DeveloperQuestionsController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-
-		
+	
 		populateTableview(FXCollections.observableArrayList(qList));
-		
-//		CompletableFuture.supplyAsync(this::updateQuestion);
-		
+				
 		/**
 		 * Add question indexes to the combo box.
 		 * this use to modify questions

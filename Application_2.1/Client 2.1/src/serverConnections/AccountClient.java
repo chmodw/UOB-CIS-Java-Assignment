@@ -1,4 +1,4 @@
-package application;
+package serverConnections;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -16,11 +16,14 @@ public class AccountClient {
 	public boolean serverConnection;
 
 	public AccountClient() {
+				
 		try {
 			look_up_account = (IAccount) Naming.lookup("rmi://"+ClientConfig.getIp()+"/survey/account");
 			serverConnection = true;
+						
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
-			serverConnection = false;
+			Helpers.Debug("RMI connection failed --SERVER ERROR" + e.toString());
+			Helpers.ErrorAlert("Server Connection Error. Try restrating the application");
 		}
 	}
 	
@@ -32,6 +35,7 @@ public class AccountClient {
 			
 		} catch (RemoteException e) {
 			Helpers.Debug("Client UserAccount : Can't pass the new user to server --SERVER ERROR" + e.toString());
+			Helpers.ErrorAlert("Can't cerate a new participent. SERVER ERROR!");
 		}
 		
 		return false;
@@ -41,7 +45,8 @@ public class AccountClient {
 		try {
 			return look_up_account.login(username, password);
 		} catch (RemoteException e) {
-			Helpers.Debug("Error!! Can't check username or password. Client Error - " + e.toString());
+			Helpers.Debug("Error!! Can't check username or password. Server Error - " + e.toString());
+			Helpers.ErrorAlert("can't authenticate username and password");
 		}
 		
 		return false;
@@ -53,6 +58,7 @@ public class AccountClient {
 			return look_up_account.newDeveloper(developer);
 		} catch (RemoteException e) {
 			Helpers.Debug("Error!! Could Not save the Developer Account - " + e.toString());
+			Helpers.ErrorAlert("can't save the new developer. Server connection error");
 		}
 		
 		return false;
@@ -64,6 +70,7 @@ public class AccountClient {
 			return look_up_account.updateDeveloperPassword(username, newPass);
 		} catch (RemoteException e) {
 			Helpers.Debug("Error!! Could Not save the Developer Account - " + e.toString());
+			Helpers.ErrorAlert("Password update Error. try restarting the application");
 		}
 		
 		return false;

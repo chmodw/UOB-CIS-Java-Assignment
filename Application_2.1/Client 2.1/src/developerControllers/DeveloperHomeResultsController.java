@@ -10,8 +10,6 @@ import java.util.concurrent.ExecutionException;
 
 import application.Question;
 import application.Result;
-import application.ResultsConnector;
-import application.QuestionClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,6 +26,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import serverConnections.QuestionClient;
+import serverConnections.ResultsConnector;
 
 
 public class DeveloperHomeResultsController  implements Initializable{

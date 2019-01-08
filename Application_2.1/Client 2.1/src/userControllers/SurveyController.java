@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Question;
-import application.QuestionClient;
 import application.User;
-import application.AccountClient;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -21,6 +19,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import serverConnections.AccountClient;
+import serverConnections.QuestionClient;
 import utils.Helpers;
 
 public class SurveyController implements Initializable {

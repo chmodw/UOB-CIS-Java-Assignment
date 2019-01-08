@@ -3,7 +3,6 @@ package developerControllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.AccountClient;
 import application.Session;
 import application.User;
 import javafx.event.ActionEvent;
@@ -16,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import main.Main;
+import serverConnections.AccountClient;
 import utils.Securepass;
 
 public class DeveloperManagerController implements Initializable{

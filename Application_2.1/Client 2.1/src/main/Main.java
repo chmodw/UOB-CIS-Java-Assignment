@@ -1,17 +1,11 @@
 package main;
 	
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 
 import application.Session;
-import interfaces.ISession;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import utils.ClientConfig;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -50,4 +44,7 @@ public class Main extends Application {
 		launch(args);
 	}
 
+	public void ErrorAlert() {
+		
+	}
 }

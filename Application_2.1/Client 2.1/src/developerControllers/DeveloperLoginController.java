@@ -5,7 +5,6 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
-import application.AccountClient;
 import application.Session;
 import application.User;
 import javafx.event.ActionEvent;
@@ -23,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.Main;
+import serverConnections.AccountClient;
 
 public class DeveloperLoginController  implements Initializable {
 	
