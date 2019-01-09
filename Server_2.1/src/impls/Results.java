@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.xml.internal.txw2.Document;
+
 import application.Question;
 import application.Result;
 import impls.Questionnaire;
@@ -29,7 +31,7 @@ public class Results extends UnicastRemoteObject implements IResults{
 	private int participantCount; //how many people participated
 	private Model model;
 	private String sql; 
-	private String[] params; // params for filter results 
+	private String[] params = {"*",""}; // params for filter results 
 	private ArrayList<Question> qList; // question list
 	private ArrayList<Result> results;
 	
@@ -44,32 +46,10 @@ public class Results extends UnicastRemoteObject implements IResults{
 	public Results() throws RemoteException {
 		model = Main.getMainModel();
 	}
-	
-	@Override
-	public void readyResults() {
 		
-		results = new ArrayList<>();
-		
-		// Get the response count
-		this.setResultCount();
-		
-		// Get the questions
-		try {
-			qList = new Questionnaire().getQuestions();
-		} catch (RemoteException e) {
-			Helpers.Debug("can't get the questions --Results - " + e.toString());	
-		}
-		
-		//process results
-		this.processResults();
-		
-		//process SAR
-		this.processSARResults();			
-		
-	}
-	
 	@Override
 	public int getResultCount() throws RemoteException {
+		
 		return participantCount;
 	}
 	
@@ -159,15 +139,36 @@ public class Results extends UnicastRemoteObject implements IResults{
 	}
 
 	@Override
-	public ArrayList<Result> getResluts() throws RemoteException {
+	public ArrayList<Result> getResluts(String[] params) throws RemoteException {
+		
+		this.params = params;
+		
+		System.out.println(params[0]);
+		
+		results = new ArrayList<>();
+		
+		// Get the response count
+		this.setResultCount();
+		
+		// Get the questions
+		try {
+			qList = new Questionnaire().getQuestions();
+		} catch (RemoteException e) {
+			Helpers.Debug("can't get the questions --Results - " + e.toString());	
+		}
+		
+		//process results
+		this.processResults();
+		
+		//process SAR
+		this.processSARResults();	
+		
 		return results;
 	}
 
 	@Override
 	public void setParams(String[] params) throws RemoteException {
-		/**
-		 * Save this for later
-		 */
+		this.params = params;
 	}
 
 	@Override
@@ -217,5 +218,64 @@ public class Results extends UnicastRemoteObject implements IResults{
 		}
 		
 	}
+
+
+	@SuppressWarnings("unlikely-arg-type")
+	@Override
+	public ArrayList<String> getFilterParams(String filter) throws RemoteException {
+		
+		String fltr = "device_os";
+
+		switch(filter) {
+			case "Country": fltr = "country";
+				break;
+			case "OS": fltr = "device_os";
+				break;
+			case "Manufacturer": fltr = "device_manufacturer";
+				break;
+				
+		}
+		
+		ArrayList<String> params = new ArrayList<>(); 
+		
+		String sql = "SELECT * FROM participant_data;";
+		
+		ResultSet res = model.SELECT(sql);
+
+		try {
+			while(res.next()) {
+
+				params.add(res.getString(fltr));
+			
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		// remove duplicates from the params
+		
+		for(int i=0;params.size()>i;i++) {
+			for(int x=i+1; params.size()> x;x++) {
+				if(params.get(i).equals(params.get(x))) {
+					params.remove(x);
+				}
+			}
+		}
+		
+		
+		return params;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 			
 }

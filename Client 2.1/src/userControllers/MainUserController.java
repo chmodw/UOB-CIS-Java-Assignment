@@ -42,7 +42,6 @@ public class MainUserController implements Initializable {
 	@FXML private Label TDMError;
 	@FXML private Label TDOError;
 	
-	List<String> os = new ArrayList<String>();
 	List<String> deviceMan = new ArrayList<String>();
 
 	@Override
@@ -61,10 +60,7 @@ public class MainUserController implements Initializable {
 		/**
 		 * ADd OSs to the combo
 		 */
-		os.add("Andorid");
-		os.add("ios");
-		
-		TDOTxt.getItems().addAll(os);
+		TDOTxt.getItems().addAll("Android","ios");
 				
 		/**
 		 * Full name text box text change

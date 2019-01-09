@@ -21,7 +21,7 @@ public interface IResults  extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ArrayList<Result> getResluts() throws RemoteException;
+	public ArrayList<Result> getResluts(String[] params) throws RemoteException;
 	
 	/**
 	 * Parameters for filter the results
@@ -38,8 +38,11 @@ public interface IResults  extends Remote{
 	public Map<String, Integer> getSARResults() throws RemoteException;
 	
 	/**
-	 * process results and ready them to send back to the client
+	 * 
+	 * @param filter
+	 * @return
 	 * @throws RemoteException
 	 */
-	public void readyResults() throws RemoteException;
+	public ArrayList<String> getFilterParams(String filter) throws RemoteException;
+
 }

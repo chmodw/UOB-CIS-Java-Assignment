@@ -24,11 +24,6 @@ public class ResultsConnector {
 			 */
 			resultsConn = (IResults) Naming.lookup("rmi://"+ClientConfig.getIp()+"/survey/results");
 			
-			/**
-			 * ready the results to get from the server
-			 */
-			resultsConn.readyResults();
-			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			Helpers.ErrorAlert("Server Connection Error. Try restrating the application");
 		}					
@@ -39,17 +34,17 @@ public class ResultsConnector {
 		try {
 			return resultsConn.getResultCount();
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Helpers.Debug(e.toString());
 		}
 		
 		return 0;
 	}
 	
-	public ArrayList<Result> getResults(){
+	public ArrayList<Result> getResults(String[] params){
 		try {
-			return resultsConn.getResluts();
+			return resultsConn.getResluts(params);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Helpers.Debug(e.toString());
 		}
 		
 		return null;
@@ -62,12 +57,22 @@ public class ResultsConnector {
 			return resultsConn.getSARResults();
 			
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Helpers.Debug(e.toString());
 		}
 		
 		return null;
 		
 	}
+	
+	public ArrayList<String> getFilterParams(String filters){
+		try {
+			return resultsConn.getFilterParams(filters);
+		} catch (RemoteException e) {
+			Helpers.Debug(e.toString());
+		}
+		return null;
+	}
+	
 	
 
 

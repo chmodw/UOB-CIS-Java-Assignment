@@ -54,7 +54,7 @@ public class QuestionClient {
 		try {
 			return look_up_questions.newQuestion(question);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Helpers.Debug(e.toString());
 		}
 		return false;
 	}
@@ -63,7 +63,7 @@ public class QuestionClient {
 		try {
 			return look_up_questions.updateQuestion(index,question,is_active);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Helpers.Debug(e.toString());
 		}
 		return false;
 	}
@@ -76,8 +76,7 @@ public class QuestionClient {
 		try {
 			return look_up_questions.submitAnswer(answerList);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Helpers.Debug(e.toString());
 		}
 		return false;
 	}
@@ -86,8 +85,7 @@ public class QuestionClient {
 		try {
 			return look_up_questions.getAllQuestions();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Helpers.Debug(e.toString());
 		}
 		return null;
 	}
@@ -96,10 +94,9 @@ public class QuestionClient {
 		try {
 			return look_up_questions.deleteQuestion(questionId);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Helpers.Debug(e.toString());
 		}
 		return false;
 	}
-	
+
 }

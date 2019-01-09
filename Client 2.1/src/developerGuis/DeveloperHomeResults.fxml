@@ -14,45 +14,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="developerControllers.DeveloperHomeResultsController">
+<VBox fx:id="resultViewWindow" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="developerControllers.DeveloperHomeResultsController">
    <children>
-      <VBox alignment="TOP_CENTER" prefWidth="685.0">
+      <VBox alignment="TOP_CENTER" prefWidth="685.0" style="-fx-background-color: #eee;">
          <children>
-            <HBox prefWidth="640.0">
-               <children>
-                  <VBox fillWidth="false" prefHeight="0.0" prefWidth="150.0">
-                     <children>
-                        <Label text="Filter By :">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ComboBox fx:id="filterByCombo" prefWidth="150.0" />
-                     </children>
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox fillWidth="false">
-                     <children>
-                        <Label text="Parameters :">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ComboBox fx:id="paramCombo" prefWidth="150.0" />
-                     </children>
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <Button mnemonicParsing="false" text="Refresh">
-                     <HBox.margin>
-                        <Insets top="22.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
             <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="640.0">
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -69,28 +34,126 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
             </VBox>
-            <StackedBarChart fx:id="mainResBarChart" prefHeight="392.0" prefWidth="513.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis label="Percentage" side="LEFT" />
-              </yAxis>
-            </StackedBarChart>
-            <TableView fx:id="questionsTable" prefHeight="270.0" prefWidth="581.0">
-              <columns>
-                <TableColumn fx:id="questionIdCol" prefWidth="59.0" text="ID" />
-                  <TableColumn fx:id="questionCol" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="450.0" text="Question" />
-              </columns>
+            <VBox prefWidth="100.0">
+               <children>
+                  <Label text="Filter Results">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefWidth="640.0">
+                     <children>
+                        <VBox fillWidth="false" prefHeight="0.0" prefWidth="150.0">
+                           <children>
+                              <Label text="Filter By :">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ComboBox fx:id="filterByCombo" prefWidth="200.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox fillWidth="false">
+                           <children>
+                              <Label text="Parameters :">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ComboBox fx:id="paramCombo" prefWidth="200.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button fx:id="resultRefreshBtn" mnemonicParsing="false" text="Refresh">
+                           <HBox.margin>
+                              <Insets top="22.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
                <VBox.margin>
-                  <Insets left="30.0" right="100.0" />
+                  <Insets bottom="20.0" />
                </VBox.margin>
-            </TableView>
-            <PieChart fx:id="q1PieChart" maxHeight="300.0" maxWidth="300.0" prefHeight="300.0" prefWidth="300.0">
-               <VBox.margin>
-                  <Insets bottom="50.0" top="50.0" />
-               </VBox.margin>
-            </PieChart>
+            </VBox>
+            <VBox prefHeight="364.0" prefWidth="640.0">
+               <children>
+                  <Label text="Current Session Question Results">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <StackedBarChart fx:id="mainResBarChart" prefHeight="329.0" prefWidth="640.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis label="Percentage" side="LEFT" />
+                    </yAxis>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </StackedBarChart>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label text="Current Session Questions">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TableView fx:id="questionsTable" prefHeight="270.0" prefWidth="567.0">
+                    <columns>
+                      <TableColumn fx:id="questionIdCol" prefWidth="59.0" text="ID" />
+                        <TableColumn fx:id="questionCol" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="450.0" text="Question" />
+                    </columns>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox prefWidth="100.0">
+               <children>
+                  <Label text="Sentiment Analysis">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <PieChart fx:id="q1PieChart" maxHeight="309.0" maxWidth="644.0" prefHeight="304.0" prefWidth="600.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </PieChart>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
          </children>
          <padding>
             <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />

@@ -3,6 +3,7 @@ package userControllers;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 
 import application.Question;
 import application.User;
@@ -215,12 +216,18 @@ public class SurveyController implements Initializable {
 		userCommentField.setMinHeight(150);
 	}
 	
-	private boolean surveyEnd() {
+	private boolean  surveyEnd() {
 		/**
 		 * Save data
 		 */
-		
-		if(clientQuestions.submitQuestions(answerList) && userAccount.newParticipant(currentUser.getFull_name(), currentUser.getEmail(), currentUser.getCountry(), currentUser.getDevice_manufacturer(), currentUser.getDevice_os())){
+
+		if(clientQuestions.submitQuestions(answerList) && 
+				userAccount.newParticipant(
+						currentUser.getFull_name(), 
+						currentUser.getEmail(), 
+						currentUser.getCountry(), 
+						currentUser.getDevice_manufacturer(), 
+						currentUser.getDevice_os())){
 			
 			return true;
 			
@@ -229,9 +236,5 @@ public class SurveyController implements Initializable {
 		return false;		
 		
 	}
-	
-
-	
-
 
 }
