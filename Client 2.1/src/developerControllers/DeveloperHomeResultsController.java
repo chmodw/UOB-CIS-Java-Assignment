@@ -22,6 +22,7 @@ import javafx.scene.chart.PieChart.Data;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -40,10 +41,14 @@ public class DeveloperHomeResultsController  implements Initializable{
 	@FXML private TableColumn<Result, String> questionIdCol;
 	@FXML private TableColumn<Result, String> questionCol;
 	
-	private CategoryAxis xAxis = new CategoryAxis(); 
-	private NumberAxis yAxis = new NumberAxis(); 
+	@FXML private ComboBox<String> filterByCombo;
+	@FXML private ComboBox<String> paramCombo;
 	
 	@FXML private StackedBarChart<String, Number> mainResBarChart;
+	
+	private CategoryAxis xAxis = new CategoryAxis(); 
+	private NumberAxis yAxis = new NumberAxis(); 
+
 	
 	XYChart.Series<String, Number> stronglyDissagree = new XYChart.Series<>();
 	XYChart.Series<String, Number> dissagree = new XYChart.Series<>();
@@ -54,6 +59,7 @@ public class DeveloperHomeResultsController  implements Initializable{
 	private ResultsConnector rc;
 	private ArrayList<Result> res;
 	private ArrayList<Question> qList;
+	private String[] params;
 
 
 
@@ -67,13 +73,26 @@ public class DeveloperHomeResultsController  implements Initializable{
 		 */
 		qList = new QuestionClient().getqList();
 
+		/**
+		 * Set filters for results
+		 */
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		/**
 		 * get the main results from the server
 		 */
 		res = rc.getResults();
 
-		
+		/**
+		 * show the total participant count
+		 */
 		if(qList != null) {
 			totalParticipantCount.setText(Integer.toString(res.get(0).getAnswerCount()));
 		}

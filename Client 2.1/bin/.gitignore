@@ -1,2 +1,9 @@
+/application/
+/developerControllers/
+/developerGuis/
+/interfaces/
+/main/
+/serverConnections/
 /userControllers/
 /userGuis/
+/utils/

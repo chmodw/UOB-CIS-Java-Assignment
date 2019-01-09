@@ -88,7 +88,7 @@ public class MainUserController implements Initializable {
 		
 		if(!isTextFieldEmpty(fullNameTxt, "Please enter your name", fullNameError) && 
 		   !isTextFieldEmpty(emailTxt, "Please enter your Email address", emailError) &&
-		   !iscomboSelected(countryTxt, "Please your Country of Residence", countryError) &&
+		   !iscomboSelected(countryTxt, "Please enter your Country of Residence", countryError) &&
 		   !isTextFieldEmpty(TDMTxt, "Please enter your device manufacturer", TDMError) &&
 		   !iscomboSelected(TDOTxt, "Please enter your device OS", TDOError)) {
 			
@@ -145,7 +145,7 @@ public class MainUserController implements Initializable {
 	
 	private boolean iscomboSelected(ComboBox<String> fieldName, String errorMsg, Label errorField) {
 		
-        if(!(fieldName.getValue().equals(null))) {
+        if(fieldName.getSelectionModel().isEmpty()) {
             errorField.setText(errorMsg);
             return true;
          }
