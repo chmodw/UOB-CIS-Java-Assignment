@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxWidth="700.0" minHeight="550.0" minWidth="700.0" prefWidth="700.0" style="-fx-background-color: #eee;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="developerControllers.DeveloperManagerController">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <VBox>
+         <children>
+            <Label text="New Developer">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Username :">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="newUsername" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="4.0" top="4.0" />
+               </padding>
+            </TextField>
+            <Label text="Password :">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <PasswordField fx:id="newPassword" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+               <padding>
+                  <Insets bottom="4.0" top="4.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Label fx:id="newUserMessage" text=".">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="newSaveBtn" mnemonicParsing="false" text="Save">
+               <padding>
+                  <Insets bottom="6.0" left="30.0" right="30.0" top="6.0" />
+               </padding>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="100.0" right="100.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </VBox>
+      <VBox>
+         <children>
+            <Label text="Change Password">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Old Password :" />
+            <PasswordField fx:id="oldPasswordEditTxt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+               <padding>
+                  <Insets bottom="4.0" top="4.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Label text="New Password :">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <PasswordField fx:id="newPasswordEditTxt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+               <padding>
+                  <Insets bottom="4.0" top="4.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Label text="New Password Again:">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Label>
+            <PasswordField fx:id="newPasswordAgainEditTxt" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
+               <padding>
+                  <Insets bottom="4.0" top="4.0" />
+               </padding>
+            </PasswordField>
+            <Label fx:id="updatePassMessage">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="changePasswordBtn" mnemonicParsing="false" text="Save">
+               <padding>
+                  <Insets bottom="6.0" left="30.0" right="30.0" top="6.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="100.0" right="100.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox>
+         <children>
+            <Label text="Delete The Account">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Label text="Deleted" textFill="RED" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="100.0" right="100.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</VBox>

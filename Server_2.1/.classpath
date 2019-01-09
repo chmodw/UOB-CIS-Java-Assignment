@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs/sqlite-jdbc.jar"/>
 	<classpathentry kind="lib" path="libs/tone-analyzer.jar"/>
-	<classpathentry kind="lib" path="F:/projects/group6-assignment/Application_2.1/Server_2.1/libs/gson.jar"/>
+	<classpathentry kind="lib" path="libs/gson.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
