@@ -2,7 +2,11 @@ package utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+/**
+ * Contains small methods
+ * @author Chamodya Wimansha
+ *
+ */
 public class Helpers {
 
 	public static String DateNow() {

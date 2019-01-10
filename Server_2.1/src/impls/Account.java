@@ -12,6 +12,12 @@ import utils.Helpers;
 import utils.Model;
 import utils.Securepass;
 
+/**
+ * Create a user object or a developer object
+ * 
+ * @author chamodya wimansha
+ *
+ */
 public class Account extends UnicastRemoteObject implements IAccount{
 
 	/**

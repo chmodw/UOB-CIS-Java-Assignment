@@ -17,6 +17,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
+/**
+ * Controller class for the Developer Home FXML
+ * @author 
+ *
+ */
 public class DeveloperHomeController implements Initializable{
 
 	@FXML private VBox developerMain;

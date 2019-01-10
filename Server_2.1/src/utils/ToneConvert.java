@@ -4,6 +4,11 @@ import com.google.gson.Gson;
 
 import application.DocumentTone;
 
+/**
+ * contains functions to convert JSON File to a java object
+ * @author Chamodya Wimansha
+ *
+ */
 public class  ToneConvert{
 
 	private DocumentTone docTone;

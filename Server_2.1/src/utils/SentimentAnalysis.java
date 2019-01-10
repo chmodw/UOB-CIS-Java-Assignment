@@ -11,7 +11,7 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 
 
 /**
- * Some codes on this class I got from the Tone Analyzer documentation. I did some changes to it according to my project
+ * Some codes on this class I got from the Tone Analyser documentation. I did some changes to it according to my project
  * https://console.bluemix.net/apidocs/tone-analyzer?language=java
  * 
  * @author chamodya wimansha
@@ -55,7 +55,9 @@ public class SentimentAnalysis {
 		}
 		
 	}
-
+	/*
+	 * return the tone
+	 */
 	public String getTone() {
 		return tone;
 	}

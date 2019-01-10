@@ -1,5 +1,13 @@
 package application;
 
+/**
+ * creates a DocumentTone Object
+ * use to convert the JSON file returning from the IBM tone analyser
+ * to a Object
+ * 
+ * @author Chamodya Wimansha
+ *
+ */
 public class DocumentTone {
 	
 	private Double score;

@@ -6,9 +6,7 @@ import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 /**
- * Some of code from this class I got from the howtodoinjava.com website
- * and changed it to fit my project
- * https://howtodoinjava.com/security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
+ * This class allows Password encryption for added security
  * 
  * @author Chamodya Wimansha
  *
@@ -26,10 +24,18 @@ public class Securepass {
 		
 	}
 	
+	/**
+	 * return the encrypted password
+	 * @return
+	 */
 	public String getHash() {
 		return this.hash;
 	}
-	
+	/**
+	 * Compare two passwords
+	 * @param hash
+	 * @return
+	 */
 	public boolean isSame(String hash) {
 		
 		if(this.hash.equals(hash)) {
@@ -39,6 +45,9 @@ public class Securepass {
 		return false;
 	}
 	
+	/**
+	 * Encrypt the password using SHA algorithm
+	 */
 	private void encryptPass() {
 		
 		MessageDigest md;

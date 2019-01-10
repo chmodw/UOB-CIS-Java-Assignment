@@ -6,22 +6,24 @@ import java.util.ArrayList;
 
 import application.Question;
 
+/**
+ * RMI interface to allow clients retrieve questions and submit answers to the database
+ * @author Chamodya Wimansha
+ *
+ */
 public interface IQuestionnaire extends Remote{
-	
 	/**
 	 * Get available questions from the database. this returns only active questions
 	 * @return
 	 * @throws RemoteException
 	 */
 	public ArrayList<Question> getQuestions() throws RemoteException;
-	
 	/**
 	 * this returns all the questions from the database. active or not
 	 * @return
 	 * @throws RemoteException
 	 */
 	public ArrayList<Question> getAllQuestions() throws RemoteException;
-	
 	/**
 	 * submit the answer. submitted answers will save on the database.
 	 * @param submitedQList
@@ -29,7 +31,6 @@ public interface IQuestionnaire extends Remote{
 	 * @throws RemoteException
 	 */
 	public boolean submitAnswer(ArrayList<Question> submitedQList) throws RemoteException;
-	
 	/**
 	 * Add new question
 	 * @param question
@@ -37,7 +38,6 @@ public interface IQuestionnaire extends Remote{
 	 * @throws RemoteException
 	 */
 	public boolean newQuestion(Question question) throws RemoteException;
-	
 	/**
 	 * show or hide a question
 	 * @param questionId
@@ -46,7 +46,6 @@ public interface IQuestionnaire extends Remote{
 	 * @throws RemoteException
 	 */
 	public boolean changeStatusQuestion(String questionId, String status) throws RemoteException;
-	
 	/**
 	 * modify a question
 	 * @param question
@@ -54,7 +53,6 @@ public interface IQuestionnaire extends Remote{
 	 * @throws RemoteException
 	 */
 	public boolean updateQuestion(int index, String question, String is_active)throws RemoteException;
-	
 	/**
 	 * Delete a question from the database
 	 * @param questionId

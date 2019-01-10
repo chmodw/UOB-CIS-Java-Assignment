@@ -7,38 +7,38 @@ import java.util.Map;
 
 import application.Result;
 
-public interface IResults  extends Remote{
-		
+/**
+ * RMI interface to allow clients get Results from the database
+ * @author Chamodya Wimansha
+ *
+ */
+public interface IResults  extends Remote{	
 	/**
 	 * Get how many people answered the questionnaire
 	 * @return
 	 * @throws RemoteException
 	 */
 	public int getResultCount() throws RemoteException;
-	
 	/**
 	 * Get the results from the database
 	 * @return
 	 * @throws RemoteException
 	 */
 	public ArrayList<Result> getResluts(String[] params) throws RemoteException;
-	
 	/**
 	 * Parameters for filter the results
 	 * @param params
 	 * @throws RemoteException
 	 */
 	public void setParams(String[] params) throws RemoteException;
-	
 	/**
 	 * get sentiment analysis results
 	 * @return
 	 * @throws RemoteException
 	 */
 	public Map<String, Integer> getSARResults() throws RemoteException;
-	
 	/**
-	 * 
+	 * returns the filter parameters
 	 * @param filter
 	 * @return
 	 * @throws RemoteException
