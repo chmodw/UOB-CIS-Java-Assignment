@@ -1,6 +1,6 @@
 package utils;
 
-import com.ibm.watson.developer_cloud.http.ServiceCallback;
+
 import com.ibm.watson.developer_cloud.service.exception.NotFoundException;
 import com.ibm.watson.developer_cloud.service.exception.RequestTooLargeException;
 import com.ibm.watson.developer_cloud.service.exception.ServiceResponseException;
@@ -9,8 +9,6 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 
-import application.DocumentTone;
-import sun.reflect.generics.tree.ReturnType;
 
 /**
  * Some codes on this class I got from the Tone Analyzer documentation. I did some changes to it according to my project

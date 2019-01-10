@@ -43,93 +43,39 @@ public class DeveloperHomeResultsController  implements Initializable{
 	@FXML private TableView<Result> questionsTable; 
 	@FXML private TableColumn<Result, String> questionIdCol;
 	@FXML private TableColumn<Result, String> questionCol;
-	
-	@FXML private ComboBox<String> filterByCombo;
-	@FXML private ComboBox<String> paramCombo;
-	@FXML private Button resultRefreshBtn;
+
 	
 	@FXML private StackedBarChart<String, Number> mainResBarChart;
 	
 	@FXML private VBox resultViewWindow;
-	
-	private CategoryAxis xAxis = new CategoryAxis(); 
-	private NumberAxis yAxis = new NumberAxis(); 
-
-	
-	XYChart.Series<String, Number> stronglyDissagree = new XYChart.Series<>();
-	XYChart.Series<String, Number> dissagree = new XYChart.Series<>();
-	XYChart.Series<String, Number> agree = new XYChart.Series<>();
-	XYChart.Series<String, Number> stronglyAgree = new XYChart.Series<>();
 
 	private Map<String, Integer> SARes;
 	private ResultsConnector rc;
-	private ArrayList<Result> res;
 	private ArrayList<Question> qList;
 	private String[] params = new String[2];
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
+
+
+		onLoad();
+
+		
+	}
+	
+	private void onLoad() {
+		
 
 		rc = new ResultsConnector();
 		/**
 		 * get the question list from the server
 		 */
 		qList = new QuestionClient().getqList();
-
-		/**
-		 * Set filters for results
-		 */
-		
-		/**
-		 * Add data to the param combo
-		 */
-		filterByCombo.getItems().addAll(
-					"Country",
-					"OS",
-					"Manufacturer"
-				);
-		
-		
-		filterByCombo.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
-				params[0] = filterByCombo.getValue();
-				
-				//Load the values to the params combo from the database
-				populateParamCombo(params[0]);
-				
-			}
-		});
-		
-		paramCombo.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
-				params[1] = filterByCombo.getValue();
-			}
-		});
-		
-
-
-		resultRefreshBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
-				onLoad();
-			}
-		});
-		
-		onLoad();
-		
-
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void onLoad() {
 		
 		/**
 		 * get the main results from the server
 		 */
-		res = rc.getResults(params);
+		ArrayList<Result> res = rc.getResults(params);
 		
 		/**
 		 * show the total participant count
@@ -142,11 +88,40 @@ public class DeveloperHomeResultsController  implements Initializable{
 		 * Get Sentiment analysis results from the server
 		 */
 		SARes = rc.getSentimentResults();
+		
+		showBarChart(res);
+		showQuestionTable(res);
+		showPieChart();
+		
+		for(int i=0; res.size() > i; i++) {
+			
+			System.out.println(res.get(i).getAgreeCount());
+			
+		}
+		
+	}
+	
+	@FXML public void refreshWindow() {
+		mainResBarChart.getData().clear();
+		onLoad();
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void showBarChart( ArrayList<Result> res) {
+		
+		CategoryAxis xAxis = new CategoryAxis(); 
+		NumberAxis yAxis = new NumberAxis(); 
 
+		
+		XYChart.Series<String, Number> stronglyDissagree = new XYChart.Series<>();
+		XYChart.Series<String, Number> dissagree = new XYChart.Series<>();
+		XYChart.Series<String, Number> agree = new XYChart.Series<>();
+		XYChart.Series<String, Number> stronglyAgree = new XYChart.Series<>();
+		
 		/**
 		 * Defining the bar chart axis Question IDs
 		 */
-		xAxis.setCategories(FXCollections.<String>observableArrayList(getQuestionIds())); 
+		xAxis.setCategories(FXCollections.<String>observableArrayList(getQuestionIds(res))); 
 		xAxis.setLabel("Questions");  
 		
 		yAxis.setLabel("Response Count");
@@ -175,12 +150,16 @@ public class DeveloperHomeResultsController  implements Initializable{
 		 * Add data to the stacked bar chart
 		 */
 		mainResBarChart.getData().addAll(stronglyDissagree, dissagree, agree,stronglyAgree); 
-		
+	}
+	
+	private void showQuestionTable( ArrayList<Result> res) {
 		/**
 		 * Add questions to the table
 		 */
 		populateTableview(FXCollections.observableArrayList(res));
-
+	}
+	
+	private void showPieChart() {
 		/**
 		 * add data to charts
 		 */
@@ -193,15 +172,8 @@ public class DeveloperHomeResultsController  implements Initializable{
 						);
 		
 		q1PieChart.setData(list);
-		
 	}
 	
-	private void populateParamCombo(String filters) {
-				
-		paramCombo.getItems().clear();
-		paramCombo.getItems().addAll(rc.getFilterParams(filters));
-	}
-
    private void populateTableview(ObservableList<Result> resultTableData) {
 	   
 	   	questionIdCol.setCellValueFactory(new PropertyValueFactory<>("QuestionId"));
@@ -211,7 +183,7 @@ public class DeveloperHomeResultsController  implements Initializable{
 		
    }
    
-   private ArrayList<String> getQuestionIds() {
+   private ArrayList<String> getQuestionIds( ArrayList<Result> res) {
 	   	
 	   ArrayList<String> ids = new ArrayList<>();
 	   	

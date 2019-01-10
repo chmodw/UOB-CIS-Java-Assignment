@@ -31,7 +31,7 @@ public class Results extends UnicastRemoteObject implements IResults{
 	private int participantCount; //how many people participated
 	private Model model;
 	private String sql; 
-	private String[] params = {"*",""}; // params for filter results 
+	private String[] params = {"",""}; // params for filter results 
 	private ArrayList<Question> qList; // question list
 	private ArrayList<Result> results;
 	
@@ -87,8 +87,8 @@ public class Results extends UnicastRemoteObject implements IResults{
 			/**
 			 * Find answered questions from the results table where question id equivalent to the current question id in the loop
 			 */
+
 			sql = "SELECT * FROM results WHERE question_id = '" + qList.get(i).getId() + "'";
-			
 			ResultSet res = model.SELECT(sql);
 
 			// Loop through the found answered questions
@@ -142,8 +142,6 @@ public class Results extends UnicastRemoteObject implements IResults{
 	public ArrayList<Result> getResluts(String[] params) throws RemoteException {
 		
 		this.params = params;
-		
-		System.out.println(params[0]);
 		
 		results = new ArrayList<>();
 		
